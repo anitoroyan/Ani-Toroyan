@@ -1,1 +1,2022 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f7f4">
+  <meta name="description" content="Ani Toroyan — Shopify Developer creating modern Shopify stores, custom-built websites, and high-converting landing pages.">
+  <title>Ani Toroyan — Shopify Developer & Web Designer</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================
+       1. GLOBAL STYLES & DESIGN VARIABLES
+    ========================================= */
+    :root {
+      --bg: #f8f7f4;
+      --surface: #ffffff;
+      --text: #22231f;
+      --muted: #777970;
+      --accent: #8b7769;
+      --accent-dark: #6e5b4f;
+      --line: #e9e6df;
+      --soft: #efede7;
+      --radius: 22px;
+      --max-width: 1160px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 110px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent-dark);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 22px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .section-heading {
+      max-width: 680px;
+      margin-bottom: 48px;
+    }
+
+    .section-heading h2 {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(32px, 4.5vw, 52px);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -2px;
+      margin-top: 18px;
+    }
+
+    .section-heading p {
+      margin-top: 18px;
+      color: var(--muted);
+      max-width: 540px;
+      font-size: 15px;
+    }
+
+    .highlight {
+      color: var(--accent);
+    }
+
+    /* =========================================
+       2. NAVIGATION BAR
+    ========================================= */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(248, 247, 244, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(233, 230, 223, 0.8);
+    }
+
+    .nav-inner {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .logo {
+      font-family: "Manrope", sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -1.2px;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #64665f;
+      font-size: 13px;
+      font-weight: 600;
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-dark);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 19px;
+      background: var(--text);
+      color: white;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      transition: background 0.25s ease, transform 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+    }
+
+    /* =========================================
+       3. HERO SECTION
+    ========================================= */
+    .hero {
+      position: relative;
+      padding: 100px 0 85px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      top: -150px;
+      right: -180px;
+      background: radial-gradient(
+        circle,
+        rgba(157, 129, 137, 0.13),
+        transparent 70%
+      );
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      gap: 70px;
+    }
+
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.55);
+      border-radius: 100px;
+      font-size: 11px;
+      color: #5d6157;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+
+    .availability-dot {
+      width: 7px;
+      height: 7px;
+      background: #77a77b;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(119, 167, 123, 0.12);
+    }
+
+    .hero h1 {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(45px, 6.2vw, 76px);
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: -4px;
+      max-width: 680px;
+    }
+
+    .hero h1 .second-line {
+      display: block;
+      color: var(--accent);
+    }
+
+    .hero-description {
+      max-width: 510px;
+      margin-top: 25px;
+      font-size: 16px;
+      line-height: 1.9;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 35px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      padding: 15px 23px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: transform 0.25s ease, background 0.25s ease,
+        border-color 0.25s ease;
+    }
+
+    .button-primary {
+      color: #fff;
+      background: var(--text);
+    }
+
+    .button-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-3px);
+    }
+
+    .button-secondary {
+      border: 1px solid #dedbd3;
+      background: transparent;
+    }
+
+    .button-secondary:hover {
+      background: white;
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .arrow {
+      display: inline-block;
+      transition: transform 0.25s ease;
+    }
+
+    a:hover .arrow {
+      transform: translate(3px, -2px);
+    }
+
+    .hero-note {
+      margin-top: 45px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .hero-note-line {
+      width: 35px;
+      height: 1px;
+      background: #c9c2b8;
+    }
+
+    /* Decorative portfolio preview */
+    .hero-visual {
+      position: relative;
+      min-height: 440px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .visual-glow {
+      position: absolute;
+      width: 310px;
+      height: 310px;
+      border-radius: 50%;
+      background: #e9e0d8;
+      filter: blur(2px);
+    }
+
+    .portfolio-card {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 355px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 23px;
+      box-shadow: 0 25px 80px rgba(60, 48, 39, 0.10);
+      transform: rotate(2deg);
+      transition: transform 0.4s ease;
+    }
+
+    .portfolio-card:hover {
+      transform: rotate(0deg) translateY(-6px);
+    }
+
+    .preview-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 7px 15px;
+    }
+
+    .preview-dots {
+      display: flex;
+      gap: 5px;
+    }
+
+    .preview-dots span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ddd6ce;
+    }
+
+    .preview-label {
+      font-size: 9px;
+      font-weight: 700;
+      color: #8c867e;
+      letter-spacing: 1px;
+    }
+
+    .preview-screen {
+      min-height: 300px;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #e9dcd2, #f5ede7 65%, #d7c6b8);
+      overflow: hidden;
+      position: relative;
+      padding: 24px;
+    }
+
+    .preview-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #56483e;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .preview-nav span:last-child {
+      font-size: 9px;
+      font-weight: 500;
+    }
+
+    .preview-title {
+      margin-top: 48px;
+      font-family: "Manrope", sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -2px;
+      color: #493c33;
+    }
+
+    .preview-subtitle {
+      margin-top: 12px;
+      color: #76675b;
+      font-size: 10px;
+      max-width: 180px;
+    }
+
+    .preview-pill {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 8px 12px;
+      border-radius: 100px;
+      color: white;
+      background: #493c33;
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .preview-circle {
+      position: absolute;
+      width: 135px;
+      height: 135px;
+      border-radius: 50%;
+      right: -12px;
+      bottom: -25px;
+      background: linear-gradient(140deg, #c9aa96, #a4826d);
+      border: 9px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .floating-tag {
+      position: absolute;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 17px;
+      border-radius: 13px;
+      background: white;
+      box-shadow: 0 12px 35px rgba(60, 48, 39, 0.10);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .floating-tag span {
+      display: block;
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 500;
+    }
+
+    .floating-tag-one {
+      top: 65px;
+      left: -15px;
+    }
+
+    .floating-tag-two {
+      right: -12px;
+      bottom: 50px;
+    }
+
+    .tag-icon {
+      display: grid;
+      place-items: center;
+      width: 35px;
+      height: 35px;
+      border-radius: 10px;
+      background: var(--soft);
+      color: var(--accent-dark);
+      font-size: 16px;
+    }
+
+    /* =========================================
+       4. SKILLS / SERVICES STRIP
+    ========================================= */
+    .skills-strip {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .skills-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+      padding: 26px 0;
+    }
+
+    .skills-label {
+      font-size: 10px;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .skill-chip {
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 100px;
+      padding: 8px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #565850;
+      transition: border-color 0.25s ease, color 0.25s ease;
+    }
+
+    .skill-chip:hover {
+      border-color: var(--accent);
+      color: var(--accent-dark);
+    }
+
+    /* =========================================
+       5. ABOUT SECTION
+    ========================================= */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 90px;
+      align-items: start;
+    }
+
+    .about-intro h2 {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(34px, 4vw, 49px);
+      line-height: 1.2;
+      letter-spacing: -2px;
+      font-weight: 600;
+      margin-top: 20px;
+    }
+
+    .about-copy p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.95;
+      margin-bottom: 20px;
+    }
+
+    .about-copy strong {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .about-signature {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-top: 30px;
+    }
+
+    .signature-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      background: #e9e0d8;
+      color: var(--accent-dark);
+      border-radius: 50%;
+      font-family: "Manrope", sans-serif;
+      font-weight: 800;
+    }
+
+    .about-signature strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .about-signature span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* =========================================
+       6. SERVICES / BENEFITS CARDS
+    ========================================= */
+    .services-section {
+      background: #f0eee9;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 300px;
+      padding: 30px;
+      background: #faf9f6;
+      border: 1px solid #e9e5dd;
+      border-radius: var(--radius);
+      transition: transform 0.3s ease, box-shadow 0.3s ease,
+        border-color 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 20px 45px rgba(60, 48, 39, 0.07);
+      border-color: #d6c6b9;
+    }
+
+    .service-icon {
+      display: grid;
+      place-items: center;
+      width: 49px;
+      height: 49px;
+      background: #ebe3dc;
+      border-radius: 14px;
+      color: #705b4c;
+      font-size: 21px;
+      margin-bottom: 28px;
+    }
+
+    .service-number {
+      color: #a19a90;
+      font-size: 10px;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+
+    .service-card h3 {
+      font-family: "Manrope", sans-serif;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.7px;
+      margin: 10px 0;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.85;
+    }
+
+    .service-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 24px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-dark);
+    }
+
+    .service-bottom span:last-child {
+      font-size: 19px;
+    }
+
+    /* =========================================
+       7. MY APPROACH / WHY WORK WITH ME
+    ========================================= */
+    .approach-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .approach-content h2 {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(33px, 4vw, 48px);
+      line-height: 1.2;
+      letter-spacing: -2px;
+      font-weight: 600;
+      margin: 20px 0;
+    }
+
+    .approach-content > p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+      margin-bottom: 30px;
+    }
+
+    .benefit-list {
+      list-style: none;
+      display: grid;
+      gap: 20px;
+    }
+
+    .benefit-list li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .check-icon {
+      flex-shrink: 0;
+      width: 25px;
+      height: 25px;
+      display: grid;
+      place-items: center;
+      background: #e8e4db;
+      color: var(--accent-dark);
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .benefit-list strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 3px;
+    }
+
+    .benefit-list p {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .approach-panel {
+      background: #e9e0d8;
+      border-radius: 28px;
+      padding: 38px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .approach-panel::after {
+      content: "</>";
+      position: absolute;
+      right: -10px;
+      bottom: -55px;
+      font-family: monospace;
+      font-size: 190px;
+      font-weight: 800;
+      line-height: 1;
+      color: rgba(113, 91, 75, 0.07);
+      pointer-events: none;
+    }
+
+    .panel-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #79685a;
+      text-transform: uppercase;
+    }
+
+    .approach-panel h3 {
+      font-family: "Manrope", sans-serif;
+      font-size: 31px;
+      line-height: 1.3;
+      letter-spacing: -1px;
+      font-weight: 600;
+      margin: 22px 0 12px;
+      max-width: 360px;
+    }
+
+    .approach-panel > p {
+      font-size: 13px;
+      color: #77675b;
+      max-width: 320px;
+      line-height: 1.9;
+    }
+
+    .code-window {
+      position: relative;
+      z-index: 1;
+      margin-top: 30px;
+      padding: 23px;
+      background: #292a27;
+      border-radius: 16px;
+      color: #ded8cf;
+      font-family: monospace;
+      font-size: 12px;
+      line-height: 2;
+      overflow-x: auto;
+    }
+
+    .code-muted {
+      color: #92958b;
+    }
+
+    .code-accent {
+      color: #d5ae91;
+    }
+
+    .code-green {
+      color: #b2c7a4;
+    }
+
+    /* =========================================
+       8. GITHUB / PROJECTS SECTION
+    ========================================= */
+    .projects-section {
+      border-top: 1px solid var(--line);
+    }
+
+    .projects-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 25px;
+      margin-bottom: 45px;
+    }
+
+    .projects-header .section-heading {
+      margin-bottom: 0;
+    }
+
+    .github-link {
+      flex-shrink: 0;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent-dark);
+      padding-bottom: 6px;
+      border-bottom: 1px solid #c9b9ad;
+      transition: color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .github-link:hover {
+      color: var(--text);
+      border-color: var(--text);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .project-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: var(--radius);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 45px rgba(60, 48, 39, 0.07);
+    }
+
+    .project-preview {
+      position: relative;
+      min-height: 230px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .project-preview-shopify {
+      background: #e8e5da;
+    }
+
+    .project-preview-landing {
+      background: #e9ded6;
+    }
+
+    .mini-browser {
+      width: 100%;
+      max-width: 340px;
+      background: #fbfaf7;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(60, 48, 39, 0.12);
+      transition: transform 0.35s ease;
+    }
+
+    .project-card:hover .mini-browser {
+      transform: scale(1.025);
+    }
+
+    .browser-bar {
+      height: 25px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0 10px;
+      background: #f0ede6;
+    }
+
+    .browser-bar span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #c9c2b8;
+    }
+
+    .mini-site {
+      min-height: 165px;
+      padding: 18px;
+    }
+
+    .mini-site-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 8px;
+      color: #6f6357;
+      font-weight: 700;
+    }
+
+    .mini-site h4 {
+      font-family: "Manrope", sans-serif;
+      font-size: 22px;
+      line-height: 1.15;
+      letter-spacing: -0.8px;
+      margin-top: 23px;
+      max-width: 220px;
+    }
+
+    .mini-site p {
+      margin-top: 8px;
+      font-size: 8px;
+      color: #81776d;
+    }
+
+    .mini-site-button {
+      display: inline-block;
+      margin-top: 12px;
+      background: #514337;
+      color: white;
+      padding: 7px 11px;
+      border-radius: 100px;
+      font-size: 7px;
+      font-weight: 700;
+    }
+
+    .mini-site-dark {
+      background: #252722;
+      color: #f5f0e8;
+    }
+
+    .mini-site-dark .mini-site-top {
+      color: #c7b9aa;
+    }
+
+    .mini-site-dark h4 {
+      color: #f5f0e8;
+    }
+
+    .mini-site-dark p {
+      color: #b7b1a8;
+    }
+
+    .mini-site-dark .mini-site-button {
+      background: #e5c7ae;
+      color: #302820;
+    }
+
+    .project-info {
+      padding: 25px;
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .project-category {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      color: var(--accent-dark);
+    }
+
+    .project-index {
+      color: #a29b92;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .project-info h3 {
+      font-family: "Manrope", sans-serif;
+      font-size: 22px;
+      letter-spacing: -0.7px;
+      font-weight: 700;
+    }
+
+    .project-info > p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.9;
+      margin-top: 9px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .project-tags span {
+      padding: 6px 10px;
+      border-radius: 100px;
+      background: #f3f1ec;
+      color: #69675f;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .project-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 22px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-dark);
+    }
+
+    /* =========================================
+       9. CONTACT / CALL TO ACTION
+    ========================================= */
+    .contact-section {
+      padding-top: 35px;
+      padding-bottom: 100px;
+    }
+
+    .contact-box {
+      position: relative;
+      overflow: hidden;
+      background: #e9e0d8;
+      padding: 75px 40px;
+      border-radius: 30px;
+      text-align: center;
+    }
+
+    .contact-box::before,
+    .contact-box::after {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border: 1px solid rgba(116, 93, 77, 0.12);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .contact-box::before {
+      top: -130px;
+      left: -70px;
+    }
+
+    .contact-box::after {
+      bottom: -150px;
+      right: -60px;
+      width: 320px;
+      height: 320px;
+    }
+
+    .contact-box .eyebrow {
+      justify-content: center;
+    }
+
+    .contact-box h2 {
+      position: relative;
+      z-index: 1;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(35px, 5vw, 58px);
+      line-height: 1.15;
+      letter-spacing: -2.5px;
+      font-weight: 600;
+      max-width: 680px;
+      margin: 22px auto 17px;
+    }
+
+    .contact-box > p {
+      position: relative;
+      z-index: 1;
+      max-width: 480px;
+      margin: 0 auto;
+      font-size: 14px;
+      line-height: 1.9;
+      color: #76675b;
+    }
+
+    .contact-actions {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 30px;
+    }
+
+    .contact-box .button-primary {
+      background: #302c27;
+    }
+
+    .contact-box .button-primary:hover {
+      background: #59483b;
+    }
+
+    .contact-box .button-secondary {
+      border-color: rgba(97, 78, 64, 0.25);
+    }
+
+    .contact-box .button-secondary:hover {
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    /* =========================================
+       10. FOOTER
+    ========================================= */
+    .footer {
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+      padding: 28px 0;
+    }
+
+    .footer-brand {
+      font-family: "Manrope", sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.7px;
+    }
+
+    .footer-brand span {
+      color: var(--accent);
+    }
+
+    .footer-copy {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 11px;
+      font-weight: 600;
+      color: #65665f;
+      transition: color 0.25s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-dark);
+    }
+
+    /* =========================================
+       11. MOBILE RESPONSIVE STYLES
+    ========================================= */
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr 0.85fr;
+        gap: 35px;
+      }
+
+      .hero h1 {
+        font-size: clamp(43px, 6vw, 60px);
+        letter-spacing: -2.8px;
+      }
+
+      .hero-visual {
+        min-height: 380px;
+      }
+
+      .preview-screen {
+        min-height: 270px;
+      }
+
+      .floating-tag-one {
+        left: -5px;
+      }
+
+      .floating-tag-two {
+        right: -5px;
+      }
+
+      .about-grid,
+      .approach-grid {
+        gap: 45px;
+      }
+
+      .service-card {
+        padding: 24px;
+      }
+
+      .skills-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .skills-list {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .container {
+        width: calc(100% - 36px);
+      }
+
+      .section {
+        padding: 75px 0;
+      }
+
+      .nav-inner {
+        min-height: 70px;
+        gap: 12px;
+      }
+
+      .logo {
+        font-size: 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-cta {
+        padding: 10px 14px;
+        font-size: 11px;
+      }
+
+      .hero {
+        padding: 70px 0 65px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .hero h1 {
+        font-size: clamp(43px, 11vw, 64px);
+        letter-spacing: -2.8px;
+      }
+
+      .hero-description {
+        font-size: 14px;
+      }
+
+      .hero-visual {
+        min-height: 380px;
+        margin: 10px 5px 0;
+      }
+
+      .portfolio-card {
+        max-width: 325px;
+      }
+
+      .preview-screen {
+        min-height: 275px;
+      }
+
+      .floating-tag-one {
+        top: 35px;
+        left: -5px;
+      }
+
+      .floating-tag-two {
+        bottom: 30px;
+        right: -5px;
+      }
+
+      .hero-note {
+        margin-top: 30px;
+      }
+
+      .skills-inner {
+        padding: 22px 0;
+      }
+
+      .skills-list {
+        gap: 8px;
+      }
+
+      .skill-chip {
+        font-size: 10px;
+        padding: 7px 11px;
+      }
+
+      .section-heading {
+        margin-bottom: 32px;
+      }
+
+      .section-heading h2,
+      .about-intro h2,
+      .approach-content h2 {
+        letter-spacing: -1.5px;
+      }
+
+      .about-grid,
+      .approach-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .service-card {
+        min-height: auto;
+        padding: 26px;
+      }
+
+      .service-icon {
+        margin-bottom: 20px;
+      }
+
+      .service-bottom {
+        padding-top: 18px;
+      }
+
+      .approach-panel {
+        padding: 28px 22px;
+      }
+
+      .approach-panel h3 {
+        font-size: 27px;
+      }
+
+      .code-window {
+        padding: 17px;
+        font-size: 10px;
+      }
+
+      .projects-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .project-preview {
+        min-height: 220px;
+      }
+
+      .project-info {
+        padding: 22px;
+      }
+
+      .contact-section {
+        padding-top: 10px;
+        padding-bottom: 70px;
+      }
+
+      .contact-box {
+        padding: 58px 22px;
+        border-radius: 23px;
+      }
+
+      .contact-box h2 {
+        letter-spacing: -1.5px;
+      }
+
+      .contact-box > p {
+        font-size: 13px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 13px;
+      }
+
+      .footer-links {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Respect reduced-motion accessibility preferences */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================================
+       NAVIGATION
+  ========================================== -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="logo" aria-label="Ani Toroyan home">
+        ani<span>.</span>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#projects">Projects</a></li>
+        </ul>
+      </nav>
+
+      <a href="#contact" class="nav-cta">
+        Let's talk <span class="arrow">↗</span>
+      </a>
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- =========================================
+         HERO SECTION
+         Main introduction and primary CTA
+    ========================================== -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+
+        <div class="hero-content">
+          <div class="availability">
+            <span class="availability-dot"></span>
+            Shopify Developer & Web Designer
+          </div>
+
+          <p class="eyebrow">Hello, I'm Ani Toroyan</p>
+
+          <h1>
+            Building digital
+            <span class="second-line">experiences</span>
+            that stand out.
+          </h1>
+
+          <p class="hero-description">
+            I create modern Shopify stores, custom-built websites, and
+            high-impact landing pages that combine thoughtful design,
+            smooth user experiences, and clean code.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#projects" class="button button-primary">
+              Explore my work <span class="arrow">↗</span>
+            </a>
+
+            <a href="#about" class="button button-secondary">
+              More about me <span class="arrow">↓</span>
+            </a>
+          </div>
+
+          <div class="hero-note">
+            <span class="hero-note-line"></span>
+            Design-minded. Detail-focused. Built for the web.
+          </div>
+        </div>
+
+        <!-- CSS-created portfolio preview; no images or JavaScript needed -->
+        <div class="hero-visual" aria-label="Decorative website design preview">
+          <div class="visual-glow"></div>
+
+          <div class="portfolio-card">
+            <div class="preview-top">
+              <div class="preview-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <span class="preview-label">WEBSITE CONCEPT / 01</span>
+            </div>
+
+            <div class="preview-screen">
+              <div class="preview-nav">
+                <span>STUDIO / CO.</span>
+                <span>COLLECTION &nbsp; ABOUT</span>
+              </div>
+
+              <div class="preview-title">
+                Made for<br>every day.
+              </div>
+
+              <p class="preview-subtitle">
+                Thoughtful design meets everyday functionality.
+              </p>
+
+              <span class="preview-pill">DISCOVER MORE ↗</span>
+              <div class="preview-circle"></div>
+            </div>
+          </div>
+
+          <div class="floating-tag floating-tag-one">
+            <div class="tag-icon">✳</div>
+            <div>
+              Clean design
+              <span>Every detail matters</span>
+            </div>
+          </div>
+
+          <div class="floating-tag floating-tag-two">
+            <div class="tag-icon">⌘</div>
+            <div>
+              Custom code
+              <span>Made with purpose</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================================
+         SKILLS STRIP
+         Quick overview of technical specialties
+    ========================================== -->
+    <section class="skills-strip" aria-label="Technical skills">
+      <div class="container skills-inner">
+        <span class="skills-label">What I work with</span>
+
+        <div class="skills-list">
+          <span class="skill-chip">Shopify</span>
+          <span class="skill-chip">Liquid</span>
+          <span class="skill-chip">HTML & CSS</span>
+          <span class="skill-chip">Responsive Design</span>
+          <span class="skill-chip">Landing Pages</span>
+          <span class="skill-chip">GitHub</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================================
+         ABOUT SECTION
+         Personal introduction and philosophy
+    ========================================== -->
+    <section class="section" id="about">
+      <div class="container about-grid">
+
+        <div class="about-intro">
+          <span class="eyebrow">A little about me</span>
+
+          <h2>
+            Design with intention.
+            <span class="highlight">Code with purpose.</span>
+          </h2>
+        </div>
+
+        <div class="about-copy">
+          <p>
+            Hi, I'm <strong>Ani Toroyan</strong>, a Shopify Developer
+            passionate about creating websites that look beautiful,
+            feel intuitive, and work smoothly across devices.
+          </p>
+
+          <p>
+            My work includes building and customizing Shopify stores,
+            developing standalone landing pages, and creating
+            <strong>custom-built web experiences</strong> using HTML and CSS.
+            I also use GitHub to showcase my projects and share my work.
+          </p>
+
+          <p>
+            I believe a great website is more than just its appearance.
+            It's about the details, the experience, and how every element
+            works together to communicate a brand's identity.
+          </p>
+
+          <div class="about-signature">
+            <div class="signature-mark">AT</div>
+            <div>
+              <strong>Ani Toroyan</strong>
+              <span>Shopify Developer · Web Designer</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================================
+         SERVICES SECTION
+         Core skills and services offered
+    ========================================== -->
+    <section class="section services-section" id="services">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">What I do</span>
+
+          <h2>
+            Turning ideas into
+            <span class="highlight">digital reality.</span>
+          </h2>
+
+          <p>
+            From e-commerce experiences to custom web pages, I focus on
+            creating digital solutions that balance aesthetics,
+            functionality, and usability.
+          </p>
+        </div>
+
+        <div class="services-grid">
+
+          <!-- Service 01 -->
+          <article class="service-card">
+            <div class="service-icon">◇</div>
+            <span class="service-number">01 / E-COMMERCE</span>
+
+            <h3>Shopify Development</h3>
+
+            <p>
+              Custom Shopify storefronts, product pages, collection
+              layouts, theme customization, and thoughtful shopping
+              experiences tailored to each brand.
+            </p>
+
+            <div class="service-bottom">
+              <span>Shopify · Liquid · CSS</span>
+              <span>↗</span>
+            </div>
+          </article>
+
+          <!-- Service 02 -->
+          <article class="service-card">
+            <div class="service-icon">✳</div>
+            <span class="service-number">02 / WEB DESIGN</span>
+
+            <h3>Landing Pages</h3>
+
+            <p>
+              Modern landing pages with clear messaging, engaging
+              layouts, strong calls to action, and responsive designs
+              built to introduce products and brands.
+            </p>
+
+            <div class="service-bottom">
+              <span>Layout · UX · Responsive</span>
+              <span>↗</span>
+            </div>
+          </article>
+
+          <!-- Service 03 -->
+          <article class="service-card">
+            <div class="service-icon">⌘</div>
+            <span class="service-number">03 / CUSTOM WEB</span>
+
+            <h3>Custom-Built Websites</h3>
+
+            <p>
+              Lightweight, individually coded web pages and website
+              experiences using HTML and CSS, with attention to
+              structure, performance, and visual consistency.
+            </p>
+
+            <div class="service-bottom">
+              <span>HTML · CSS · GitHub</span>
+              <span>↗</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================================
+         APPROACH SECTION
+         Benefits and a decorative code preview
+    ========================================== -->
+    <section class="section" id="approach">
+      <div class="container approach-grid">
+
+        <div class="approach-content">
+          <span class="eyebrow">My approach</span>
+
+          <h2>
+            Good design is in the
+            <span class="highlight">details.</span>
+          </h2>
+
+          <p>
+            Every project is an opportunity to create something
+            purposeful. I focus on the things that make a website
+            feel polished, reliable, and easy to use.
+          </p>
+
+          <ul class="benefit-list">
+            <li>
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Clean, modern aesthetics</strong>
+                <p>Thoughtful typography, balanced spacing, and consistent visual elements.</p>
+              </div>
+            </li>
+
+            <li>
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Responsive by design</strong>
+                <p>Layouts that adapt to mobile phones, tablets, and desktop screens.</p>
+              </div>
+            </li>
+
+            <li>
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Attention to detail</strong>
+                <p>Subtle interactions, intuitive navigation, and carefully styled components.</p>
+              </div>
+            </li>
+
+            <li>
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Practical development</strong>
+                <p>Maintainable code and solutions suited to each project's needs.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Decorative code illustration -->
+        <div class="approach-panel">
+          <span class="panel-label">The philosophy</span>
+
+          <h3>Less clutter.<br>More clarity.</h3>
+
+          <p>
+            Every pixel has a purpose. Every interaction has a reason.
+            Every project starts with an idea.
+          </p>
+
+          <div class="code-window" aria-label="Decorative HTML code sample">
+            <div class="code-muted">&lt;section class="experience"&gt;</div>
+            <div>&nbsp;&nbsp;<span class="code-accent">&lt;h1&gt;</span></div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;Ideas into reality.</div>
+            <div>&nbsp;&nbsp;<span class="code-accent">&lt;/h1&gt;</span></div>
+            <div>&nbsp;</div>
+            <div>&nbsp;&nbsp;<span class="code-green">&lt;p&gt;</span></div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;Designed with purpose.</div>
+            <div>&nbsp;&nbsp;<span class="code-green">&lt;/p&gt;</span></div>
+            <div class="code-muted">&lt;/section&gt;</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================================
+         PROJECTS SECTION
+         Illustrative project cards and GitHub CTA
+         Replace sample links with real project URLs
+    ========================================== -->
+    <section class="section projects-section" id="projects">
+      <div class="container">
+
+        <div class="projects-header">
+          <div class="section-heading">
+            <span class="eyebrow">Selected work</span>
+
+            <h2>
+              Ideas I've brought
+              <span class="highlight">to life.</span>
+            </h2>
+
+            <p>
+              A look at the types of digital experiences I create,
+              from e-commerce storefronts to custom-coded landing pages.
+            </p>
+          </div>
+
+          <!-- Replace with your personal GitHub profile URL -->
+          <a
+            href="https://github.com/"
+            class="github-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Explore GitHub ↗
+          </a>
+        </div>
+
+        <div class="projects-grid">
+
+          <!-- Project 01: Shopify e-commerce -->
+          <article class="project-card">
+            <div class="project-preview project-preview-shopify">
+
+              <div class="mini-browser">
+                <div class="browser-bar">
+                  <span></span><span></span><span></span>
+                </div>
+
+                <div class="mini-site">
+                  <div class="mini-site-top">
+                    <span>PAW & CO.</span>
+                    <span>SHOP &nbsp; ABOUT</span>
+                  </div>
+
+                  <h4>Made for pets.<br>Loved by humans.</h4>
+
+                  <p>Everyday comfort, with a little personality.</p>
+
+                  <span class="mini-site-button">SHOP COLLECTION ↗</span>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-category">E-commerce / Shopify</span>
+                <span class="project-index">01</span>
+              </div>
+
+              <h3>Pet Lifestyle Store</h3>
+
+              <p>
+                A pet clothing and accessories storefront concept,
+                featuring product pages, curated collections, and
+                a cohesive brand identity.
+              </p>
+
+              <div class="project-tags">
+                <span>Shopify</span>
+                <span>Liquid</span>
+                <span>Custom CSS</span>
+              </div>
+
+              <!-- Replace # with the live store or source-code URL -->
+              <a href="#contact" class="project-action">
+                Discuss a similar project <span class="arrow">↗</span>
+              </a>
+            </div>
+          </article>
+
+
+          <!-- Project 02: Custom landing page -->
+          <article class="project-card">
+            <div class="project-preview project-preview-landing">
+
+              <div class="mini-browser">
+                <div class="browser-bar">
+                  <span></span><span></span><span></span>
+                </div>
+
+                <div class="mini-site mini-site-dark">
+                  <div class="mini-site-top">
+                    <span>STUDIO / AT</span>
+                    <span>WORK &nbsp; ABOUT</span>
+                  </div>
+
+                  <h4>Digital ideas.<br>Made tangible.</h4>
+
+                  <p>Thoughtful design for brands with a vision.</p>
+
+                  <span class="mini-site-button">EXPLORE MORE ↗</span>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-category">Web Design / Landing Page</span>
+                <span class="project-index">02</span>
+              </div>
+
+              <h3>Modern Brand Landing Page</h3>
+
+              <p>
+                A minimalist landing page concept with strong typography,
+                structured content, responsive layouts, and clear
+                calls to action.
+              </p>
+
+              <div class="project-tags">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>Responsive Design</span>
+              </div>
+
+              <!-- Replace # with the live demo or repository URL -->
+              <a href="#contact" class="project-action">
+                Discuss a similar project <span class="arrow">↗</span>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================================
+         CONTACT SECTION
+         Main conversion area for potential clients
+    ========================================== -->
+    <section class="contact-section" id="contact">
+      <div class="container">
+
+        <div class="contact-box">
+          <span class="eyebrow">Have a project in mind?</span>
+
+          <h2>
+            Let's build something
+            <span class="highlight">meaningful.</span>
+          </h2>
+
+          <p>
+            Whether you need a Shopify store, a landing page, or a
+            custom-built website, I'd love to hear about your ideas
+            and explore what we can create together.
+          </p>
+
+          <div class="contact-actions">
+
+            <!-- Replace the email address with your real email -->
+            <a
+              href="mailto:YOUR_EMAIL@example.com"
+              class="button button-primary"
+            >
+              Get in touch <span class="arrow">↗</span>
+            </a>
+
+            <!-- Replace with your actual GitHub profile -->
+            <a
+              href="https://github.com/"
+              class="button button-secondary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Visit my GitHub <span class="arrow">↗</span>
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- =========================================
+       FOOTER
+       Copyright and navigation links
+  ========================================== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+
+      <a href="#home" class="footer-brand">
+        ani<span>.</span>
+      </a>
+
+      <p class="footer-copy">
+        © <span id="copyright-year">2026</span> Ani Toroyan. Built with care.
+      </p>
+
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a
+          href="https://github.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub ↗
+        </a>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>
+
