@@ -290,6 +290,102 @@ h2 { font-size: clamp(36px, 5vw, 64px); line-height: 1.05; letter-spacing: -0.05
   .projects-track { display: grid; width: auto; padding: 0; }
   .project { width: auto; }
 }
+
+/* ABOUT — LARGE SKILL CARDS */
+.about {
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 55px;
+  align-items: start;
+}
+
+.about h2 {
+  max-width: 520px;
+}
+
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 0;
+}
+
+.skill {
+  min-height: 180px;
+  padding: 25px 22px;
+  border: 1px solid #ded9cf;
+  border-radius: 7px;
+  background: #faf9f5;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: background .25s ease, transform .25s ease,
+              border-color .25s ease;
+}
+
+.skill:hover {
+  background: #e7e1fb;
+  border-color: #c8bdec;
+  transform: translateY(-5px);
+}
+
+.skill-number {
+  display: block;
+  color: #8b73d6;
+  font-size: 11px;
+  letter-spacing: .12em;
+  margin-bottom: auto;
+}
+
+.skill h3 {
+  font-size: clamp(17px, 1.5vw, 22px);
+  line-height: 1.2;
+  letter-spacing: -.045em;
+  margin: 22px 0 9px;
+  font-weight: 650;
+}
+
+.skill small {
+  display: block;
+  color: #77736c;
+  font-size: 12px;
+  line-height: 1.7;
+  margin-top: 0;
+}
+
+@media (max-width: 760px) {
+  .about {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .skill-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .skill {
+    min-height: 155px;
+    padding: 17px 14px;
+  }
+
+  .skill h3 {
+    font-size: 16px;
+  }
+
+  .skill small {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 420px) {
+  .skill-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skill {
+    min-height: 135px;
+  }
+}
 </style>
 </head>
 <body id="top">
