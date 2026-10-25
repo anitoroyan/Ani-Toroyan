@@ -62,6 +62,7 @@ nav {
   position: relative;
   padding: 0 10vw;
   border-right: 1px solid rgba(0,0,0,0.05);
+  overflow: hidden; /* Ensures nothing spills outside the panel */
 }
 
 h1 {
@@ -77,25 +78,35 @@ h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.15em; color: 
 
 p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 600px; }
 
-/* UPDATED WORK GRID - Փոքրացված բարձրություններ */
-
-
+/* TIGHTER WORK GRID TO FIT SCREEN */
 .work-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 25px 40px;
+  gap: 15px 30px; /* Reduced vertical gap to 15px, horizontal to 30px */
   width: 100%;
-  max-width: 1200px;
-  max-height: 85vh;
-  align-content: center;
+  max-width: 1100px;
 }
-
-
+.project { 
+  display: block; 
+  text-decoration: none; 
+  color: inherit; 
+  opacity: 0;
+  transform: scale(0.8);
+}
+.img-box {
+  width: 100%; 
+  aspect-ratio: 1.6; /* Made wider/shorter (was 16/11 ≈ 1.45) to save vertical space */
+  background: #e0e0e0; 
+  border-radius: 6px; 
+  overflow: hidden; 
+  margin-bottom: 8px; /* Reduced from 10px */
+  transition: transform 0.4s ease;
+}
 .project:hover .img-box { transform: translateY(-5px); }
 .img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
 .project:hover img { transform: scale(1.05); }
-.p-title { font-size: 16px; font-weight: 600; margin-bottom: 3px; } /* Փոքրացված */
-.p-cat { font-size: 12px; color: var(--muted); } /* ոքրացված */
+.p-title { font-size: 15px; font-weight: 600; margin-bottom: 2px; } /* Slightly smaller */
+.p-cat { font-size: 11px; color: var(--muted); } /* Slightly smaller */
 
 .about-split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; width: 100%; max-width: 1200px; align-items: center; }
 .service-list { list-style: none; margin-top: 40px; }
@@ -139,7 +150,7 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
 
   <section class="panel">
     <div style="width:100%">
-      <h2 style="margin-bottom: 25px;">Selected Work</h2> <!-- Փոքրացված margin -->
+      <h2 style="margin-bottom: 25px;">Selected Work</h2>
       <div class="work-grid">
         
         <a href="https://ani-torosyan-rmmewhp3.myshopify.com/" target="_blank" class="project">
