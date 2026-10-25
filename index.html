@@ -15,6 +15,107 @@
 <!-- Lenis Smooth Scroll -->
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 
+/* FIX ABOUT SECTION OVERLAP */
+#about .about {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) !important;
+  align-items: start !important;
+  gap: clamp(32px, 5vw, 80px) !important;
+  width: 100% !important;
+}
+
+#about .about > .reveal {
+  min-width: 0 !important;
+  width: 100% !important;
+}
+
+#about h2 {
+  max-width: 100% !important;
+  font-size: clamp(36px, 4vw, 60px) !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.055em !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+}
+
+#about .skill-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+#about .skill {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 205px !important;
+  padding: 23px !important;
+  box-sizing: border-box !important;
+  border: 1px solid #ded9cf !important;
+  border-radius: 8px !important;
+  background: #faf9f6 !important;
+  transform: none;
+}
+
+#about .skill-number {
+  font-size: 11px !important;
+  letter-spacing: .12em !important;
+  color: #8b73d6 !important;
+}
+
+#about .skill h3 {
+  font-size: clamp(17px, 1.5vw, 22px) !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.035em !important;
+  margin: 26px 0 10px !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+}
+
+#about .skill small {
+  font-size: 12px !important;
+  line-height: 1.65 !important;
+  color: #77736c !important;
+  overflow-wrap: break-word !important;
+}
+
+#about .skill:hover {
+  background: #e9e3fb !important;
+  border-color: #c8bdec !important;
+  transform: translateY(-3px) !important;
+}
+
+@media (max-width: 760px) {
+  #about .about {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+
+  #about h2 {
+    font-size: clamp(38px, 9vw, 54px) !important;
+  }
+
+  #about .skill {
+    min-height: 175px !important;
+    padding: 17px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  #about .skill-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  #about .skill {
+    min-height: 145px !important;
+  }
+}
+
 <style>
 :root {
   --bg: #F4F4F0;
@@ -468,7 +569,9 @@ h2 { font-size: clamp(36px, 5vw, 64px); line-height: 1.05; letter-spacing: -0.05
 
           <article class="project reveal">
             <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/digital-planing?_pos=3&_psq=landing&_psid=2c0d07d33&_ss=e" target="_blank" rel="noreferrer" class="project-art magnetic-area" aria-label="Open Digital Planning product page">
-              <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Digital_Planner_Pastel_Tablet_Banner.png?v=1792947070" alt="Digital planning product page">
+              
+<img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Digital_Planner_Desk_Scene.png?v=1792956163" alt="Digital Planning Product Page" loading="lazy">
+
               <span class="art-label">Digital product · Product page</span><span class="art-number">↗</span>
             </a>
             <div class="project-meta">
@@ -483,7 +586,9 @@ h2 { font-size: clamp(36px, 5vw, 64px); line-height: 1.05; letter-spacing: -0.05
 
           <article class="project reveal">
             <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/about-us?view=halloween.landing.page" target="_blank" rel="noreferrer" class="project-art magnetic-area" aria-label="Open Halloween landing page">
-              <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Screenshot_2026-10-25_at_20.38.27.png?v=1792947083" alt="Halloween landing page">
+              
+<img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/IMG_0076.jpg?v=1792956082" alt="Halloween Landing Page" loading="lazy">
+
               <span class="art-label">Campaign · Seasonal design</span><span class="art-number">↗</span>
             </a>
             <div class="project-meta">
