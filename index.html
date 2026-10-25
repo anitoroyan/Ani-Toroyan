@@ -5,16 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ani Toroyan — Portfolio</title>
 
-<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
-<!-- GSAP for Smooth Animation -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap-scroll-smoother/gsap-scroll-smoother.min.js"></script> 
-<!-- Note: Using a CDN fallback for ScrollSmoother if needed, but standard GSAP works well with CSS scroll-behavior too. For exact Khanh Nguyen feel, we use custom logic below. -->
 
 <style>
 :root {
@@ -33,34 +29,30 @@ body {
   background-color: var(--bg);
   color: var(--text);
   font-family: var(--sans);
-  overflow-x: hidden; /* Hide horizontal scrollbar */
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-/* --- NAVIGATION --- */
 nav {
   position: fixed;
   top: 40px;
   left: 40px;
   z-index: 100;
   mix-blend-mode: difference;
-  color: #fff; /* Inverts based on background */
+  color: #fff;
 }
 .logo { font-weight: 700; font-size: 24px; letter-spacing: -0.05em; display: block; margin-bottom: 10px; }
 .menu { display: flex; gap: 20px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; }
 .menu span { cursor: pointer; opacity: 0.6; transition: opacity 0.3s; }
 .menu span:hover { opacity: 1; }
 
-/* --- HORIZONTAL CONTAINER --- */
-/* This wrapper holds all pages side-by-side */
 .horizontal-wrapper {
-  width: 400%; /* 4 Sections = 400% width */
+  width: 400%;
   height: 100vh;
   display: flex;
   flex-wrap: nowrap;
 }
 
-/* --- SECTIONS (PAGES) --- */
 .panel {
   width: 100vw;
   height: 100vh;
@@ -69,10 +61,9 @@ nav {
   justify-content: center;
   position: relative;
   padding: 0 10vw;
-  border-right: 1px solid rgba(0,0,0,0.05); /* Subtle divider */
+  border-right: 1px solid rgba(0,0,0,0.05);
 }
 
-/* Typography & Layouts */
 h1 {
   font-size: clamp(3rem, 7vw, 8rem);
   line-height: 1;
@@ -86,31 +77,34 @@ h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.15em; color: 
 
 p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 600px; }
 
-/* WORK GRID */
+/* UPDATED WORK GRID - More compact */
 .work-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 60px;
+  gap: 40px 50px; /* Reduced from 60px - row gap 40px, column gap 50px */
   width: 100%;
   max-width: 1200px;
 }
 .project { display: block; text-decoration: none; color: inherit; group: project; }
 .img-box {
-  width: 100%; aspect-ratio: 4/3; background: #e0e0e0; border-radius: 6px; overflow: hidden; margin-bottom: 20px;
+  width: 100%; 
+  aspect-ratio: 16/10; /* Changed from 4/3 to be slightly shorter */
+  background: #e0e0e0; 
+  border-radius: 6px; 
+  overflow: hidden; 
+  margin-bottom: 15px; /* Reduced from 20px */
   transition: transform 0.4s ease;
 }
-.project:hover .img-box { transform: translateY(-10px); }
+.project:hover .img-box { transform: translateY(-5px); }
 .img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
 .project:hover img { transform: scale(1.05); }
-.p-title { font-size: 20px; font-weight: 600; margin-bottom: 5px; }
-.p-cat { font-size: 14px; color: var(--muted); }
+.p-title { font-size: 18px; font-weight: 600; margin-bottom: 4px; } /* Slightly smaller */
+.p-cat { font-size: 13px; color: var(--muted); } /* Slightly smaller */
 
-/* ABOUT LAYOUT */
 .about-split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; width: 100%; max-width: 1200px; align-items: center; }
 .service-list { list-style: none; margin-top: 40px; }
 .service-list li { padding: 20px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; font-size: 18px; }
 
-/* CONTACT */
 .contact-content { text-align: center; }
 .big-btn {
   display: inline-block; margin-top: 40px; padding: 25px 50px; background: var(--text); color: var(--bg);
@@ -118,7 +112,6 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
 }
 .big-btn:hover { background: var(--accent); }
 
-/* MOBILE FIX */
 @media(max-width: 900px) {
   .horizontal-wrapper { width: 100%; height: auto; flex-direction: column; }
   .panel { width: 100%; height: auto; min-height: 100vh; padding: 100px 20px; border-right: none; }
@@ -140,7 +133,6 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
 
 <div class="horizontal-wrapper" id="wrapper">
   
-  <!-- SECTION 1: HERO -->
   <section class="panel">
     <div>
       <h2>Shopify Developer</h2>
@@ -149,10 +141,9 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
     </div>
   </section>
 
-  <!-- SECTION 2: WORK -->
   <section class="panel">
     <div style="width:100%">
-      <h2 style="margin-bottom: 50px;">Selected Work</h2>
+      <h2 style="margin-bottom: 40px;">Selected Work</h2> <!-- Reduced margin -->
       <div class="work-grid">
         
         <a href="https://ani-torosyan-rmmewhp3.myshopify.com/" target="_blank" class="project">
@@ -169,7 +160,7 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
 
         <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/digital-planing" target="_blank" class="project">
           <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Digital_Planner_Desk_Scene.png?v=1792956163" alt="Planner"></div>
-          <div class="p-title">Digital Planning</div>
+          <div class="p-title">Digital Planner</div>
           <div class="p-cat">Digital Product</div>
         </a>
 
@@ -183,7 +174,6 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
     </div>
   </section>
 
-  <!-- SECTION 3: ABOUT -->
   <section class="panel">
     <div class="about-split">
       <div>
@@ -201,7 +191,6 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
     </div>
   </section>
 
-  <!-- SECTION 4: CONTACT -->
   <section class="panel">
     <div class="contact-content">
       <h1>Let's make<br><em>something good.</em></h1>
@@ -216,51 +205,30 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
-// Check if mobile
 const isMobile = window.innerWidth < 900;
 
 if (!isMobile) {
-  // 1. Create the Horizontal Scroll Effect
-  // We translate the X position of the wrapper based on vertical scroll
   let sections = gsap.utils.toArray(".panel");
   
   let scrollTween = gsap.to(sections, {
-    xPercent: -100 * (sections.length - 1), // Move left by 100% for each section
-    ease: "none", // Linear movement is crucial for scroll syncing
+    xPercent: -100 * (sections.length - 1),
+    ease: "none",
     scrollTrigger: {
       trigger: ".horizontal-wrapper",
-      pin: true, // Stick the wrapper in place
-      scrub: 1, // Smooth scrubbing effect (1 second delay)
-      snap: 1 / (sections.length - 1), // Optional: Snaps to sections
-      end: "+=3000", // Controls how "long" the scroll feels (higher = slower scroll)
+      pin: true,
+      scrub: 1,
+      snap: 1 / (sections.length - 1),
+      end: "+=3000",
     }
   });
 }
 
-// Simple Navigation Click Logic
 function scrollToSection(index) {
-  if(isMobile) return; // Disable on mobile
-  
-  // Calculate target scroll position based on the pinned duration
-  // Since we pinned the wrapper, we can't just scroll to Y. 
-  // We use the ScrollTrigger progress.
+  if(isMobile) return;
   const totalPanels = document.querySelectorAll('.panel').length;
   const progress = index / (totalPanels - 1);
-  
-  // Find the ScrollTrigger instance
-  const trigger = ScrollTrigger.getById("scroller"); // Auto-generated ID usually, but we can target manually
-  
-  // Manual calculation for smooth scroll via Lenis or native
-  // Since we are using GSAP Scrub, we can animate the window scroll
-  const maxScroll = document.body.scrollHeight - window.innerHeight;
-  // Approximate location based on the 'end' value defined in ScrollTrigger (+3000)
-  // This part is tricky with Pinning. The easiest way is to animate the window scroll position
-  // corresponding to where the pin starts + the percentage of the pin duration.
-  
-  // However, simpler approach for this specific demo:
-  // Just scroll the window to the calculated pixel amount.
   const pinStart = document.querySelector('.horizontal-wrapper').offsetTop;
-  const pinDuration = 3000; // Matches the 'end' value in ScrollTrigger
+  const pinDuration = 3000;
   const targetY = pinStart + (pinDuration * progress);
   
   window.scrollTo({
