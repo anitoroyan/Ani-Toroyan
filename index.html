@@ -77,29 +77,34 @@ h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.15em; color: 
 
 p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 600px; }
 
-/* UPDATED WORK GRID - More compact */
 .work-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 40px 50px; /* Reduced from 60px - row gap 40px, column gap 50px */
+  gap: 40px 50px;
   width: 100%;
   max-width: 1200px;
 }
-.project { display: block; text-decoration: none; color: inherit; group: project; }
+.project { 
+  display: block; 
+  text-decoration: none; 
+  color: inherit; 
+  opacity: 0; /* Hidden initially for animation */
+  transform: scale(0.8); /* Start smaller */
+}
 .img-box {
   width: 100%; 
-  aspect-ratio: 16/10; /* Changed from 4/3 to be slightly shorter */
+  aspect-ratio: 16/10;
   background: #e0e0e0; 
   border-radius: 6px; 
   overflow: hidden; 
-  margin-bottom: 15px; /* Reduced from 20px */
+  margin-bottom: 15px;
   transition: transform 0.4s ease;
 }
 .project:hover .img-box { transform: translateY(-5px); }
 .img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
 .project:hover img { transform: scale(1.05); }
-.p-title { font-size: 18px; font-weight: 600; margin-bottom: 4px; } /* Slightly smaller */
-.p-cat { font-size: 13px; color: var(--muted); } /* Slightly smaller */
+.p-title { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+.p-cat { font-size: 13px; color: var(--muted); }
 
 .about-split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; width: 100%; max-width: 1200px; align-items: center; }
 .service-list { list-style: none; margin-top: 40px; }
@@ -143,7 +148,7 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
 
   <section class="panel">
     <div style="width:100%">
-      <h2 style="margin-bottom: 40px;">Selected Work</h2> <!-- Reduced margin -->
+      <h2 style="margin-bottom: 40px;">Selected Work</h2>
       <div class="work-grid">
         
         <a href="https://ani-torosyan-rmmewhp3.myshopify.com/" target="_blank" class="project">
@@ -210,16 +215,63 @@ const isMobile = window.innerWidth < 900;
 if (!isMobile) {
   let sections = gsap.utils.toArray(".panel");
   
+  // Horizontal scroll with slower speed
   let scrollTween = gsap.to(sections, {
     xPercent: -100 * (sections.length - 1),
     ease: "none",
     scrollTrigger: {
       trigger: ".horizontal-wrapper",
       pin: true,
-      scrub: 1,
+      scrub: 1.5, // Smoother, slower scrubbing
       snap: 1 / (sections.length - 1),
-      end: "+=3000",
+      end: "+=6000", // MUCH slower scroll (increased from 3000)
     }
+  });
+
+  // Animate projects scaling and shifting
+  const projects = gsap.utils.toArray(".project");
+  
+  projects.forEach((project, i) => {
+    gsap.to(project, {
+      opacity: 1,
+      scale: 1,
+      duration: 1,
+      scrollTrigger: {
+        trigger: ".horizontal-wrapper",
+        containerAnimation: scrollTween, // Link to horizontal scroll
+        start: () => `+=${i * 400} center`, // Stagger the reveals
+        end: () => `+=${i * 400 + 800} center`,
+        toggleActions: "play reverse play reverse",
+      }
+    });
+    
+    // Add subtle floating effect
+    gsap.to(project, {
+      y: -20,
+      duration: 2 + (i * 0.3),
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      delay: i * 0.2
+    });
+  });
+
+  // Scale projects as they move across screen
+  gsap.utils.toArray(".project").forEach((project, i) => {
+    gsap.fromTo(project, 
+      { scale: 0.7, opacity: 0.5 },
+      {
+        scale: 1,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: project,
+          containerAnimation: scrollTween,
+          start: "left 80%",
+          end: "left 20%",
+          scrub: 1
+        }
+      }
+    );
   });
 }
 
@@ -228,7 +280,7 @@ function scrollToSection(index) {
   const totalPanels = document.querySelectorAll('.panel').length;
   const progress = index / (totalPanels - 1);
   const pinStart = document.querySelector('.horizontal-wrapper').offsetTop;
-  const pinDuration = 3000;
+  const pinDuration = 6000; // Match the end value
   const targetY = pinStart + (pinDuration * progress);
   
   window.scrollTo({
