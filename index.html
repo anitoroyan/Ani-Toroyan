@@ -77,6 +77,7 @@ h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.15em; color: 
 
 p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 600px; }
 
+/* WORK GRID - Optimized for visibility and animation */
 .work-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -84,25 +85,34 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
   width: 100%;
   max-width: 1200px;
 }
+
 .project { 
   display: block; 
   text-decoration: none; 
   color: inherit; 
-  opacity: 0; /* Hidden initially for animation */
-  transform: scale(0.8); /* Start smaller */
+  will-change: transform; /* Ensures smooth 60fps scaling/shifting */
 }
+
 .img-box {
   width: 100%; 
-  aspect-ratio: 16/10;
+  aspect-ratio: 16/10; 
   background: #e0e0e0; 
   border-radius: 6px; 
   overflow: hidden; 
-  margin-bottom: 15px;
-  transition: transform 0.4s ease;
+  margin-bottom: 15px; 
+  border: 1px solid transparent;
+  transition: border-color 0.4s ease;
 }
-.project:hover .img-box { transform: translateY(-5px); }
-.img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
-.project:hover img { transform: scale(1.05); }
+.project:hover .img-box { border-color: var(--accent); }
+
+.img-box img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  transition: transform 0.8s ease; 
+}
+.project:hover img { transform: scale(1.08); }
+
 .p-title { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
 .p-cat { font-size: 13px; color: var(--muted); }
 
@@ -113,9 +123,9 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
 .contact-content { text-align: center; }
 .big-btn {
   display: inline-block; margin-top: 40px; padding: 25px 50px; background: var(--text); color: var(--bg);
-  border-radius: 50px; font-size: 18px; font-weight: 600; transition: background 0.3s;
+  border-radius: 50px; font-size: 18px; font-weight: 600; transition: background 0.3s, transform 0.3s;
 }
-.big-btn:hover { background: var(--accent); }
+.big-btn:hover { background: var(--accent); transform: translateY(-3px); }
 
 @media(max-width: 900px) {
   .horizontal-wrapper { width: 100%; height: auto; flex-direction: column; }
@@ -130,9 +140,10 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
 <nav>
   <div class="logo">AT.</div>
   <div class="menu">
-    <span onclick="scrollToSection(0)">Work</span>
-    <span onclick="scrollToSection(1)">About</span>
-    <span onclick="scrollToSection(2)">Contact</span>
+    <span onclick="scrollToSection(0)">Home</span>
+    <span onclick="scrollToSection(1)">Work</span>
+    <span onclick="scrollToSection(2)">About</span>
+    <span onclick="scrollToSection(3)">Contact</span>
   </div>
 </nav>
 
@@ -213,74 +224,65 @@ gsap.registerPlugin(ScrollTrigger);
 const isMobile = window.innerWidth < 900;
 
 if (!isMobile) {
-  let sections = gsap.utils.toArray(".panel");
+  const sections = gsap.utils.toArray(".panel");
   
-  // Horizontal scroll with slower speed
-  let scrollTween = gsap.to(sections, {
+  // 1. Main Horizontal Scroll (Slower and smoother)
+  const scrollTween = gsap.to(sections, {
     xPercent: -100 * (sections.length - 1),
     ease: "none",
     scrollTrigger: {
       trigger: ".horizontal-wrapper",
       pin: true,
-      scrub: 1.5, // Smoother, slower scrubbing
-      snap: 1 / (sections.length - 1),
-      end: "+=6000", // MUCH slower scroll (increased from 3000)
+      scrub: 1.5, // Heavier scrub for a luxurious, smooth feel
+      end: "+=8000", // Much longer scroll distance = slower movement
     }
   });
 
-  // Animate projects scaling and shifting
+  // 2. Dynamic Scaling & Shifting for Projects
   const projects = gsap.utils.toArray(".project");
   
   projects.forEach((project, i) => {
-    gsap.to(project, {
-      opacity: 1,
-      scale: 1,
-      duration: 1,
-      scrollTrigger: {
-        trigger: ".horizontal-wrapper",
-        containerAnimation: scrollTween, // Link to horizontal scroll
-        start: () => `+=${i * 400} center`, // Stagger the reveals
-        end: () => `+=${i * 400 + 800} center`,
-        toggleActions: "play reverse play reverse",
-      }
-    });
+    // Alternate shift direction (up/down) for a dynamic, organic feel
+    const yOffset = (i % 2 === 0) ? -40 : 40; 
     
-    // Add subtle floating effect
-    gsap.to(project, {
-      y: -20,
-      duration: 2 + (i * 0.3),
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      delay: i * 0.2
-    });
-  });
-
-  // Scale projects as they move across screen
-  gsap.utils.toArray(".project").forEach((project, i) => {
+    // As the project enters the center of the screen: Scale UP and Shift
     gsap.fromTo(project, 
-      { scale: 0.7, opacity: 0.5 },
+      { scale: 0.92, y: 0 },
       {
-        scale: 1,
-        opacity: 1,
+        scale: 1.06,
+        y: yOffset,
         scrollTrigger: {
           trigger: project,
-          containerAnimation: scrollTween,
-          start: "left 80%",
-          end: "left 20%",
-          scrub: 1
+          containerAnimation: scrollTween, // Links animation to the horizontal scroll
+          start: "left center",
+          end: "center center",
+          scrub: 1.5,
         }
       }
     );
+
+    // As the project leaves the center: Scale DOWN and return to normal
+    gsap.to(project, {
+      scale: 0.92,
+      y: 0,
+      scrollTrigger: {
+        trigger: project,
+        containerAnimation: scrollTween,
+        start: "center center",
+        end: "right center",
+        scrub: 1.5,
+      }
+    });
   });
 }
 
+// Navigation Click Logic
 function scrollToSection(index) {
   if(isMobile) return;
   const totalPanels = document.querySelectorAll('.panel').length;
   const progress = index / (totalPanels - 1);
   const pinStart = document.querySelector('.horizontal-wrapper').offsetTop;
-  const pinDuration = 6000; // Match the end value
+  const pinDuration = 8000; // Must match the 'end' value above
   const targetY = pinStart + (pinDuration * progress);
   
   window.scrollTo({
