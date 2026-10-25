@@ -3,17 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ani Toroyan — Portfolio</title>
+<title>Ani Toroyan — Horizontal Portfolio</title>
+
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+<!-- Lenis for Smooth Scrolling -->
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 
 <style>
 :root {
   --bg: #F4F4F0;
-  --text: #111111;
-  --muted: #777777;
+  --text: #1A1A1A;
+  --muted: #6B6B6B;
   --line: #D4D4D0;
   --accent: #8B73D6;
   --serif: 'Playfair Display', serif;
@@ -21,463 +25,359 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; width: 100%; overflow: hidden; } /* Prevent native scroll, we handle it inside */
 
 body {
   background-color: var(--bg);
   color: var(--text);
   font-family: var(--sans);
-  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden; /* Hide native horizontal scrollbar */
 }
 
-/* --- LAYOUT GRID --- */
-.app-container {
-  display: grid;
-  grid-template-columns: 300px 1fr; /* Sidebar | Content */
+/* --- LAYOUT STRUCTURE --- */
+/* We make the body very wide to hold all pages side-by-side */
+.scroll-container {
+  display: flex;
+  width: 400vw; /* 4 Pages = 400% width */
   height: 100vh;
+}
+
+/* Each section is exactly one screen width */
+section {
   width: 100vw;
-}
-
-/* --- SIDEBAR (FIXED) --- */
-.sidebar {
-  padding: 60px 40px;
-  border-right: 1px solid var(--line);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  z-index: 10;
-  background: var(--bg);
-}
-
-.brand {
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  margin-bottom: 60px;
-  display: block;
-}
-.brand span { color: var(--accent); }
-
-.nav-menu { display: flex; flex-direction: column; gap: 15px; }
-.nav-item {
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 500;
-  color: var(--muted);
-  cursor: pointer;
+  height: 100vh;
+  flex-shrink: 0;
   position: relative;
-  width: fit-content;
-  transition: color 0.3s;
-}
-.nav-item:hover, .nav-item.active { color: var(--text); }
-.nav-item::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0%;
-  height: 1px;
-  background: var(--accent);
-  transition: width 0.3s ease;
-}
-.nav-item.active::after { width: 100%; }
-
-.sidebar-footer {
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-/* --- CONTENT AREA (SCROLLABLE) --- */
-.content-wrapper {
-  position: relative;
-  height: 100%;
-  overflow-y: auto; /* Allow scrolling inside the right panel */
-  perspective: 2000px; /* Essential for the flip effect */
-  background: var(--bg);
-}
-
-/* Custom Scrollbar */
-.content-wrapper::-webkit-scrollbar { width: 6px; }
-.content-wrapper::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
-
-/* --- PAGES & FLIP LOGIC --- */
-.page {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-height: 100%; /* Ensures it covers scroll area */
-  padding: 80px 80px 150px 80px;
-  opacity: 0;
-  visibility: hidden;
-  transform-origin: left center; /* Flip from the spine */
-  transform: rotateY(-90deg) translateZ(-100px);
-  transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-  pointer-events: none;
-  background: var(--bg);
-  backface-visibility: hidden; /* Hides content during flip */
-}
-
-.page.active {
-  opacity: 1;
-  visibility: visible;
-  transform: rotateY(0deg) translateZ(0);
-  pointer-events: auto;
-  z-index: 5;
-}
-
-/* Previous page state (flipped away) */
-.page.exit-left {
-  opacity: 0;
-  transform: rotateY(90deg) translateZ(-100px);
-  visibility: hidden;
-}
-
-/* --- TYPOGRAPHY & COMPONENTS --- */
-h1 {
-  font-size: clamp(48px, 6vw, 84px);
-  line-height: 1.05;
-  letter-spacing: -0.05em;
-  font-weight: 600;
-  margin-bottom: 40px;
-  max-width: 900px;
-}
-h1 em {
-  font-family: var(--serif);
-  font-weight: 400;
-  color: var(--accent);
-  font-style: italic;
-}
-
-.section-title {
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--accent);
-  margin-bottom: 30px;
-  font-weight: 700;
-  display: block;
-}
-
-p.intro {
-  font-size: 18px;
-  line-height: 1.6;
-  color: var(--muted);
-  max-width: 600px;
-  margin-bottom: 60px;
-}
-
-/* PROJECT CARDS */
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 60px 40px;
-}
-
-.project-card {
-  display: block;
-  group: project;
-  text-decoration: none;
-  color: inherit;
-}
-
-.img-container {
-  width: 100%;
-  aspect-ratio: 4/3;
-  background: #e5e5e5;
-  border-radius: 4px;
-  overflow: hidden;
-  margin-bottom: 20px;
-  border: 1px solid transparent;
-  transition: border-color 0.3s;
-}
-.project-card:hover .img-container { border-color: var(--accent); }
-
-.img-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.project-card:hover img { transform: scale(1.05); }
-
-.project-meta h3 { font-size: 20px; font-weight: 600; margin-bottom: 6px; }
-.project-meta p { font-size: 14px; color: var(--muted); }
-.tags { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
-.tag {
-  font-size: 10px;
-  border: 1px solid var(--line);
-  padding: 4px 10px;
-  border-radius: 20px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--muted);
-}
-
-/* ABOUT / SERVICES LIST */
-.service-row {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 25px 0;
-  border-bottom: 1px solid var(--line);
-  transition: padding-left 0.3s;
-}
-.service-row:hover { padding-left: 20px; background: rgba(139, 115, 214, 0.03); }
-.service-row h4 { font-size: 18px; font-weight: 500; }
-.arrow { color: var(--accent); font-size: 20px; }
-
-/* CONTACT BUTTON */
-.big-contact-btn {
-  display: inline-flex;
   align-items: center;
   justify-content: center;
+  border-right: 1px solid var(--line);
+  padding: 0 8vw;
+}
+
+/* --- TYPOGRAPHY & ELEMENTS --- */
+h1 {
+  font-size: clamp(3rem, 6vw, 7rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 4rem);
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+
+h1 em, h2 em {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 400;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 500px;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--line);
+  padding: 6px 14px;
+  border-radius: 50px;
+  margin-right: 8px;
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* --- NAVIGATION (Fixed) --- */
+.fixed-nav {
+  position: fixed;
+  top: 40px;
+  left: 40px;
+  z-index: 100;
+  mix-blend-mode: difference;
+  color: white; /* Will invert based on background due to mix-blend-mode */
+}
+.logo { font-weight: 700; font-size: 1.5rem; letter-spacing: -0.05em; display: block; margin-bottom: 20px;}
+.nav-links span { 
+  margin-left: 20px; 
+  font-size: 0.9rem; 
+  cursor: pointer; 
+  opacity: 0.6; 
+  transition: opacity 0.3s;
+}
+.nav-links span:hover, .nav-links span.active { opacity: 1; }
+
+/* Progress Bar */
+.progress-bar {
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
+  right: 40px;
+  height: 2px;
+  background: rgba(0,0,0,0.1);
+  z-index: 100;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* --- PAGE SPECIFIC STYLES --- */
+
+/* Page 1: Home */
+.hero-content { max-width: 800px; }
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  animation: pulse 2s infinite;
+}
+
+/* Page 2: Work Grid */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
   width: 100%;
-  max-width: 300px;
-  padding: 24px;
+  max-width: 1200px;
+}
+.project-card {
+  group: project;
+  cursor: pointer;
+}
+.card-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 15px;
+  border: 1px solid transparent;
+  transition: all 0.4s ease;
+}
+.project-card:hover .card-img { border-color: var(--accent); transform: translateY(-5px); }
+.card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+.project-card:hover img { transform: scale(1.05); }
+.card-title { font-size: 1.2rem; font-weight: 600; }
+.card-cat { font-size: 0.9rem; color: var(--muted); }
+
+/* Page 3: About */
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  width: 100%;
+  max-width: 1200px;
+  align-items: center;
+}
+.skill-list { list-style: none; margin-top: 30px; }
+.skill-list li {
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Page 4: Contact */
+.contact-box { text-align: center; }
+.email-btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 20px 40px;
   background: var(--text);
   color: var(--bg);
   border-radius: 50px;
   font-weight: 600;
-  font-size: 16px;
-  margin-top: 40px;
-  transition: background 0.3s, transform 0.3s;
+  font-size: 1.2rem;
+  transition: background 0.3s;
 }
-.big-contact-btn:hover { background: var(--accent); transform: translateY(-5px); }
+.email-btn:hover { background: var(--accent); }
 
-/* MOBILE RESPONSIVE */
-@media (max-width: 900px) {
-  .app-container { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
-  .sidebar { 
-    padding: 20px; 
-    flex-direction: row; 
-    align-items: center; 
-    border-right: none; 
-    border-bottom: 1px solid var(--line); 
-  }
-  .brand { margin-bottom: 0; font-size: 20px; }
-  .sidebar-footer { display: none; }
-  .nav-menu { flex-direction: row; gap: 20px; }
-  
-  .page { padding: 30px 20px 100px 20px; transform: none !important; transition: opacity 0.5s; }
-  .page.exit-left { opacity: 0; transform: none !important; }
-  .project-grid { grid-template-columns: 1fr; }
-  h1 { font-size: 36px; }
+@keyframes pulse { 0% {opacity:0.3} 50% {opacity:1} 100% {opacity:0.3} }
+
+/* Mobile Adjustments */
+@media(max-width: 768px) {
+  .scroll-container { width: 100%; height: auto; flex-direction: column; }
+  section { width: 100%; height: auto; min-height: 100vh; padding: 100px 20px; border-right: none; border-bottom: 1px solid var(--line); }
+  .work-grid, .about-layout { grid-template-columns: 1fr; }
+  .fixed-nav { top: 20px; left: 20px; }
+  .progress-bar { display: none; }
 }
 </style>
 </head>
-
 <body>
 
-<div class="app-container">
-  
-  <!-- LEFT SIDEBAR -->
-  <aside class="sidebar">
-    <div>
-      <a href="#" class="brand">AT<span>.</span></a>
-      <nav class="nav-menu">
-        <div class="nav-item active" onclick="switchPage('work')">Selected Work</div>
-        <div class="nav-item" onclick="switchPage('about')">About Me</div>
-        <div class="nav-item" onclick="switchPage('contact')">Contact</div>
-      </nav>
-    </div>
-    <div class="sidebar-footer">
-      Shopify Developer<br>
-      Web Designer<br>
-      © 2026
-    </div>
-  </aside>
+<!-- Fixed UI Elements -->
+<div class="fixed-nav">
+  <div class="logo">AT.</div>
+  <div class="nav-links">
+    <span onclick="scrollToSection(0)" class="active">Home</span>
+    <span onclick="scrollToSection(1)">Work</span>
+    <span onclick="scrollToSection(2)">About</span>
+    <span onclick="scrollToSection(3)">Contact</span>
+  </div>
+</div>
 
-  <!-- RIGHT CONTENT AREA -->
-  <main class="content-wrapper" id="main-scroll">
-    
-    <!-- PAGE 1: WORK -->
-    <section id="work" class="page active">
-      <span class="section-title">01 / Selected Projects</span>
-      <h1>Digital experiences<br>with <em>intention.</em></h1>
-      <p class="intro">Shopify Developer and Web Designer. I create thoughtful digital experiences, custom storefronts, and landing pages that bring products to life.</p>
+<div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
 
-      <div class="project-grid">
-        
+<!-- Main Horizontal Container -->
+<div class="scroll-container" id="container">
+
+  <!-- SECTION 1: HOME -->
+  <section id="home">
+    <div class="hero-content">
+      <p style="color:var(--accent); font-weight:600; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:20px;">Shopify Developer</p>
+      <h1>Ani <em>Toroyan.</em><br>Digital Creator.</h1>
+      <p>I build thoughtful digital experiences, custom storefronts, and landing pages that bring products to life.</p>
+    </div>
+    <div class="scroll-indicator">Scroll to explore &rarr;</div>
+  </section>
+
+  <!-- SECTION 2: WORK -->
+  <section id="work">
+    <div style="width:100%">
+      <h2 style="margin-bottom:60px;">Selected <em>Work.</em></h2>
+      
+      <div class="work-grid">
         <!-- Project 1 -->
         <a href="https://ani-torosyan-rmmewhp3.myshopify.com/" target="_blank" class="project-card">
-          <div class="img-container">
-            <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/cf35048b3a83f3b2a63d1bc424a2eecb.jpg?v=1792685464" alt="Petwear">
+          <div class="card-img">
+           https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Black_and_White_Minimalist_Simple_Modern_Bold_Typographic_Chic_Logo_12c389ed-5dac-4208-8d36-14569b237f0a.png?v=1792960265
           </div>
-          <div class="project-meta">
-            <h3>Petwear Store</h3>
-            <p>Complete Shopify storefront design.</p>
-            <div class="tags"><span class="tag">Shopify</span><span class="tag">E-commerce</span></div>
-          </div>
+          <div class="card-title">Petwear Store</div>
+          <div class="card-cat">E-commerce Design</div>
+          <span class="tag">Shopify</span><span class="tag">Liquid</span>
         </a>
 
         <!-- Project 2 -->
         <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/raincoat-landing" target="_blank" class="project-card">
-          <div class="img-container">
+          <div class="card-img">
             <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Autumn_Samoyed_in_a_Yellow_Raincoat.png?v=1792428795" alt="Raincoat">
           </div>
-          <div class="project-meta">
-            <h3>Raincoat Landing</h3>
-            <p>Collection landing with strong visuals.</p>
-            <div class="tags"><span class="tag">Landing Page</span><span class="tag">Storytelling</span></div>
-          </div>
+          <div class="card-title">Raincoat Landing</div>
+          <div class="card-cat">Product Storytelling</div>
+          <span class="tag">Landing Page</span>
         </a>
 
         <!-- Project 3 -->
         <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/digital-planing" target="_blank" class="project-card">
-          <div class="img-container">
-            <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Digital_Planner_Desk_Scene.png?v=1792956163" alt="Digital Planner">
+          <div class="card-img">
+            <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Digital_Planner_Desk_Scene.png?v=1792956163" alt="Planner">
           </div>
-          <div class="project-meta">
-            <h3>Digital Planning</h3>
-            <p>Soft visuals and structured storytelling.</p>
-            <div class="tags"><span class="tag">Product Page</span><span class="tag">UI</span></div>
-          </div>
+          <div class="card-title">Digital Planning</div>
+          <div class="card-cat">Digital Product</div>
+          <span class="tag">UI Design</span>
         </a>
 
         <!-- Project 4 -->
         <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/about-us?view=halloween.landing.page" target="_blank" class="project-card">
-          <div class="img-container">
+          <div class="card-img">
             <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/IMG_0076.jpg?v=1792956082" alt="Halloween">
           </div>
-          <div class="project-meta">
-            <h3>Halloween Campaign</h3>
-            <p>Seasonal landing page with custom CSS.</p>
-            <div class="tags"><span class="tag">Campaign</span><span class="tag">Custom CSS</span></div>
-          </div>
+          <div class="card-title">Halloween Campaign</div>
+          <div class="card-cat">Seasonal Layout</div>
+          <span class="tag">Custom CSS</span>
         </a>
-
       </div>
-    </section>
+    </div>
+  </section>
 
-
-    <!-- PAGE 2: ABOUT -->
-    <section id="about" class="page">
-      <span class="section-title">02 / About Me</span>
-      <h1>Curious by nature.<br><em>Precise by design.</em></h1>
-      
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 60px;">
-        <div>
-          <p class="intro" style="margin-bottom: 20px;">I build online experiences that feel considered, useful, and easy to explore. From storefront structure to custom sections.</p>
-          <p style="color: var(--muted); font-size: 15px; line-height: 1.7;">
-            My approach combines technical precision in Liquid and JavaScript with a keen eye for UI/UX design. I believe that a website should not only function flawlessly but also tell a compelling story.
-          </p>
-        </div>
-        
-        <div>
-          <h3 style="font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px;">Technical Stack</h3>
-          <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-            <span class="tag" style="font-size: 12px; padding: 8px 16px;">Shopify Liquid</span>
-            <span class="tag" style="font-size: 12px; padding: 8px 16px;">HTML5 & CSS3</span>
-            <span class="tag" style="font-size: 12px; padding: 8px 16px;">JavaScript (ES6+)</span>
-            <span class="tag" style="font-size: 12px; padding: 8px 16px;">Responsive Design</span>
-            <span class="tag" style="font-size: 12px; padding: 8px 16px;">UI/UX Principles</span>
-          </div>
-        </div>
+  <!-- SECTION 3: ABOUT -->
+  <section id="about">
+    <div class="about-layout">
+      <div>
+        <h2>About <em>Me.</em></h2>
+        <p>I am a Shopify Developer and Web Designer based in Armenia. I combine technical precision with creative design to build stores that sell.</p>
+        <p style="margin-top:20px">My workflow involves clean code, responsive design, and a focus on user experience.</p>
       </div>
-
-      <div style="margin-top: 80px;">
-        <h3 style="font-size: 24px; margin-bottom: 30px;">Services</h3>
-        <div class="service-row"><h4>Shopify Store Design</h4><span class="arrow">↗</span></div>
-        <div class="service-row"><h4>Custom Liquid Sections</h4><span class="arrow">↗</span></div>
-        <div class="service-row"><h4>Responsive Front-End</h4><span class="arrow">↗</span></div>
-        <div class="service-row"><h4>Landing Pages & Storytelling</h4><span class="arrow">↗</span></div>
+      <div>
+        <h3>Expertise</h3>
+        <ul class="skill-list">
+          <li><span>Shopify Development</span> <span>Liquid, JSON</span></li>
+          <li><span>Front-End</span> <span>HTML, CSS, JS</span></li>
+          <li><span>Design</span> <span>UI/UX, Figma</span></li>
+          <li><span>Optimization</span> <span>Speed, SEO</span></li>
+        </ul>
       </div>
-    </section>
+    </div>
+  </section>
 
-
-    <!-- PAGE 3: CONTACT -->
-    <section id="contact" class="page">
-      <span class="section-title">03 / Contact</span>
-      <h1>Let's make<br><em>something good.</em></h1>
-      <p class="intro">Have a Shopify project, landing page, or e-commerce idea? Get in touch and tell me about it.</p>
-      
-      <a href="mailto:anitoroyan8@gmail.com" class="big-contact-btn">
-        Email Me ↗
-      </a>
-
-      <div style="margin-top: 80px; border-top: 1px solid var(--line); padding-top: 40px;">
-        <p style="font-size: 14px; color: var(--muted);">
-          <strong>Email:</strong> anitoroyan8@gmail.com<br>
-          <strong>Location:</strong> Armenia<br>
-          <strong>Status:</strong> Available for freelance
-        </p>
+  <!-- SECTION 4: CONTACT -->
+  <section id="contact">
+    <div class="contact-box">
+      <h1>Let's work <em>together.</em></h1>
+      <p style="margin:0 auto">Have a project in mind? Let's discuss how we can bring your vision to life.</p>
+      <a href="mailto:anitoroyan8@gmail.com" class="email-btn">Get in Touch ↗</a>
+      <div style="margin-top:60px; font-size:0.9rem; color:var(--muted)">
+        © 2026 Ani Toroyan. All rights reserved.
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
 </div>
 
 <script>
-// --- PAGE FLIP LOGIC ---
-function switchPage(pageId) {
-  // 1. Update Navigation State
-  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-  // Find the nav item that calls this function with this ID and add active class
-  const navItems = document.querySelectorAll('.nav-item');
-  if(pageId === 'work') navItems[0].classList.add('active');
-  if(pageId === 'about') navItems[1].classList.add('active');
-  if(pageId === 'contact') navItems[2].classList.add('active');
-
-  // 2. Handle Page Transitions
-  const newPage = document.getElementById(pageId);
-  const currentPage = document.querySelector('.page.active');
-
-  if (currentPage && currentPage.id !== pageId) {
-    // Animate out current page
-    currentPage.classList.remove('active');
-    currentPage.classList.add('exit-left'); // Triggers CSS transform
-    
-    // Reset scroll of new page
-    document.getElementById('main-scroll').scrollTop = 0;
-
-    // Wait for animation to finish slightly before showing new page
-    setTimeout(() => {
-      currentPage.classList.remove('exit-left'); // Clean up class
-      newPage.classList.add('active');
-    }, 400); // Timing matches CSS transition
-  } else if (!currentPage) {
-    newPage.classList.add('active');
-  }
-}
-
-// --- CUSTOM CURSOR ---
-const cursor = document.createElement('div');
-cursor.className = 'cursor';
-document.body.appendChild(cursor);
-
-const style = document.createElement('style');
-style.innerHTML = `
-  .cursor { position: fixed; top: 0; left: 0; width: 20px; height: 20px; border: 1px solid #222; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width .3s, height .3s, background .3s; mix-blend-mode: difference; }
-  .cursor.hovered { width: 50px; height: 50px; background: rgba(255,255,255,0.2); }
-`;
-document.head.appendChild(style);
-
-document.addEventListener('mousemove', e => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
+// 1. Initialize Lenis for Smooth Scrolling
+const lenis = new Lenis({
+  direction: 'horizontal', // Key setting for horizontal scroll
+  smooth: true,
+  gestureDirection: 'horizontal',
+  mouseMultiplier: 1,
 });
 
-document.querySelectorAll('a, .nav-item, .project-card').forEach(el => {
-  el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-  el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
-});
-
-// --- LENIS SMOOTH SCROLL ---
-if (typeof Lenis !== 'undefined') {
-  const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smoothWheel: true
-  });
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
+function raf(time) {
+  lenis.raf(time);
   requestAnimationFrame(raf);
 }
+requestAnimationFrame(raf);
+
+// 2. Navigation Logic
+const container = document.getElementById('container');
+const sections = document.querySelectorAll('section');
+const navSpans = document.querySelectorAll('.nav-links span');
+const progFill = document.getElementById('prog');
+
+// Click to scroll
+function scrollToSection(index) {
+  const targetX = index * window.innerWidth;
+  lenis.scrollTo(targetX);
+}
+
+// Update Active State on Scroll
+lenis.on('scroll', (e) => {
+  // Update progress bar
+  const totalWidth = container.scrollWidth - window.innerWidth;
+  const percentage = (e.scroll / totalWidth) * 100;
+  progFill.style.width = `${Math.min(percentage, 100)}%`;
+
+  // Update Nav Highlight
+  const currentIndex = Math.round(e.scroll / window.innerWidth);
+  
+  navSpans.forEach((span, idx) => {
+    if(idx === currentIndex) span.classList.add('active');
+    else span.classList.remove('active');
+  });
+});
+
+// Handle Window Resize
+window.addEventListener('resize', () => {
+  lenis.resize();
+});
 </script>
 
 </body>
