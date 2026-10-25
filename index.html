@@ -78,31 +78,28 @@ h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.15em; color: 
 p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 600px; }
 
 /* UPDATED WORK GRID - Փոքրացված բարձրություններ */
+
 .work-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 25px 40px; /* Փոքրացված gap-եր */
+  gap: 12px 40px;
   width: 100%;
   max-width: 1200px;
-  max-height: 85vh; /* Սահմանափակում բարձրության համար */
-  align-content: center; /* Կենտրոնացնում է grid-ը */
+  max-height: 78vh;
+  align-content: center;
+  transform: translateY(-20px);
 }
-.project { 
-  display: block; 
-  text-decoration: none; 
-  color: inherit; 
-  opacity: 0;
-  transform: scale(0.8);
-}
+
 .img-box {
-  width: 100%; 
-  aspect-ratio: 16/11; /* Փոքրացված 16/10-ից 16/11 */
-  background: #e0e0e0; 
-  border-radius: 6px; 
-  overflow: hidden; 
-  margin-bottom: 10px; /* Փոքրացված՝ 15px-ից 10px */
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  background: #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 6px;
   transition: transform 0.4s ease;
 }
+
 .project:hover .img-box { transform: translateY(-5px); }
 .img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
 .project:hover img { transform: scale(1.05); }
