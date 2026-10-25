@@ -3,443 +3,469 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#F4F4F0">
-<meta name="description" content="Ani Toroyan — Shopify Developer and Web Designer.">
 <title>Ani Toroyan — Portfolio</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 
 <style>
 :root {
   --bg: #F4F4F0;
-  --text: #1A1A1A;
-  --muted: #6B6B6B;
+  --text: #111111;
+  --muted: #777777;
   --line: #D4D4D0;
   --accent: #8B73D6;
-  --accent-light: #F0ECFF;
-  --serif: 'Playfair Display', Georgia, serif;
-  --sans: 'Inter', Arial, sans-serif;
-  
-  /* Book Dimensions */
-  --book-width: min(94vw, 1200px);
-  --book-height: min(85vh, 750px);
+  --serif: 'Playfair Display', serif;
+  --sans: 'Inter', sans-serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: auto; overflow: hidden; height: 100%; }
-body { 
-  background: var(--bg); 
-  color: var(--text); 
-  font-family: var(--sans); 
-  -webkit-font-smoothing: antialiased; 
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  perspective: 2000px; /* Essential for 3D effect */
-  overflow: hidden;
+html, body { height: 100%; width: 100%; overflow: hidden; } /* Prevent native scroll, we handle it inside */
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
 }
 
-a { color: inherit; text-decoration: none; }
-img { max-width: 100%; display: block; }
-
-/* --- UI ELEMENTS --- */
-.cursor { position: fixed; top: 0; left: 0; width: 20px; height: 20px; border: 1px solid #222; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width .3s, height .3s; mix-blend-mode: difference; }
-.cursor.hovered { width: 50px; height: 50px; background: rgba(255,255,255,0.1); }
-@media(hover:none){ .cursor{display:none} }
-
-/* --- NAVIGATION (Floating) --- */
-.floating-nav {
-  position: fixed;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 20px;
-  z-index: 1000;
-  background: white;
-  padding: 12px 24px;
-  border-radius: 50px;
-  border: 1px solid var(--line);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
-.nav-btn {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  cursor: pointer;
-  padding: 5px 10px;
-  transition: color 0.3s;
-  opacity: 0.5;
-}
-.nav-btn.active { opacity: 1; color: var(--accent); }
-.nav-btn:hover { opacity: 1; }
-
-/* --- THE BOOK CONTAINER --- */
-.book-container {
-  width: var(--book-width);
-  height: var(--book-height);
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-
-/* State classes for rotation */
-.book-container.show-work { transform: rotateY(0deg); }
-.book-container.show-about { transform: rotateY(-180deg); }
-
-/* --- PAGES (Front & Back) --- */
-.page {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  backface-visibility: hidden; /* Hides the back when flipped */
+/* --- LAYOUT GRID --- */
+.app-container {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Split 50/50 */
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05);
-  overflow: hidden;
+  grid-template-columns: 300px 1fr; /* Sidebar | Content */
+  height: 100vh;
+  width: 100vw;
 }
 
-/* Front Face (Work Side) */
-.page-front {
-  z-index: 2;
-}
-
-/* Back Face (About Side) - Pre-rotated */
-.page-back {
-  transform: rotateY(180deg);
-  z-index: 1;
-}
-
-/* --- PAGE LAYOUT COMPONENTS --- */
-.col-left {
-  background: var(--bg);
+/* --- SIDEBAR (FIXED) --- */
+.sidebar {
+  padding: 60px 40px;
   border-right: 1px solid var(--line);
-  padding: 60px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow-y: auto;
+  z-index: 10;
+  background: var(--bg);
 }
 
-.col-right {
-  background: #fff;
-  padding: 0;
-  overflow-y: auto;
-  position: relative;
+.brand {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  margin-bottom: 60px;
+  display: block;
 }
-
-/* Typography & Elements */
-.brand { font-size: 24px; font-weight: 700; letter-spacing: -.05em; margin-bottom: 40px; display: inline-block;}
 .brand span { color: var(--accent); }
 
-h1 { font-size: clamp(40px, 5vw, 64px); line-height: 1.1; letter-spacing: -.04em; font-weight: 600; margin-bottom: 24px; }
-h1 em { font-family: var(--serif); font-weight: 400; color: var(--accent); }
+.nav-menu { display: flex; flex-direction: column; gap: 15px; }
+.nav-item {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  position: relative;
+  width: fit-content;
+  transition: color 0.3s;
+}
+.nav-item:hover, .nav-item.active { color: var(--text); }
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+.nav-item.active::after { width: 100%; }
 
-p { font-size: 15px; line-height: 1.7; color: var(--muted); margin-bottom: 20px; }
+.sidebar-footer {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
 
-.section-label {
-  font-size: 11px;
+/* --- CONTENT AREA (SCROLLABLE) --- */
+.content-wrapper {
+  position: relative;
+  height: 100%;
+  overflow-y: auto; /* Allow scrolling inside the right panel */
+  perspective: 2000px; /* Essential for the flip effect */
+  background: var(--bg);
+}
+
+/* Custom Scrollbar */
+.content-wrapper::-webkit-scrollbar { width: 6px; }
+.content-wrapper::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+
+/* --- PAGES & FLIP LOGIC --- */
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%; /* Ensures it covers scroll area */
+  padding: 80px 80px 150px 80px;
+  opacity: 0;
+  visibility: hidden;
+  transform-origin: left center; /* Flip from the spine */
+  transform: rotateY(-90deg) translateZ(-100px);
+  transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+  background: var(--bg);
+  backface-visibility: hidden; /* Hides content during flip */
+}
+
+.page.active {
+  opacity: 1;
+  visibility: visible;
+  transform: rotateY(0deg) translateZ(0);
+  pointer-events: auto;
+  z-index: 5;
+}
+
+/* Previous page state (flipped away) */
+.page.exit-left {
+  opacity: 0;
+  transform: rotateY(90deg) translateZ(-100px);
+  visibility: hidden;
+}
+
+/* --- TYPOGRAPHY & COMPONENTS --- */
+h1 {
+  font-size: clamp(48px, 6vw, 84px);
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+  font-weight: 600;
+  margin-bottom: 40px;
+  max-width: 900px;
+}
+h1 em {
+  font-family: var(--serif);
+  font-weight: 400;
+  color: var(--accent);
+  font-style: italic;
+}
+
+.section-title {
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  font-weight: 700;
   color: var(--accent);
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  font-weight: 700;
   display: block;
 }
 
-/* Skills Grid */
-.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
-.skill-card {
-  background: white;
-  border: 1px solid var(--line);
-  padding: 20px;
-  border-radius: 8px;
-  transition: transform 0.3s;
-}
-.skill-card:hover { transform: translateY(-3px); border-color: var(--accent); }
-.skill-card h4 { font-size: 14px; margin-bottom: 5px; }
-.skill-card small { font-size: 12px; color: var(--muted); line-height: 1.4; display: block; }
-
-/* Project List (Right Column) */
-.project-list {
-  display: flex;
-  flex-direction: column;
-  padding: 60px;
-}
-
-.project-item {
+p.intro {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 600px;
   margin-bottom: 60px;
-  group: project;
 }
-.project-item:last-child { margin-bottom: 0; }
 
-.project-img-wrap {
+/* PROJECT CARDS */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 60px 40px;
+}
+
+.project-card {
+  display: block;
+  group: project;
+  text-decoration: none;
+  color: inherit;
+}
+
+.img-container {
   width: 100%;
-  aspect-ratio: 16/9;
-  background: #f0f0f0;
-  border-radius: 8px;
+  aspect-ratio: 4/3;
+  background: #e5e5e5;
+  border-radius: 4px;
   overflow: hidden;
   margin-bottom: 20px;
-  position: relative;
-  border: 1px solid var(--line);
+  border: 1px solid transparent;
+  transition: border-color 0.3s;
 }
-.project-img-wrap img {
+.project-card:hover .img-container { border-color: var(--accent); }
+
+.img-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.project-item:hover .project-img-wrap img { transform: scale(1.05); }
+.project-card:hover img { transform: scale(1.05); }
 
-.project-info h3 { font-size: 22px; margin-bottom: 8px; letter-spacing: -0.02em; }
-.project-tags { display: flex; gap: 8px; margin-top: 10px; }
-.tag { font-size: 10px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 20px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
-.btn-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font-size: 13px; font-weight: 600; color: var(--text); }
-.btn-link:hover { color: var(--accent); }
+.project-meta h3 { font-size: 20px; font-weight: 600; margin-bottom: 6px; }
+.project-meta p { font-size: 14px; color: var(--muted); }
+.tags { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+.tag {
+  font-size: 10px;
+  border: 1px solid var(--line);
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
 
-/* Services Section (Back Page Left) */
-.service-list { list-style: none; margin-top: 20px; }
-.service-item {
-  padding: 20px 0;
-  border-bottom: 1px solid var(--line);
+/* ABOUT / SERVICES LIST */
+.service-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 25px 0;
+  border-bottom: 1px solid var(--line);
+  transition: padding-left 0.3s;
 }
-.service-item h4 { font-size: 16px; font-weight: 500; }
-.service-arrow { color: var(--accent); font-size: 18px; }
+.service-row:hover { padding-left: 20px; background: rgba(139, 115, 214, 0.03); }
+.service-row h4 { font-size: 18px; font-weight: 500; }
+.arrow { color: var(--accent); font-size: 20px; }
 
-/* Contact Section (Back Page Right) */
-.contact-area {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+/* CONTACT BUTTON */
+.big-contact-btn {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  padding: 60px;
-  background: #1A1A1A;
+  width: 100%;
+  max-width: 300px;
+  padding: 24px;
+  background: var(--text);
   color: var(--bg);
-}
-.contact-area h2 { font-size: clamp(32px, 4vw, 54px); line-height: 1.1; margin-bottom: 30px; }
-.contact-area h2 em { color: #d8a6c0; font-family: var(--serif); }
-.big-btn {
-  display: inline-block;
-  background: var(--bg);
-  color: #1A1A1A;
-  padding: 20px 30px;
   border-radius: 50px;
   font-weight: 600;
   font-size: 16px;
-  transition: transform 0.3s, background 0.3s;
-  text-align: center;
+  margin-top: 40px;
+  transition: background 0.3s, transform 0.3s;
 }
-.big-btn:hover { transform: scale(1.02); background: var(--accent); color: white; }
-.footer-note { margin-top: auto; padding-top: 40px; font-size: 12px; color: #666; }
+.big-contact-btn:hover { background: var(--accent); transform: translateY(-5px); }
 
-/* Scrollbar styling */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #ddd; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #bbb; }
-
-/* Mobile Adjustments */
+/* MOBILE RESPONSIVE */
 @media (max-width: 900px) {
-  :root { --book-width: 94vw; --book-height: 85vh; }
-  .page { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
-  .col-left { border-right: none; border-bottom: 1px solid var(--line); padding: 30px; height: auto; max-height: 40%; }
-  .col-right { padding: 0; }
-  .project-list { padding: 30px; }
-  .contact-area { padding: 30px; }
-  h1 { font-size: 32px; }
+  .app-container { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  .sidebar { 
+    padding: 20px; 
+    flex-direction: row; 
+    align-items: center; 
+    border-right: none; 
+    border-bottom: 1px solid var(--line); 
+  }
+  .brand { margin-bottom: 0; font-size: 20px; }
+  .sidebar-footer { display: none; }
+  .nav-menu { flex-direction: row; gap: 20px; }
+  
+  .page { padding: 30px 20px 100px 20px; transform: none !important; transition: opacity 0.5s; }
+  .page.exit-left { opacity: 0; transform: none !important; }
+  .project-grid { grid-template-columns: 1fr; }
+  h1 { font-size: 36px; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="cursor" id="cursor"></div>
+<div class="app-container">
+  
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar">
+    <div>
+      <a href="#" class="brand">AT<span>.</span></a>
+      <nav class="nav-menu">
+        <div class="nav-item active" onclick="switchPage('work')">Selected Work</div>
+        <div class="nav-item" onclick="switchPage('about')">About Me</div>
+        <div class="nav-item" onclick="switchPage('contact')">Contact</div>
+      </nav>
+    </div>
+    <div class="sidebar-footer">
+      Shopify Developer<br>
+      Web Designer<br>
+      © 2026
+    </div>
+  </aside>
 
-<!-- Floating Navigation -->
-<nav class="floating-nav">
-  <div class="nav-btn active" onclick="flipPage('work')">Selected Work</div>
-  <div class="nav-btn" onclick="flipPage('about')">About & Contact</div>
-</nav>
-
-<!-- The 3D Book Container -->
-<div class="book-container show-work" id="book">
-
-  <!-- FRONT SIDE: WORK (Left: Intro, Right: Projects) -->
-  <div class="page page-front">
+  <!-- RIGHT CONTENT AREA -->
+  <main class="content-wrapper" id="main-scroll">
     
-    <!-- Left Column: Identity -->
-    <div class="col-left">
-      <div>
-        <a class="brand" href="#">AT<span>.</span></a>
-        <span class="section-label">Shopify Developer</span>
-        <h1>Digital <br><em>creator.</em></h1>
-        <p>I create thoughtful digital experiences, custom storefronts, and landing pages that bring products to life.</p>
+    <!-- PAGE 1: WORK -->
+    <section id="work" class="page active">
+      <span class="section-title">01 / Selected Projects</span>
+      <h1>Digital experiences<br>with <em>intention.</em></h1>
+      <p class="intro">Shopify Developer and Web Designer. I create thoughtful digital experiences, custom storefronts, and landing pages that bring products to life.</p>
+
+      <div class="project-grid">
         
-        <div class="skills-grid">
-          <div class="skill-card">
-            <h4>Liquid & Shopify</h4>
-            <small>Custom themes & sections</small>
+        <!-- Project 1 -->
+        <a href="https://ani-torosyan-rmmewhp3.myshopify.com/" target="_blank" class="project-card">
+          <div class="img-container">
+            <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/cf35048b3a83f3b2a63d1bc424a2eecb.jpg?v=1792685464" alt="Petwear">
           </div>
-          <div class="skill-card">
-            <h4>HTML / CSS</h4>
-            <small>Responsive layouts</small>
+          <div class="project-meta">
+            <h3>Petwear Store</h3>
+            <p>Complete Shopify storefront design.</p>
+            <div class="tags"><span class="tag">Shopify</span><span class="tag">E-commerce</span></div>
           </div>
-          <div class="skill-card">
-            <h4>JavaScript</h4>
-            <small>Interactive elements</small>
+        </a>
+
+        <!-- Project 2 -->
+        <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/raincoat-landing" target="_blank" class="project-card">
+          <div class="img-container">
+            <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Autumn_Samoyed_in_a_Yellow_Raincoat.png?v=1792428795" alt="Raincoat">
           </div>
-          <div class="skill-card">
-            <h4>UI Design</h4>
-            <small>Clean visual hierarchy</small>
+          <div class="project-meta">
+            <h3>Raincoat Landing</h3>
+            <p>Collection landing with strong visuals.</p>
+            <div class="tags"><span class="tag">Landing Page</span><span class="tag">Storytelling</span></div>
+          </div>
+        </a>
+
+        <!-- Project 3 -->
+        <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/digital-planing" target="_blank" class="project-card">
+          <div class="img-container">
+            <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Digital_Planner_Desk_Scene.png?v=1792956163" alt="Digital Planner">
+          </div>
+          <div class="project-meta">
+            <h3>Digital Planning</h3>
+            <p>Soft visuals and structured storytelling.</p>
+            <div class="tags"><span class="tag">Product Page</span><span class="tag">UI</span></div>
+          </div>
+        </a>
+
+        <!-- Project 4 -->
+        <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/about-us?view=halloween.landing.page" target="_blank" class="project-card">
+          <div class="img-container">
+            <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/IMG_0076.jpg?v=1792956082" alt="Halloween">
+          </div>
+          <div class="project-meta">
+            <h3>Halloween Campaign</h3>
+            <p>Seasonal landing page with custom CSS.</p>
+            <div class="tags"><span class="tag">Campaign</span><span class="tag">Custom CSS</span></div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+
+    <!-- PAGE 2: ABOUT -->
+    <section id="about" class="page">
+      <span class="section-title">02 / About Me</span>
+      <h1>Curious by nature.<br><em>Precise by design.</em></h1>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 60px;">
+        <div>
+          <p class="intro" style="margin-bottom: 20px;">I build online experiences that feel considered, useful, and easy to explore. From storefront structure to custom sections.</p>
+          <p style="color: var(--muted); font-size: 15px; line-height: 1.7;">
+            My approach combines technical precision in Liquid and JavaScript with a keen eye for UI/UX design. I believe that a website should not only function flawlessly but also tell a compelling story.
+          </p>
+        </div>
+        
+        <div>
+          <h3 style="font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px;">Technical Stack</h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+            <span class="tag" style="font-size: 12px; padding: 8px 16px;">Shopify Liquid</span>
+            <span class="tag" style="font-size: 12px; padding: 8px 16px;">HTML5 & CSS3</span>
+            <span class="tag" style="font-size: 12px; padding: 8px 16px;">JavaScript (ES6+)</span>
+            <span class="tag" style="font-size: 12px; padding: 8px 16px;">Responsive Design</span>
+            <span class="tag" style="font-size: 12px; padding: 8px 16px;">UI/UX Principles</span>
           </div>
         </div>
       </div>
+
+      <div style="margin-top: 80px;">
+        <h3 style="font-size: 24px; margin-bottom: 30px;">Services</h3>
+        <div class="service-row"><h4>Shopify Store Design</h4><span class="arrow">↗</span></div>
+        <div class="service-row"><h4>Custom Liquid Sections</h4><span class="arrow">↗</span></div>
+        <div class="service-row"><h4>Responsive Front-End</h4><span class="arrow">↗</span></div>
+        <div class="service-row"><h4>Landing Pages & Storytelling</h4><span class="arrow">↗</span></div>
+      </div>
+    </section>
+
+
+    <!-- PAGE 3: CONTACT -->
+    <section id="contact" class="page">
+      <span class="section-title">03 / Contact</span>
+      <h1>Let's make<br><em>something good.</em></h1>
+      <p class="intro">Have a Shopify project, landing page, or e-commerce idea? Get in touch and tell me about it.</p>
       
-      <div style="margin-top: 40px;">
-        <p style="font-size: 13px;">Based in Armenia.<br>Available for freelance.</p>
+      <a href="mailto:anitoroyan8@gmail.com" class="big-contact-btn">
+        Email Me ↗
+      </a>
+
+      <div style="margin-top: 80px; border-top: 1px solid var(--line); padding-top: 40px;">
+        <p style="font-size: 14px; color: var(--muted);">
+          <strong>Email:</strong> anitoroyan8@gmail.com<br>
+          <strong>Location:</strong> Armenia<br>
+          <strong>Status:</strong> Available for freelance
+        </p>
       </div>
-    </div>
+    </section>
 
-    <!-- Right Column: Projects -->
-    <div class="col-right">
-      <div class="project-list">
-        
-        <article class="project-item">
-          <a href="https://ani-torosyan-rmmewhp3.myshopify.com/" target="_blank" class="project-img-wrap">
-            <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/cf35048b3a83f3b2a63d1bc424a2eecb.jpg?v=1792685464" alt="Petwear Store">
-          </a>
-          <div class="project-info">
-            <h3>Petwear — E-commerce Store</h3>
-            <p>Pet clothing and accessories, with a complete Shopify storefront design focused on conversion.</p>
-            <div class="project-tags"><span class="tag">Shopify</span><span class="tag">Design</span></div>
-            <a href="https://ani-torosyan-rmmewhp3.myshopify.com/" target="_blank" class="btn-link">View Live Store ↗</a>
-          </div>
-        </article>
-
-        <article class="project-item">
-          <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/raincoat-landing?_pos=1&_psq=landing&_psid=2c0d07d33&_ss=e" target="_blank" class="project-img-wrap">
-            <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Autumn_Samoyed_in_a_Yellow_Raincoat.png?v=1792428795" alt="Raincoat Landing">
-          </a>
-          <div class="project-info">
-            <h3>Raincoat — Collection Landing</h3>
-            <p>A collection landing page focused on product visuals and clear calls to action.</p>
-            <div class="project-tags"><span class="tag">Landing Page</span><span class="tag">Storytelling</span></div>
-            <a href="#" class="btn-link">View Project ↗</a>
-          </div>
-        </article>
-
-        <article class="project-item">
-          <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/digital-planing?_pos=3&_psq=landing&_psid=2c0d07d33&_ss=e" target="_blank" class="project-img-wrap">
-            <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Digital_Planner_Desk_Scene.png?v=1792956163" alt="Digital Planner">
-          </a>
-          <div class="project-info">
-            <h3>Digital Planning — Product Page</h3>
-            <p>A digital product page with soft visuals and structured product storytelling.</p>
-            <div class="project-tags"><span class="tag">Product Page</span><span class="tag">UI</span></div>
-            <a href="#" class="btn-link">View Project ↗</a>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- BACK SIDE: ABOUT (Left: Services, Right: Contact) -->
-  <div class="page page-back">
-    
-    <!-- Left Column: Services -->
-    <div class="col-left">
-      <div>
-        <a class="brand" href="#">AT<span>.</span></a>
-        <span class="section-label">What I do</span>
-        <h1>Services &<br><em>Expertise.</em></h1>
-        <p>From storefront structure to custom sections, I build online experiences that feel considered, useful, and easy to explore.</p>
-        
-        <ul class="service-list">
-          <li class="service-item">
-            <h4>Shopify Store Design</h4>
-            <span class="service-arrow">↗</span>
-          </li>
-          <li class="service-item">
-            <h4>Custom Liquid Sections</h4>
-            <span class="service-arrow">↗</span>
-          </li>
-          <li class="service-item">
-            <h4>Responsive Front-End</h4>
-            <span class="service-arrow">↗</span>
-          </li>
-          <li class="service-item">
-            <h4>Landing Pages</h4>
-            <span class="service-arrow">↗</span>
-          </li>
-        </ul>
-      </div>
-      <div class="footer-note">© 2026 Ani Toroyan</div>
-    </div>
-
-    <!-- Right Column: Contact -->
-    <div class="col-right contact-area">
-      <div>
-        <span class="section-label" style="color: #666;">04 / Contact</span>
-        <h2>Let's make<br><em>something good.</em></h2>
-        <p style="color: #aaa; max-width: 400px; margin-bottom: 40px;">Have a Shopify project, landing page, or e-commerce idea? Get in touch and tell me about it.</p>
-        
-        <a href="mailto:anitoroyan8@gmail.com" class="big-btn">
-          Get in touch ↗
-          <div style="font-size: 12px; font-weight: 400; opacity: 0.7; margin-top: 5px;">anitoroyan8@gmail.com</div>
-        </a>
-      </div>
-    </div>
-
-  </div>
-
+  </main>
 </div>
 
 <script>
-// 3D Flip Logic
-const book = document.getElementById('book');
-const navBtns = document.querySelectorAll('.nav-btn');
+// --- PAGE FLIP LOGIC ---
+function switchPage(pageId) {
+  // 1. Update Navigation State
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  // Find the nav item that calls this function with this ID and add active class
+  const navItems = document.querySelectorAll('.nav-item');
+  if(pageId === 'work') navItems[0].classList.add('active');
+  if(pageId === 'about') navItems[1].classList.add('active');
+  if(pageId === 'contact') navItems[2].classList.add('active');
 
-function flipPage(side) {
-  // Update Active State on Nav
-  navBtns.forEach(btn => btn.classList.remove('active'));
-  
-  if (side === 'work') {
-    book.classList.remove('show-about');
-    book.classList.add('show-work');
-    navBtns[0].classList.add('active');
-  } else {
-    book.classList.remove('show-work');
-    book.classList.add('show-about');
-    navBtns[1].classList.add('active');
+  // 2. Handle Page Transitions
+  const newPage = document.getElementById(pageId);
+  const currentPage = document.querySelector('.page.active');
+
+  if (currentPage && currentPage.id !== pageId) {
+    // Animate out current page
+    currentPage.classList.remove('active');
+    currentPage.classList.add('exit-left'); // Triggers CSS transform
+    
+    // Reset scroll of new page
+    document.getElementById('main-scroll').scrollTop = 0;
+
+    // Wait for animation to finish slightly before showing new page
+    setTimeout(() => {
+      currentPage.classList.remove('exit-left'); // Clean up class
+      newPage.classList.add('active');
+    }, 400); // Timing matches CSS transition
+  } else if (!currentPage) {
+    newPage.classList.add('active');
   }
 }
 
-// Custom Cursor Logic
-const cursor = document.getElementById('cursor');
+// --- CUSTOM CURSOR ---
+const cursor = document.createElement('div');
+cursor.className = 'cursor';
+document.body.appendChild(cursor);
+
+const style = document.createElement('style');
+style.innerHTML = `
+  .cursor { position: fixed; top: 0; left: 0; width: 20px; height: 20px; border: 1px solid #222; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width .3s, height .3s, background .3s; mix-blend-mode: difference; }
+  .cursor.hovered { width: 50px; height: 50px; background: rgba(255,255,255,0.2); }
+`;
+document.head.appendChild(style);
+
 document.addEventListener('mousemove', e => {
   cursor.style.left = e.clientX + 'px';
   cursor.style.top = e.clientY + 'px';
 });
 
-document.querySelectorAll('a, .nav-btn, .big-btn').forEach(el => {
+document.querySelectorAll('a, .nav-item, .project-card').forEach(el => {
   el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
   el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
 });
 
-// Smooth Scroll (Lenis) - Optional, mostly for internal scrolling within columns
+// --- LENIS SMOOTH SCROLL ---
 if (typeof Lenis !== 'undefined') {
   const lenis = new Lenis({
     duration: 1.2,
