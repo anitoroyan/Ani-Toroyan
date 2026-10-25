@@ -3,15 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ani Toroyan — Horizontal Portfolio</title>
+<title>Ani Toroyan — Portfolio</title>
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
-<!-- Lenis for Smooth Scrolling -->
-<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<!-- GSAP for Smooth Animation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap-scroll-smoother/gsap-scroll-smoother.min.js"></script> 
+<!-- Note: Using a CDN fallback for ScrollSmoother if needed, but standard GSAP works well with CSS scroll-behavior too. For exact Khanh Nguyen feel, we use custom logic below. -->
 
 <style>
 :root {
@@ -30,287 +33,168 @@ body {
   background-color: var(--bg);
   color: var(--text);
   font-family: var(--sans);
-  overflow-x: hidden; /* Hide native horizontal scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  -webkit-font-smoothing: antialiased;
 }
 
-/* --- LAYOUT STRUCTURE --- */
-/* We make the body very wide to hold all pages side-by-side */
-.scroll-container {
-  display: flex;
-  width: 400vw; /* 4 Pages = 400% width */
-  height: 100vh;
-}
-
-/* Each section is exactly one screen width */
-section {
-  width: 100vw;
-  height: 100vh;
-  flex-shrink: 0;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-right: 1px solid var(--line);
-  padding: 0 8vw;
-}
-
-/* --- TYPOGRAPHY & ELEMENTS --- */
-h1 {
-  font-size: clamp(3rem, 6vw, 7rem);
-  line-height: 1;
-  letter-spacing: -0.04em;
-  font-weight: 600;
-  margin-bottom: 2rem;
-}
-
-h2 {
-  font-size: clamp(2rem, 4vw, 4rem);
-  letter-spacing: -0.03em;
-  margin-bottom: 1.5rem;
-}
-
-h1 em, h2 em {
-  font-family: var(--serif);
-  font-style: italic;
-  color: var(--accent);
-  font-weight: 400;
-}
-
-p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: var(--muted);
-  max-width: 500px;
-}
-
-.tag {
-  display: inline-block;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border: 1px solid var(--line);
-  padding: 6px 14px;
-  border-radius: 50px;
-  margin-right: 8px;
-  margin-top: 10px;
-  color: var(--muted);
-}
-
-a { color: inherit; text-decoration: none; }
-
-/* --- NAVIGATION (Fixed) --- */
-.fixed-nav {
+/* --- NAVIGATION --- */
+nav {
   position: fixed;
   top: 40px;
   left: 40px;
   z-index: 100;
   mix-blend-mode: difference;
-  color: white; /* Will invert based on background due to mix-blend-mode */
+  color: #fff; /* Inverts based on background */
 }
-.logo { font-weight: 700; font-size: 1.5rem; letter-spacing: -0.05em; display: block; margin-bottom: 20px;}
-.nav-links span { 
-  margin-left: 20px; 
-  font-size: 0.9rem; 
-  cursor: pointer; 
-  opacity: 0.6; 
-  transition: opacity 0.3s;
-}
-.nav-links span:hover, .nav-links span.active { opacity: 1; }
+.logo { font-weight: 700; font-size: 24px; letter-spacing: -0.05em; display: block; margin-bottom: 10px; }
+.menu { display: flex; gap: 20px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; }
+.menu span { cursor: pointer; opacity: 0.6; transition: opacity 0.3s; }
+.menu span:hover { opacity: 1; }
 
-/* Progress Bar */
-.progress-bar {
-  position: fixed;
-  bottom: 40px;
-  left: 40px;
-  right: 40px;
-  height: 2px;
-  background: rgba(0,0,0,0.1);
-  z-index: 100;
-}
-.progress-fill {
-  height: 100%;
-  background: var(--accent);
-  width: 0%;
-  transition: width 0.1s linear;
+/* --- HORIZONTAL CONTAINER --- */
+/* This wrapper holds all pages side-by-side */
+.horizontal-wrapper {
+  width: 400%; /* 4 Sections = 400% width */
+  height: 100vh;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
-/* --- PAGE SPECIFIC STYLES --- */
-
-/* Page 1: Home */
-.hero-content { max-width: 800px; }
-.scroll-indicator {
-  position: absolute;
-  bottom: 40px;
-  right: 40px;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  animation: pulse 2s infinite;
+/* --- SECTIONS (PAGES) --- */
+.panel {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0 10vw;
+  border-right: 1px solid rgba(0,0,0,0.05); /* Subtle divider */
 }
 
-/* Page 2: Work Grid */
+/* Typography & Layouts */
+h1 {
+  font-size: clamp(3rem, 7vw, 8rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+h1 em { font-family: var(--serif); font-style: italic; color: var(--accent); font-weight: 400; }
+
+h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 20px; font-weight: 600; }
+
+p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 600px; }
+
+/* WORK GRID */
 .work-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
+  gap: 60px;
   width: 100%;
   max-width: 1200px;
 }
-.project-card {
-  group: project;
-  cursor: pointer;
+.project { display: block; text-decoration: none; color: inherit; group: project; }
+.img-box {
+  width: 100%; aspect-ratio: 4/3; background: #e0e0e0; border-radius: 6px; overflow: hidden; margin-bottom: 20px;
+  transition: transform 0.4s ease;
 }
-.card-img {
-  width: 100%;
-  aspect-ratio: 4/3;
-  background: #e0e0e0;
-  border-radius: 8px;
-  overflow: hidden;
-  margin-bottom: 15px;
-  border: 1px solid transparent;
-  transition: all 0.4s ease;
-}
-.project-card:hover .card-img { border-color: var(--accent); transform: translateY(-5px); }
-.card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
-.project-card:hover img { transform: scale(1.05); }
-.card-title { font-size: 1.2rem; font-weight: 600; }
-.card-cat { font-size: 0.9rem; color: var(--muted); }
+.project:hover .img-box { transform: translateY(-10px); }
+.img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+.project:hover img { transform: scale(1.05); }
+.p-title { font-size: 20px; font-weight: 600; margin-bottom: 5px; }
+.p-cat { font-size: 14px; color: var(--muted); }
 
-/* Page 3: About */
-.about-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  width: 100%;
-  max-width: 1200px;
-  align-items: center;
-}
-.skill-list { list-style: none; margin-top: 30px; }
-.skill-list li {
-  padding: 15px 0;
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  justify-content: space-between;
-}
+/* ABOUT LAYOUT */
+.about-split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; width: 100%; max-width: 1200px; align-items: center; }
+.service-list { list-style: none; margin-top: 40px; }
+.service-list li { padding: 20px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; font-size: 18px; }
 
-/* Page 4: Contact */
-.contact-box { text-align: center; }
-.email-btn {
-  display: inline-block;
-  margin-top: 30px;
-  padding: 20px 40px;
-  background: var(--text);
-  color: var(--bg);
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 1.2rem;
-  transition: background 0.3s;
+/* CONTACT */
+.contact-content { text-align: center; }
+.big-btn {
+  display: inline-block; margin-top: 40px; padding: 25px 50px; background: var(--text); color: var(--bg);
+  border-radius: 50px; font-size: 18px; font-weight: 600; transition: background 0.3s;
 }
-.email-btn:hover { background: var(--accent); }
+.big-btn:hover { background: var(--accent); }
 
-@keyframes pulse { 0% {opacity:0.3} 50% {opacity:1} 100% {opacity:0.3} }
-
-/* Mobile Adjustments */
-@media(max-width: 768px) {
-  .scroll-container { width: 100%; height: auto; flex-direction: column; }
-  section { width: 100%; height: auto; min-height: 100vh; padding: 100px 20px; border-right: none; border-bottom: 1px solid var(--line); }
-  .work-grid, .about-layout { grid-template-columns: 1fr; }
-  .fixed-nav { top: 20px; left: 20px; }
-  .progress-bar { display: none; }
+/* MOBILE FIX */
+@media(max-width: 900px) {
+  .horizontal-wrapper { width: 100%; height: auto; flex-direction: column; }
+  .panel { width: 100%; height: auto; min-height: 100vh; padding: 100px 20px; border-right: none; }
+  .work-grid, .about-split { grid-template-columns: 1fr; gap: 40px; }
+  nav { top: 20px; left: 20px; }
 }
 </style>
 </head>
 <body>
 
-<!-- Fixed UI Elements -->
-<div class="fixed-nav">
+<nav>
   <div class="logo">AT.</div>
-  <div class="nav-links">
-    <span onclick="scrollToSection(0)" class="active">Home</span>
-    <span onclick="scrollToSection(1)">Work</span>
-    <span onclick="scrollToSection(2)">About</span>
-    <span onclick="scrollToSection(3)">Contact</span>
+  <div class="menu">
+    <span onclick="scrollToSection(0)">Work</span>
+    <span onclick="scrollToSection(1)">About</span>
+    <span onclick="scrollToSection(2)">Contact</span>
   </div>
-</div>
+</nav>
 
-<div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
-
-<!-- Main Horizontal Container -->
-<div class="scroll-container" id="container">
-
-  <!-- SECTION 1: HOME -->
-  <section id="home">
-    <div class="hero-content">
-      <p style="color:var(--accent); font-weight:600; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:20px;">Shopify Developer</p>
+<div class="horizontal-wrapper" id="wrapper">
+  
+  <!-- SECTION 1: HERO -->
+  <section class="panel">
+    <div>
+      <h2>Shopify Developer</h2>
       <h1>Ani <em>Toroyan.</em><br>Digital Creator.</h1>
-      <p>I build thoughtful digital experiences, custom storefronts, and landing pages that bring products to life.</p>
+      <p class="intro">I create thoughtful digital experiences, custom storefronts, and landing pages that bring products to life.</p>
     </div>
-    <div class="scroll-indicator">Scroll to explore &rarr;</div>
   </section>
 
   <!-- SECTION 2: WORK -->
-  <section id="work">
+  <section class="panel">
     <div style="width:100%">
-      <h2 style="margin-bottom:60px;">Selected <em>Work.</em></h2>
-      
+      <h2 style="margin-bottom: 50px;">Selected Work</h2>
       <div class="work-grid">
-        <!-- Project 1 -->
-        <a href="https://ani-torosyan-rmmewhp3.myshopify.com/" target="_blank" class="project-card">
-          <div class="card-img">
-           https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Black_and_White_Minimalist_Simple_Modern_Bold_Typographic_Chic_Logo_12c389ed-5dac-4208-8d36-14569b237f0a.png?v=1792960265
-          </div>
-          <div class="card-title">Petwear Store</div>
-          <div class="card-cat">E-commerce Design</div>
-          <span class="tag">Shopify</span><span class="tag">Liquid</span>
+        
+        <a href="https://ani-torosyan-rmmewhp3.myshopify.com/" target="_blank" class="project">
+          <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/cf35048b3a83f3b2a63d1bc424a2eecb.jpg?v=1792685464" alt="Petwear"></div>
+          <div class="p-title">Petwear Store</div>
+          <div class="p-cat">E-commerce Design</div>
         </a>
 
-        <!-- Project 2 -->
-        <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/raincoat-landing" target="_blank" class="project-card">
-          <div class="card-img">
-            <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Autumn_Samoyed_in_a_Yellow_Raincoat.png?v=1792428795" alt="Raincoat">
-          </div>
-          <div class="card-title">Raincoat Landing</div>
-          <div class="card-cat">Product Storytelling</div>
-          <span class="tag">Landing Page</span>
+        <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/raincoat-landing" target="_blank" class="project">
+          <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Autumn_Samoyed_in_a_Yellow_Raincoat.png?v=1792428795" alt="Raincoat"></div>
+          <div class="p-title">Raincoat Landing</div>
+          <div class="p-cat">Product Storytelling</div>
         </a>
 
-        <!-- Project 3 -->
-        <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/digital-planing" target="_blank" class="project-card">
-          <div class="card-img">
-            <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Digital_Planner_Desk_Scene.png?v=1792956163" alt="Planner">
-          </div>
-          <div class="card-title">Digital Planning</div>
-          <div class="card-cat">Digital Product</div>
-          <span class="tag">UI Design</span>
+        <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/digital-planing" target="_blank" class="project">
+          <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Digital_Planner_Desk_Scene.png?v=1792956163" alt="Planner"></div>
+          <div class="p-title">Digital Planning</div>
+          <div class="p-cat">Digital Product</div>
         </a>
 
-        <!-- Project 4 -->
-        <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/about-us?view=halloween.landing.page" target="_blank" class="project-card">
-          <div class="card-img">
-            <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/IMG_0076.jpg?v=1792956082" alt="Halloween">
-          </div>
-          <div class="card-title">Halloween Campaign</div>
-          <div class="card-cat">Seasonal Layout</div>
-          <span class="tag">Custom CSS</span>
+        <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/about-us?view=halloween.landing.page" target="_blank" class="project">
+          <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/IMG_0076.jpg?v=1792956082" alt="Halloween"></div>
+          <div class="p-title">Halloween Campaign</div>
+          <div class="p-cat">Seasonal Layout</div>
         </a>
+
       </div>
     </div>
   </section>
 
   <!-- SECTION 3: ABOUT -->
-  <section id="about">
-    <div class="about-layout">
+  <section class="panel">
+    <div class="about-split">
       <div>
-        <h2>About <em>Me.</em></h2>
-        <p>I am a Shopify Developer and Web Designer based in Armenia. I combine technical precision with creative design to build stores that sell.</p>
-        <p style="margin-top:20px">My workflow involves clean code, responsive design, and a focus on user experience.</p>
+        <h1>About <em>Me.</em></h1>
+        <p class="intro">Curious by nature. Precise by design. I build online experiences that feel considered, useful, and easy to explore.</p>
       </div>
       <div>
-        <h3>Expertise</h3>
-        <ul class="skill-list">
+        <ul class="service-list">
           <li><span>Shopify Development</span> <span>Liquid, JSON</span></li>
-          <li><span>Front-End</span> <span>HTML, CSS, JS</span></li>
-          <li><span>Design</span> <span>UI/UX, Figma</span></li>
+          <li><span>Front-End Code</span> <span>HTML, CSS, JS</span></li>
+          <li><span>UI / UX Design</span> <span>Figma, Layouts</span></li>
           <li><span>Optimization</span> <span>Speed, SEO</span></li>
         </ul>
       </div>
@@ -318,66 +202,72 @@ a { color: inherit; text-decoration: none; }
   </section>
 
   <!-- SECTION 4: CONTACT -->
-  <section id="contact">
-    <div class="contact-box">
-      <h1>Let's work <em>together.</em></h1>
-      <p style="margin:0 auto">Have a project in mind? Let's discuss how we can bring your vision to life.</p>
-      <a href="mailto:anitoroyan8@gmail.com" class="email-btn">Get in Touch ↗</a>
-      <div style="margin-top:60px; font-size:0.9rem; color:var(--muted)">
-        © 2026 Ani Toroyan. All rights reserved.
-      </div>
+  <section class="panel">
+    <div class="contact-content">
+      <h1>Let's make<br><em>something good.</em></h1>
+      <p class="intro" style="margin: 0 auto;">Have a Shopify project or idea? Get in touch.</p>
+      <a href="mailto:anitoroyan8@gmail.com" class="big-btn">Get in Touch ↗</a>
+      <div style="margin-top: 60px; font-size: 12px; color: var(--muted);">© 2026 Ani Toroyan</div>
     </div>
   </section>
 
 </div>
 
 <script>
-// 1. Initialize Lenis for Smooth Scrolling
-const lenis = new Lenis({
-  direction: 'horizontal', // Key setting for horizontal scroll
-  smooth: true,
-  gestureDirection: 'horizontal',
-  mouseMultiplier: 1,
-});
+gsap.registerPlugin(ScrollTrigger);
 
-function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
+// Check if mobile
+const isMobile = window.innerWidth < 900;
 
-// 2. Navigation Logic
-const container = document.getElementById('container');
-const sections = document.querySelectorAll('section');
-const navSpans = document.querySelectorAll('.nav-links span');
-const progFill = document.getElementById('prog');
-
-// Click to scroll
-function scrollToSection(index) {
-  const targetX = index * window.innerWidth;
-  lenis.scrollTo(targetX);
-}
-
-// Update Active State on Scroll
-lenis.on('scroll', (e) => {
-  // Update progress bar
-  const totalWidth = container.scrollWidth - window.innerWidth;
-  const percentage = (e.scroll / totalWidth) * 100;
-  progFill.style.width = `${Math.min(percentage, 100)}%`;
-
-  // Update Nav Highlight
-  const currentIndex = Math.round(e.scroll / window.innerWidth);
+if (!isMobile) {
+  // 1. Create the Horizontal Scroll Effect
+  // We translate the X position of the wrapper based on vertical scroll
+  let sections = gsap.utils.toArray(".panel");
   
-  navSpans.forEach((span, idx) => {
-    if(idx === currentIndex) span.classList.add('active');
-    else span.classList.remove('active');
+  let scrollTween = gsap.to(sections, {
+    xPercent: -100 * (sections.length - 1), // Move left by 100% for each section
+    ease: "none", // Linear movement is crucial for scroll syncing
+    scrollTrigger: {
+      trigger: ".horizontal-wrapper",
+      pin: true, // Stick the wrapper in place
+      scrub: 1, // Smooth scrubbing effect (1 second delay)
+      snap: 1 / (sections.length - 1), // Optional: Snaps to sections
+      end: "+=3000", // Controls how "long" the scroll feels (higher = slower scroll)
+    }
   });
-});
+}
 
-// Handle Window Resize
-window.addEventListener('resize', () => {
-  lenis.resize();
-});
+// Simple Navigation Click Logic
+function scrollToSection(index) {
+  if(isMobile) return; // Disable on mobile
+  
+  // Calculate target scroll position based on the pinned duration
+  // Since we pinned the wrapper, we can't just scroll to Y. 
+  // We use the ScrollTrigger progress.
+  const totalPanels = document.querySelectorAll('.panel').length;
+  const progress = index / (totalPanels - 1);
+  
+  // Find the ScrollTrigger instance
+  const trigger = ScrollTrigger.getById("scroller"); // Auto-generated ID usually, but we can target manually
+  
+  // Manual calculation for smooth scroll via Lenis or native
+  // Since we are using GSAP Scrub, we can animate the window scroll
+  const maxScroll = document.body.scrollHeight - window.innerHeight;
+  // Approximate location based on the 'end' value defined in ScrollTrigger (+3000)
+  // This part is tricky with Pinning. The easiest way is to animate the window scroll position
+  // corresponding to where the pin starts + the percentage of the pin duration.
+  
+  // However, simpler approach for this specific demo:
+  // Just scroll the window to the calculated pixel amount.
+  const pinStart = document.querySelector('.horizontal-wrapper').offsetTop;
+  const pinDuration = 3000; // Matches the 'end' value in ScrollTrigger
+  const targetY = pinStart + (pinDuration * progress);
+  
+  window.scrollTo({
+    top: targetY,
+    behavior: 'smooth'
+  });
+}
 </script>
 
 </body>
