@@ -184,7 +184,7 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
     clip-path: none;
   }
 }
-</style>
+
 /* SECOND PAGE — KHANH NGUYEN INSPIRED */
 
 .intro-panel {
@@ -193,12 +193,10 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
   justify-content: space-between;
   align-items: flex-start;
   padding: 8vh 5.5vw 5vh 8vw;
-  position: relative;
 }
 
 .intro-left {
   width: 44%;
-  padding-top: 0;
   font-family: 'Playfair Display', serif;
   font-size: clamp(1.5rem, 2vw, 2rem);
   font-weight: 400;
@@ -210,15 +208,12 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
   width: 53%;
   max-width: 780px;
   margin-left: auto;
-  padding-top: 0;
 }
 
 .intro-label {
   font-family: 'Inter', sans-serif;
   font-size: 11px;
   font-weight: 400;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
   color: #393633;
   margin-bottom: 26px;
 }
@@ -229,7 +224,6 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
   font-weight: 500;
   line-height: 1.27;
   letter-spacing: -0.055em;
-  text-transform: none;
   color: #302D2B;
   margin: 0;
 }
@@ -241,35 +235,9 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
   color: #302D2B;
 }
 
-.intro-panel .intro-heading,
-.intro-panel .intro-label {
-  opacity: 0;
-  animation: introFadeIn 1s ease forwards;
-}
-
-.intro-panel .intro-label {
-  animation-delay: 0.15s;
-}
-
-.intro-panel .intro-heading {
-  animation-delay: 0.3s;
-}
-
-@keyframes introFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @media (max-width: 900px) {
   .intro-panel {
     flex-direction: column;
-    justify-content: flex-start;
     gap: 55px;
     padding: 100px 25px;
   }
@@ -279,12 +247,8 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
     width: 100%;
     max-width: 100%;
   }
-
-  .intro-heading {
-    font-size: clamp(1.8rem, 6vw, 2.6rem);
-  }
 }
-
+</style>
 </head>
 <body>
 
