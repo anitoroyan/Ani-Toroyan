@@ -43,9 +43,28 @@ nav {
   color: #fff;
 }
 
-.logo { font-weight: 700; font-size: 24px; letter-spacing: -0.05em; display: block; margin-bottom: 10px; }
-.menu { display: flex; gap: 20px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; }
-.menu span { cursor: pointer; opacity: 0.6; transition: opacity 0.3s; }
+.logo {
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: -0.05em;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.menu {
+  display: flex;
+  gap: 20px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.menu span {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
 .menu span:hover { opacity: 1; }
 
 .horizontal-wrapper {
@@ -75,13 +94,29 @@ h1 {
   margin-bottom: 30px;
 }
 
-h1 em { font-family: var(--serif); font-style: italic; color: var(--accent); font-weight: 400; }
+h1 em {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 400;
+}
 
-h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 20px; font-weight: 600; }
+h2 {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: 20px;
+  font-weight: 600;
+}
 
-p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 600px; }
+p.intro {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 600px;
+}
 
-/* TIGHTER WORK GRID TO FIT SCREEN */
 .work-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -109,14 +144,48 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
 }
 
 .project:hover .img-box { transform: translateY(-5px); }
-.img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
-.project:hover img { transform: scale(1.05); }
-.p-title { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
-.p-cat { font-size: 11px; color: var(--muted); }
 
-.about-split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; width: 100%; max-width: 1200px; align-items: center; }
-.service-list { list-style: none; margin-top: 40px; }
-.service-list li { padding: 20px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; font-size: 18px; }
+.img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.project:hover img { transform: scale(1.05); }
+
+.p-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.p-cat {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.about-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  width: 100%;
+  max-width: 1200px;
+  align-items: center;
+}
+
+.service-list {
+  list-style: none;
+  margin-top: 40px;
+}
+
+.service-list li {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+}
 
 .contact-content { text-align: center; }
 
@@ -135,10 +204,30 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
 .big-btn:hover { background: var(--accent); }
 
 @media(max-width: 900px) {
-  .horizontal-wrapper { width: 100%; height: auto; flex-direction: column; }
-  .panel { width: 100%; height: auto; min-height: 100vh; padding: 100px 20px; border-right: none; }
-  .work-grid, .about-split { grid-template-columns: 1fr; gap: 40px; }
-  nav { top: 20px; left: 20px; }
+  .horizontal-wrapper {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .panel {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    padding: 100px 20px;
+    border-right: none;
+  }
+
+  .work-grid,
+  .about-split {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  nav {
+    top: 20px;
+    left: 20px;
+  }
 }
 
 .hero-intro {
@@ -200,59 +289,7 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
   }
 }
 
-/* FIRST PAGE — DARK EDITORIAL STYLE */
-
-.hero-panel {
-  background: #383431;
-  color: #F3EEE8;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 7vh 4.5vw 5vh 8.5vw;
-  border-right: 1px solid #514B46;
-}
-
-.hero-name {
-  width: 100%;
-  position: relative;
-}
-
-.hero-panel .hero-name h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(5rem, 13.5vw, 13rem);
-  font-weight: 400;
-  line-height: 0.88;
-  letter-spacing: -0.065em;
-  text-transform: uppercase;
-  color: #F3EEE8;
-  margin: 0;
-  max-width: 72%;
-}
-
-.hero-panel .hero-description {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 30%;
-  max-width: 440px;
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(1rem, 1.6vw, 1.5rem);
-  line-height: 1.35;
-  font-weight: 400;
-  color: #E8E2DC;
-}
-
-.hero-panel .hero-bottom {
-  position: absolute;
-  right: 0;
-  bottom: -38vh;
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
-  letter-spacing: -0.04em;
-  color: #E8E2DC;
-}
-
-/* SECOND PAGE — KHANH NGUYEN INSPIRED */
-
+/* SECOND PAGE */
 .intro-panel {
   background: #F9F8F5;
   color: #302D2B;
@@ -313,27 +350,48 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
     width: 100%;
     max-width: 100%;
   }
+}
 
-  .hero-panel {
-    padding: 120px 25px 80px;
-  }
+/* HERO NAME + INTRO LETTER REVEAL */
+.hero-name h1.hero-title {
+  width: max-content;
+  max-width: none;
+  white-space: normal;
+  overflow: visible;
+}
 
-  .hero-panel .hero-name h1 {
-    font-size: clamp(3.5rem, 15vw, 7rem);
+.hero-title .hero-first,
+.hero-title .hero-last {
+  display: block;
+  width: max-content;
+  max-width: none;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.hero-title .hero-char,
+.intro-heading .intro-char {
+  display: inline-block;
+  will-change: transform;
+}
+
+.hero-char-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+@media (max-width: 900px) {
+  .hero-name h1.hero-title {
     max-width: 100%;
+    font-size: clamp(3.5rem, 17vw, 7rem);
   }
+}
 
-  .hero-panel .hero-description {
-    position: static;
-    width: 100%;
-    max-width: 400px;
-    margin-top: 30px;
-  }
-
-  .hero-panel .hero-bottom {
-    position: static;
-    margin-top: 60px;
-    text-align: right;
+@media (prefers-reduced-motion: reduce) {
+  .hero-title .hero-char,
+  .intro-heading .intro-char {
+    transform: none !important;
   }
 }
 </style>
@@ -352,93 +410,105 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
 
 <div class="horizontal-wrapper" id="wrapper">
 
-<section class="panel hero-panel">
-  <div class="hero-name">
-   <h1 data-split>Ani<br>Toroyan.</h1>
-    <p class="hero-description" data-reveal>
-      Shopify developer creating thoughtful digital experiences,
-      custom storefronts, and landing pages.
-    </p>
-    <div class="hero-bottom">SCROLL</div>
-  </div>
-</section>
+  <section class="panel hero-panel">
+    <div class="hero-name">
+      <h1 class="hero-title" data-hero-title><span class="hero-first">Ani</span><span class="hero-last">Toroyan.</span></h1>
 
-<section class="panel intro-panel">
-  <div class="intro-left">
-    <span>CHAPTER I</span>
-  </div>
+      <p class="hero-description">
+        Shopify developer creating thoughtful digital experiences,
+        custom storefronts, and landing pages.
+      </p>
 
-  <div class="intro-right">
-    <p class="intro-label">QUICK INTRO</p>
-
-    <h2 class="intro-heading" data-split>
-  Hi, I’m Ani — a
-  <em>Shopify developer</em>
-  creating thoughtful digital experiences,
-  custom storefronts, and landing pages
-  that bring ideas to life.
-</h2>
-  </div>
-</section>
-
-<section class="panel">
-  <div style="width:100%">
-    <h2 style="margin-bottom: 25px;">Selected Work</h2>
-    <div class="work-grid">
-
-      <a href="https://ani-toroyan-rmmewhp3.myshopify.com/" target="_blank" class="project">
-        <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/cf35048b3a83f3b2a63d1bc424a2eecb.jpg?v=1792685464" alt="Petwear"></div>
-        <div class="p-title">Petwear Store</div>
-        <div class="p-cat">E-commerce Design</div>
-      </a>
-
-      <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/raincoat-landing" target="_blank" class="project">
-        <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Autumn_Samoyed_in_a_Yellow_Raincoat.png?v=1792428795" alt="Raincoat"></div>
-        <div class="p-title">Raincoat Landing</div>
-        <div class="p-cat">Product Storytelling</div>
-      </a>
-
-      <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/digital-planing" target="_blank" class="project">
-        <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Digital_Planner_Desk_Scene.png?v=1792956163" alt="Planner"></div>
-        <div class="p-title">Digital Planner</div>
-        <div class="p-cat">Digital Product</div>
-      </a>
-
-      <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/about-us?view=halloween.landing.page" target="_blank" class="project">
-        <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/IMG_0076.jpg?v=1792956082" alt="Halloween"></div>
-        <div class="p-title">Halloween Campaign</div>
-        <div class="p-cat">Seasonal Layout</div>
-      </a>
-
+      <div class="hero-bottom">SCROLL TO EXPLORE ↓</div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="panel">
-  <div class="about-split">
-    <div>
-      <h1>About <em>Me.</em></h1>
-      <p class="intro">Curious by nature. Precise by design. I build online experiences that feel considered, useful, and easy to explore.</p>
+  <section class="panel intro-panel">
+    <div class="intro-left">
+      <span>CHAPTER I</span>
     </div>
-    <div>
-      <ul class="service-list">
-        <li><span>Shopify Development</span> <span>Liquid, JSON</span></li>
-        <li><span>Front-End Code</span> <span>HTML, CSS, JS</span></li>
-        <li><span>UI / UX Design</span> <span>Figma, Layouts</span></li>
-        <li><span>Optimization</span> <span>Speed, SEO</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
 
-<section class="panel">
-  <div class="contact-content">
-    <h1>Let's make<br><em>something good.</em></h1>
-    <p class="intro" style="margin: 0 auto;">Have a Shopify project or idea? Get in touch.</p>
-    <a href="mailto:anitoroyan8@gmail.com" class="big-btn">Get in Touch ↗</a>
-    <div style="margin-top: 60px; font-size: 12px; color: var(--muted);">© 2026 Ani Toroyan</div>
-  </div>
-</section>
+    <div class="intro-right">
+      <p class="intro-label">QUICK INTRO</p>
+
+      <h2 class="intro-heading" data-intro-title>
+        Hi, I’m Ani — a
+        <em>Shopify developer</em>
+        creating thoughtful digital experiences,
+        custom storefronts, and landing pages
+        that bring ideas to life.
+      </h2>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div style="width:100%">
+      <h2 style="margin-bottom: 25px;">Selected Work</h2>
+
+      <div class="work-grid">
+
+        <a href="https://ani-toroyan-rmmewhp3.myshopify.com/" target="_blank" class="project">
+          <div class="img-box">
+            <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/cf35048b3a83f3b2a63d1bc424a2eecb.jpg?v=1792685464" alt="Petwear">
+          </div>
+          <div class="p-title">Petwear Store</div>
+          <div class="p-cat">E-commerce Design</div>
+        </a>
+
+        <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/raincoat-landing" target="_blank" class="project">
+          <div class="img-box">
+            <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Autumn_Samoyed_in_a_Yellow_Raincoat.png?v=1792428795" alt="Raincoat">
+          </div>
+          <div class="p-title">Raincoat Landing</div>
+          <div class="p-cat">Product Storytelling</div>
+        </a>
+
+        <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/digital-planing" target="_blank" class="project">
+          <div class="img-box">
+            <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Digital_Planner_Desk_Scene.png?v=1792956163" alt="Planner">
+          </div>
+          <div class="p-title">Digital Planner</div>
+          <div class="p-cat">Digital Product</div>
+        </a>
+
+        <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/about-us?view=halloween.landing.page" target="_blank" class="project">
+          <div class="img-box">
+            <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/IMG_0076.jpg?v=1792956082" alt="Halloween">
+          </div>
+          <div class="p-title">Halloween Campaign</div>
+          <div class="p-cat">Seasonal Layout</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="about-split">
+      <div>
+        <h1>About <em>Me.</em></h1>
+        <p class="intro">Curious by nature. Precise by design. I build online experiences that feel considered, useful, and easy to explore.</p>
+      </div>
+
+      <div>
+        <ul class="service-list">
+          <li><span>Shopify Development</span> <span>Liquid, JSON</span></li>
+          <li><span>Front-End Code</span> <span>HTML, CSS, JS</span></li>
+          <li><span>UI / UX Design</span> <span>Figma, Layouts</span></li>
+          <li><span>Optimization</span> <span>Speed, SEO</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="contact-content">
+      <h1>Let's make<br><em>something good.</em></h1>
+      <p class="intro" style="margin: 0 auto;">Have a Shopify project or idea? Get in touch.</p>
+      <a href="mailto:anitoroyan8@gmail.com" class="big-btn">Get in Touch ↗</a>
+      <div style="margin-top: 60px; font-size: 12px; color: var(--muted);">© 2026 Ani Toroyan</div>
+    </div>
+  </section>
 
 </div>
 
@@ -458,7 +528,7 @@ if (!isMobile) {
       pin: true,
       scrub: 1.5,
       snap: 1 / (sections.length - 1),
-      end: "+=6000",
+      end: "+=6000"
     }
   });
 
@@ -474,7 +544,7 @@ if (!isMobile) {
         containerAnimation: scrollTween,
         start: () => `+=${i * 400} center`,
         end: () => `+=${i * 400 + 800} center`,
-        toggleActions: "play reverse play reverse",
+        toggleActions: "play reverse play reverse"
       }
     });
 
@@ -488,8 +558,9 @@ if (!isMobile) {
     });
   });
 
-  gsap.utils.toArray(".project").forEach((project, i) => {
-    gsap.fromTo(project,
+  gsap.utils.toArray(".project").forEach((project) => {
+    gsap.fromTo(
+      project,
       { scale: 0.7, opacity: 0.5 },
       {
         scale: 1,
@@ -508,95 +579,125 @@ if (!isMobile) {
 
 function scrollToSection(index) {
   if (isMobile) return;
-  const totalPanels = document.querySelectorAll('.panel').length;
+
+  const totalPanels = document.querySelectorAll(".panel").length;
   const progress = index / (totalPanels - 1);
-  const pinStart = document.querySelector('.horizontal-wrapper').offsetTop;
+  const pinStart = document.querySelector(".horizontal-wrapper").offsetTop;
   const pinDuration = 6000;
   const targetY = pinStart + (pinDuration * progress);
 
   window.scrollTo({
     top: targetY,
-    behavior: 'smooth'
+    behavior: "smooth"
   });
 }
 </script>
 
-  
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
-
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   if (
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
     !window.gsap ||
-    !window.SplitType ||
-    !window.ScrollTrigger
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
   ) return;
 
-  gsap.registerPlugin(ScrollTrigger);
+  /* TWEAK: duration = speed; stagger = delay between letters */
+  const duration = 0.9;
+  const stagger = 0.035;
 
-  const SPEED = 1;
-  const LETTER_STAGGER = 0.03;
-  const LINE_STAGGER = 0.12;
-  const EASE = "power3.out";
+  function wrapCharacters(element, className) {
+    if (!element) return [];
 
-  // Heading: letters rise one by one
-  document.querySelectorAll("[data-split]").forEach((heading) => {
-    const split = new SplitType(heading, {
-      types: "chars",
-      tagName: "span"
+    const walker = document.createTreeWalker(
+      element,
+      NodeFilter.SHOW_TEXT
+    );
+
+    const nodes = [];
+
+    while (walker.nextNode()) {
+      nodes.push(walker.currentNode);
+    }
+
+    const chars = [];
+
+    nodes.forEach((node) => {
+      const fragment = document.createDocumentFragment();
+
+      [...node.nodeValue].forEach((character) => {
+        if (character === "\n" || character === "\r") {
+          fragment.appendChild(document.createTextNode(character));
+          return;
+        }
+
+        if (character === " ") {
+          fragment.appendChild(document.createTextNode(" "));
+          return;
+        }
+
+        const mask = document.createElement("span");
+        mask.className = "hero-char-mask";
+
+        const letter = document.createElement("span");
+        letter.className = className;
+        letter.textContent = character;
+
+        mask.appendChild(letter);
+        fragment.appendChild(mask);
+        chars.push(letter);
+      });
+
+      node.parentNode.replaceChild(fragment, node);
     });
 
-    gsap.from(split.chars, {
-      yPercent: 110,
-      duration: 1.1 * SPEED,
-      stagger: LETTER_STAGGER,
-      ease: "expo.out",
-      delay: 0.2
-    });
-  });
+    return chars;
+  }
 
-  // Paragraphs: fade and rise
-  document.querySelectorAll("[data-reveal]").forEach((element) => {
-    const split = new SplitType(element, {
-      types: "lines",
-      tagName: "span"
-    });
+  /* FIRST PAGE: Ani Toroyan appears letter by letter */
+  const heroTitle = document.querySelector("[data-hero-title]");
 
-    gsap.from(split.lines, {
-      y: 24,
-      autoAlpha: 0,
-      duration: 0.9 * SPEED,
-      stagger: LINE_STAGGER,
-      ease: EASE,
-      delay: 0.25
-    });
-  });
+  if (heroTitle) {
+    const first = wrapCharacters(
+      heroTitle.querySelector(".hero-first"),
+      "hero-char"
+    );
 
-  // Section headings: animate when scrolled into view
-  document.querySelectorAll("[data-scroll-reveal]").forEach((element) => {
-    const split = new SplitType(element, {
-      types: "lines",
-      tagName: "span"
-    });
+    const last = wrapCharacters(
+      heroTitle.querySelector(".hero-last"),
+      "hero-char"
+    );
 
-    gsap.from(split.lines, {
-      y: 30,
-      autoAlpha: 0,
-      duration: 1 * SPEED,
-      stagger: LINE_STAGGER,
-      ease: EASE,
-      scrollTrigger: {
-        trigger: element,
-        start: "top 80%",
-        once: true
-      }
+    const heroChars = [...first, ...last];
+
+    gsap.set(heroChars, { yPercent: 115 });
+
+    gsap.to(heroChars, {
+      yPercent: 0,
+      duration: duration,
+      stagger: stagger,
+      ease: "power3.out",
+      delay: 0.15
     });
-  });
+  }
+
+  /* SECOND PAGE: intro heading appears letter by letter */
+  const introTitle = document.querySelector("[data-intro-title]");
+
+  if (introTitle) {
+    const introChars = wrapCharacters(introTitle, "intro-char");
+
+    gsap.set(introChars, { yPercent: 115 });
+
+    gsap.to(introChars, {
+      yPercent: 0,
+      duration: duration,
+      stagger: 0.018,
+      ease: "power3.out",
+      delay: 1.2
+    });
+  }
 });
 </script>
 
 </body>
 </html>
+
