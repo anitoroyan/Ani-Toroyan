@@ -185,6 +185,106 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
   }
 }
 </style>
+/* SECOND PAGE — KHANH NGUYEN INSPIRED */
+
+.intro-panel {
+  background: #F9F8F5;
+  color: #302D2B;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 8vh 5.5vw 5vh 8vw;
+  position: relative;
+}
+
+.intro-left {
+  width: 44%;
+  padding-top: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  color: #302D2B;
+}
+
+.intro-right {
+  width: 53%;
+  max-width: 780px;
+  margin-left: auto;
+  padding-top: 0;
+}
+
+.intro-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #393633;
+  margin-bottom: 26px;
+}
+
+.intro-heading {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2rem, 2.65vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.27;
+  letter-spacing: -0.055em;
+  text-transform: none;
+  color: #302D2B;
+  margin: 0;
+}
+
+.intro-heading em {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: #302D2B;
+}
+
+.intro-panel .intro-heading,
+.intro-panel .intro-label {
+  opacity: 0;
+  animation: introFadeIn 1s ease forwards;
+}
+
+.intro-panel .intro-label {
+  animation-delay: 0.15s;
+}
+
+.intro-panel .intro-heading {
+  animation-delay: 0.3s;
+}
+
+@keyframes introFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .intro-panel {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 55px;
+    padding: 100px 25px;
+  }
+
+  .intro-left,
+  .intro-right {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .intro-heading {
+    font-size: clamp(1.8rem, 6vw, 2.6rem);
+  }
+}
+
 </head>
 <body>
 
@@ -200,32 +300,43 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
 <div class="horizontal-wrapper" id="wrapper">
   
   
-<section class="panel">
-  <div class="hero-intro">
-    <h2>A LITTLE ABOUT ME</h2>
 
-    <h1 class="typing-intro">
-      <span class="typing-line">Hi, I’m Ani —</span>
-      <span class="typing-line">a <em>Shopify developer</em></span>
-      <span class="typing-line">creating thoughtful</span>
-      <span class="typing-line">digital experiences,</span>
-      <span class="typing-line">custom storefronts,</span>
-      <span class="typing-line">and landing pages</span>
-      <span class="typing-line">that bring ideas to life.</span>
-    </h1>
-
-    <p class="intro hero-caption">
-      SHOPIFY DEVELOPMENT · UI/UX · CREATIVE DESIGN
+<section class="panel hero-panel">
+  <div class="hero-name">
+    <h1>Ani<br>Toroyan.</h1>
+    <p class="hero-description">
+      Shopify developer creating thoughtful digital experiences,
+      custom storefronts, and landing pages.
     </p>
+    <div class="hero-bottom">SCROLL TO EXPLORE ↓</div>
   </div>
 </section>
+
+<section class="panel intro-panel">
+  <div class="intro-left">
+    <span>CHAPTER I</span>
+  </div>
+
+  <div class="intro-right">
+    <p class="intro-label">QUICK INTRO</p>
+
+    <h2 class="intro-heading">
+      Hi, I’m Ani — a
+      <em>Shopify developer</em>
+      creating thoughtful digital experiences,
+      custom storefronts, and landing pages
+      that bring ideas to life.
+    </h2>
+  </div>
+</section>
+
 
   <section class="panel">
     <div style="width:100%">
       <h2 style="margin-bottom: 25px;">Selected Work</h2>
       <div class="work-grid">
         
-        <a href="https://ani-torosyan-rmmewhp3.myshopify.com/" target="_blank" class="project">
+        <a href="https://ani-toroyan-rmmewhp3.myshopify.com/" target="_blank" class="project">
           <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/cf35048b3a83f3b2a63d1bc424a2eecb.jpg?v=1792685464" alt="Petwear"></div>
           <div class="p-title">Petwear Store</div>
           <div class="p-cat">E-commerce Design</div>
