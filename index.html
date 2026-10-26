@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -41,6 +42,7 @@ nav {
   mix-blend-mode: difference;
   color: #fff;
 }
+
 .logo { font-weight: 700; font-size: 24px; letter-spacing: -0.05em; display: block; margin-bottom: 10px; }
 .menu { display: flex; gap: 20px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; }
 .menu span { cursor: pointer; opacity: 0.6; transition: opacity 0.3s; }
@@ -62,7 +64,7 @@ nav {
   position: relative;
   padding: 0 10vw;
   border-right: 1px solid rgba(0,0,0,0.05);
-  overflow: hidden; /* Ensures nothing spills outside the panel */
+  overflow: hidden;
 }
 
 h1 {
@@ -72,6 +74,7 @@ h1 {
   font-weight: 600;
   margin-bottom: 30px;
 }
+
 h1 em { font-family: var(--serif); font-style: italic; color: var(--accent); font-weight: 400; }
 
 h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 20px; font-weight: 600; }
@@ -82,41 +85,53 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
 .work-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 15px 30px; /* Reduced vertical gap to 15px, horizontal to 30px */
+  gap: 15px 30px;
   width: 100%;
   max-width: 1100px;
 }
-.project { 
-  display: block; 
-  text-decoration: none; 
-  color: inherit; 
+
+.project {
+  display: block;
+  text-decoration: none;
+  color: inherit;
   opacity: 0;
   transform: scale(0.8);
 }
+
 .img-box {
-  width: 100%; 
-  aspect-ratio: 1.6; /* Made wider/shorter (was 16/11 ≈ 1.45) to save vertical space */
-  background: #e0e0e0; 
-  border-radius: 6px; 
-  overflow: hidden; 
-  margin-bottom: 8px; /* Reduced from 10px */
+  width: 100%;
+  aspect-ratio: 1.6;
+  background: #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 8px;
   transition: transform 0.4s ease;
 }
+
 .project:hover .img-box { transform: translateY(-5px); }
 .img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
 .project:hover img { transform: scale(1.05); }
-.p-title { font-size: 15px; font-weight: 600; margin-bottom: 2px; } /* Slightly smaller */
-.p-cat { font-size: 11px; color: var(--muted); } /* Slightly smaller */
+.p-title { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+.p-cat { font-size: 11px; color: var(--muted); }
 
 .about-split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; width: 100%; max-width: 1200px; align-items: center; }
 .service-list { list-style: none; margin-top: 40px; }
 .service-list li { padding: 20px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; font-size: 18px; }
 
 .contact-content { text-align: center; }
+
 .big-btn {
-  display: inline-block; margin-top: 40px; padding: 25px 50px; background: var(--text); color: var(--bg);
-  border-radius: 50px; font-size: 18px; font-weight: 600; transition: background 0.3s;
+  display: inline-block;
+  margin-top: 40px;
+  padding: 25px 50px;
+  background: var(--text);
+  color: var(--bg);
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 600;
+  transition: background 0.3s;
 }
+
 .big-btn:hover { background: var(--accent); }
 
 @media(max-width: 900px) {
@@ -185,6 +200,57 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
   }
 }
 
+/* FIRST PAGE — DARK EDITORIAL STYLE */
+
+.hero-panel {
+  background: #383431;
+  color: #F3EEE8;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 7vh 4.5vw 5vh 8.5vw;
+  border-right: 1px solid #514B46;
+}
+
+.hero-name {
+  width: 100%;
+  position: relative;
+}
+
+.hero-panel .hero-name h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(5rem, 13.5vw, 13rem);
+  font-weight: 400;
+  line-height: 0.88;
+  letter-spacing: -0.065em;
+  text-transform: uppercase;
+  color: #F3EEE8;
+  margin: 0;
+  max-width: 72%;
+}
+
+.hero-panel .hero-description {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30%;
+  max-width: 440px;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1rem, 1.6vw, 1.5rem);
+  line-height: 1.35;
+  font-weight: 400;
+  color: #E8E2DC;
+}
+
+.hero-panel .hero-bottom {
+  position: absolute;
+  right: 0;
+  bottom: -38vh;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  letter-spacing: -0.04em;
+  color: #E8E2DC;
+}
+
 /* SECOND PAGE — KHANH NGUYEN INSPIRED */
 
 .intro-panel {
@@ -247,9 +313,32 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
     width: 100%;
     max-width: 100%;
   }
+
+  .hero-panel {
+    padding: 120px 25px 80px;
+  }
+
+  .hero-panel .hero-name h1 {
+    font-size: clamp(3.5rem, 15vw, 7rem);
+    max-width: 100%;
+  }
+
+  .hero-panel .hero-description {
+    position: static;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 30px;
+  }
+
+  .hero-panel .hero-bottom {
+    position: static;
+    margin-top: 60px;
+    text-align: right;
+  }
 }
 </style>
 </head>
+
 <body>
 
 <nav>
@@ -262,8 +351,6 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
 </nav>
 
 <div class="horizontal-wrapper" id="wrapper">
-  
-  
 
 <section class="panel hero-panel">
   <div class="hero-name">
@@ -272,7 +359,7 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
       Shopify developer creating thoughtful digital experiences,
       custom storefronts, and landing pages.
     </p>
-    <div class="hero-bottom">SCROLL TO EXPLORE ↓</div>
+    <div class="hero-bottom">SCROLL</div>
   </div>
 </section>
 
@@ -294,65 +381,64 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
   </div>
 </section>
 
+<section class="panel">
+  <div style="width:100%">
+    <h2 style="margin-bottom: 25px;">Selected Work</h2>
+    <div class="work-grid">
 
-  <section class="panel">
-    <div style="width:100%">
-      <h2 style="margin-bottom: 25px;">Selected Work</h2>
-      <div class="work-grid">
-        
-        <a href="https://ani-toroyan-rmmewhp3.myshopify.com/" target="_blank" class="project">
-          <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/cf35048b3a83f3b2a63d1bc424a2eecb.jpg?v=1792685464" alt="Petwear"></div>
-          <div class="p-title">Petwear Store</div>
-          <div class="p-cat">E-commerce Design</div>
-        </a>
+      <a href="https://ani-toroyan-rmmewhp3.myshopify.com/" target="_blank" class="project">
+        <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/cf35048b3a83f3b2a63d1bc424a2eecb.jpg?v=1792685464" alt="Petwear"></div>
+        <div class="p-title">Petwear Store</div>
+        <div class="p-cat">E-commerce Design</div>
+      </a>
 
-        <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/raincoat-landing" target="_blank" class="project">
-          <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Autumn_Samoyed_in_a_Yellow_Raincoat.png?v=1792428795" alt="Raincoat"></div>
-          <div class="p-title">Raincoat Landing</div>
-          <div class="p-cat">Product Storytelling</div>
-        </a>
+      <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/raincoat-landing" target="_blank" class="project">
+        <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Autumn_Samoyed_in_a_Yellow_Raincoat.png?v=1792428795" alt="Raincoat"></div>
+        <div class="p-title">Raincoat Landing</div>
+        <div class="p-cat">Product Storytelling</div>
+      </a>
 
-        <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/digital-planing" target="_blank" class="project">
-          <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Digital_Planner_Desk_Scene.png?v=1792956163" alt="Planner"></div>
-          <div class="p-title">Digital Planner</div>
-          <div class="p-cat">Digital Product</div>
-        </a>
+      <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/digital-planing" target="_blank" class="project">
+        <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Digital_Planner_Desk_Scene.png?v=1792956163" alt="Planner"></div>
+        <div class="p-title">Digital Planner</div>
+        <div class="p-cat">Digital Product</div>
+      </a>
 
-        <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/about-us?view=halloween.landing.page" target="_blank" class="project">
-          <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/IMG_0076.jpg?v=1792956082" alt="Halloween"></div>
-          <div class="p-title">Halloween Campaign</div>
-          <div class="p-cat">Seasonal Layout</div>
-        </a>
+      <a href="https://ani-torosyan-rmmewhp3.myshopify.com/pages/about-us?view=halloween.landing.page" target="_blank" class="project">
+        <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/IMG_0076.jpg?v=1792956082" alt="Halloween"></div>
+        <div class="p-title">Halloween Campaign</div>
+        <div class="p-cat">Seasonal Layout</div>
+      </a>
 
-      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="panel">
-    <div class="about-split">
-      <div>
-        <h1>About <em>Me.</em></h1>
-        <p class="intro">Curious by nature. Precise by design. I build online experiences that feel considered, useful, and easy to explore.</p>
-      </div>
-      <div>
-        <ul class="service-list">
-          <li><span>Shopify Development</span> <span>Liquid, JSON</span></li>
-          <li><span>Front-End Code</span> <span>HTML, CSS, JS</span></li>
-          <li><span>UI / UX Design</span> <span>Figma, Layouts</span></li>
-          <li><span>Optimization</span> <span>Speed, SEO</span></li>
-        </ul>
-      </div>
+<section class="panel">
+  <div class="about-split">
+    <div>
+      <h1>About <em>Me.</em></h1>
+      <p class="intro">Curious by nature. Precise by design. I build online experiences that feel considered, useful, and easy to explore.</p>
     </div>
-  </section>
+    <div>
+      <ul class="service-list">
+        <li><span>Shopify Development</span> <span>Liquid, JSON</span></li>
+        <li><span>Front-End Code</span> <span>HTML, CSS, JS</span></li>
+        <li><span>UI / UX Design</span> <span>Figma, Layouts</span></li>
+        <li><span>Optimization</span> <span>Speed, SEO</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-  <section class="panel">
-    <div class="contact-content">
-      <h1>Let's make<br><em>something good.</em></h1>
-      <p class="intro" style="margin: 0 auto;">Have a Shopify project or idea? Get in touch.</p>
-      <a href="mailto:anitoroyan8@gmail.com" class="big-btn">Get in Touch ↗</a>
-      <div style="margin-top: 60px; font-size: 12px; color: var(--muted);">© 2026 Ani Toroyan</div>
-    </div>
-  </section>
+<section class="panel">
+  <div class="contact-content">
+    <h1>Let's make<br><em>something good.</em></h1>
+    <p class="intro" style="margin: 0 auto;">Have a Shopify project or idea? Get in touch.</p>
+    <a href="mailto:anitoroyan8@gmail.com" class="big-btn">Get in Touch ↗</a>
+    <div style="margin-top: 60px; font-size: 12px; color: var(--muted);">© 2026 Ani Toroyan</div>
+  </div>
+</section>
 
 </div>
 
@@ -363,7 +449,7 @@ const isMobile = window.innerWidth < 900;
 
 if (!isMobile) {
   let sections = gsap.utils.toArray(".panel");
-  
+
   let scrollTween = gsap.to(sections, {
     xPercent: -100 * (sections.length - 1),
     ease: "none",
@@ -377,7 +463,7 @@ if (!isMobile) {
   });
 
   const projects = gsap.utils.toArray(".project");
-  
+
   projects.forEach((project, i) => {
     gsap.to(project, {
       opacity: 1,
@@ -391,7 +477,7 @@ if (!isMobile) {
         toggleActions: "play reverse play reverse",
       }
     });
-    
+
     gsap.to(project, {
       y: -20,
       duration: 2 + (i * 0.3),
@@ -403,7 +489,7 @@ if (!isMobile) {
   });
 
   gsap.utils.toArray(".project").forEach((project, i) => {
-    gsap.fromTo(project, 
+    gsap.fromTo(project,
       { scale: 0.7, opacity: 0.5 },
       {
         scale: 1,
@@ -421,13 +507,13 @@ if (!isMobile) {
 }
 
 function scrollToSection(index) {
-  if(isMobile) return;
+  if (isMobile) return;
   const totalPanels = document.querySelectorAll('.panel').length;
   const progress = index / (totalPanels - 1);
   const pinStart = document.querySelector('.horizontal-wrapper').offsetTop;
   const pinDuration = 6000;
   const targetY = pinStart + (pinDuration * progress);
-  
+
   window.scrollTo({
     top: targetY,
     behavior: 'smooth'
