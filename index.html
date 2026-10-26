@@ -354,8 +354,8 @@ p.intro { font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 
 
 <section class="panel hero-panel">
   <div class="hero-name">
-    <h1>Ani<br>Toroyan.</h1>
-    <p class="hero-description">
+   <h1 data-split>Ani<br>Toroyan.</h1>
+    <p class="hero-description" data-reveal>
       Shopify developer creating thoughtful digital experiences,
       custom storefronts, and landing pages.
     </p>
@@ -519,6 +519,83 @@ function scrollToSection(index) {
     behavior: 'smooth'
   });
 }
+</script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  if (
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+    !window.gsap ||
+    !window.SplitType ||
+    !window.ScrollTrigger
+  ) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const SPEED = 1;
+  const LETTER_STAGGER = 0.03;
+  const LINE_STAGGER = 0.12;
+  const EASE = "power3.out";
+
+  // Heading: letters rise one by one
+  document.querySelectorAll("[data-split]").forEach((heading) => {
+    const split = new SplitType(heading, {
+      types: "chars",
+      tagName: "span"
+    });
+
+    gsap.from(split.chars, {
+      yPercent: 110,
+      duration: 1.1 * SPEED,
+      stagger: LETTER_STAGGER,
+      ease: "expo.out",
+      delay: 0.2
+    });
+  });
+
+  // Paragraphs: fade and rise
+  document.querySelectorAll("[data-reveal]").forEach((element) => {
+    const split = new SplitType(element, {
+      types: "lines",
+      tagName: "span"
+    });
+
+    gsap.from(split.lines, {
+      y: 24,
+      autoAlpha: 0,
+      duration: 0.9 * SPEED,
+      stagger: LINE_STAGGER,
+      ease: EASE,
+      delay: 0.25
+    });
+  });
+
+  // Section headings: animate when scrolled into view
+  document.querySelectorAll("[data-scroll-reveal]").forEach((element) => {
+    const split = new SplitType(element, {
+      types: "lines",
+      tagName: "span"
+    });
+
+    gsap.from(split.lines, {
+      y: 30,
+      autoAlpha: 0,
+      duration: 1 * SPEED,
+      stagger: LINE_STAGGER,
+      ease: EASE,
+      scrollTrigger: {
+        trigger: element,
+        start: "top 80%",
+        once: true
+      }
+    });
+  });
+});
 </script>
 
 </body>
