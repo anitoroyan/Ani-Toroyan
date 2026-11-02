@@ -1,12 +1,12 @@
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#302D29">
-<meta name="description" content="Ani Toroyan — Shopify Developer & E-commerce Designer.">
 <title>Ani Toroyan — Shopify Developer</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
@@ -20,18 +20,13 @@
   --muted:#81766E;
   --line:#DED4C9;
   --accent:#9D8189;
-  --accent-dark:#5C4033;
   --dark:#302D29;
   --light:#F7F2EA;
   --serif:'Playfair Display',Georgia,serif;
   --sans:'Inter',Arial,sans-serif;
 }
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 html{
   scroll-behavior:smooth;
@@ -46,10 +41,7 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
-a{
-  color:inherit;
-  text-decoration:none;
-}
+a{color:inherit;text-decoration:none}
 
 img{
   display:block;
@@ -93,9 +85,7 @@ img{
   transition:color .25s;
 }
 
-.menu a:hover{
-  color:var(--accent-dark);
-}
+.menu a:hover{color:var(--text)}
 
 section{
   position:relative;
@@ -113,7 +103,7 @@ section{
   font-size:10px;
   letter-spacing:.2em;
   text-transform:uppercase;
-  color:var(--accent-dark);
+  color:var(--text);
   font-weight:600;
   margin-bottom:20px;
 }
@@ -207,9 +197,7 @@ section{
   text-transform:uppercase;
 }
 
-.hero h1 span{
-  display:block;
-}
+.hero h1 span{display:block}
 
 .hero h1 span:last-child{
   padding-left:12vw;
@@ -248,7 +236,7 @@ section{
   margin-right:12px;
 }
 
-/* INTRO — PHOTO LEFT, TEXT RIGHT */
+/* INTRO */
 
 .intro{
   background:#EAE0D5;
@@ -281,9 +269,7 @@ section{
   transition:transform 1s cubic-bezier(.2,.7,.2,1);
 }
 
-.intro-photo:hover img{
-  transform:scale(1.19);
-}
+.intro-photo:hover img{transform:scale(1.19)}
 
 .intro-content{
   max-width:760px;
@@ -327,11 +313,9 @@ section{
   transition:color .25s;
 }
 
-.intro-link:hover{
-  color:#9D8189;
-}
+.intro-link:hover{color:#9D8189}
 
-/* SELECTED PROJECTS */
+/* STORE & LANDING PAGES */
 
 .work{
   background:#F7F2EA;
@@ -344,26 +328,18 @@ section{
   gap:38px 25px;
 }
 
-.work-card{
-  min-width:0;
-}
+.work-card{min-width:0}
 
 .work-image{
   height:auto;
   aspect-ratio:1.55;
   overflow:hidden;
-  background:#EAE0D5;
+  background:#000000;
   position:relative;
   border:1px solid rgba(92,64,51,.12);
 }
 
-.work-image img{
-  transition:transform .9s cubic-bezier(.2,.7,.2,1);
-}
-
-.work-card:hover .work-image img{
-  transform:scale(1.045);
-}
+.work-image img{display:none !important}
 
 .work-caption{
   display:flex;
@@ -380,7 +356,7 @@ section{
 
 .work-caption span{
   font-size:10px;
-  color:var(--accent-dark);
+  color:var(--text);
   letter-spacing:.1em;
   text-transform:uppercase;
 }
@@ -412,13 +388,8 @@ section{
   background:#E3D8CE;
 }
 
-.strip-image:nth-child(2){
-  margin-top:35px;
-}
-
-.strip-image:nth-child(3){
-  margin-top:-20px;
-}
+.strip-image:nth-child(2){margin-top:35px}
+.strip-image:nth-child(3){margin-top:-20px}
 
 /* SCREEN RECORDINGS */
 
@@ -427,21 +398,10 @@ section{
   color:#5C4033;
 }
 
-.videos .section-note{
-  color:#81766E;
-}
-
-.videos .eyebrow{
-  color:#9D8189;
-}
-
-.videos .section-title{
-  color:#5C4033;
-}
-
-.videos .serif{
-  color:#9D8189;
-}
+.videos .section-note{color:#81766E}
+.videos .eyebrow{color:#9D8189}
+.videos .section-title{color:#5C4033}
+.videos .serif{color:#9D8189}
 
 .video-grid{
   display:grid;
@@ -449,10 +409,7 @@ section{
   gap:24px;
 }
 
-.video-card{
-  min-width:0;
-  position:relative;
-}
+.video-card{min-width:0;position:relative}
 
 .video-screen{
   position:relative;
@@ -473,11 +430,7 @@ section{
   content:'';
   position:absolute;
   inset:0;
-  background:radial-gradient(
-    ellipse at center,
-    rgba(255,255,255,.07),
-    transparent 65%
-  );
+  background:radial-gradient(ellipse at center,rgba(255,255,255,.07),transparent 65%);
 }
 
 .video-card:hover .video-screen{
@@ -537,55 +490,6 @@ section{
   letter-spacing:.12em;
 }
 
-/* ABOUT */
-
-.about{
-  background:#F7F2EA;
-  color:#5C4033;
-}
-
-.about-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8vw;
-  align-items:center;
-}
-
-.about-photo{
-  height:clamp(360px,48vw,600px);
-  overflow:hidden;
-  background:#DED8D0;
-}
-
-.about-copy h2{
-  font:400 clamp(44px,6vw,78px)/.98 var(--serif);
-  letter-spacing:-.06em;
-  margin-bottom:24px;
-}
-
-.about-copy p{
-  max-width:470px;
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.8;
-  margin-bottom:12px;
-}
-
-.mini-tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:24px;
-}
-
-.mini-tags span{
-  border:1px solid #DED4C9;
-  border-radius:30px;
-  padding:9px 13px;
-  font-size:10px;
-  color:#5C4033;
-}
-
 /* SERVICES */
 
 .services{
@@ -593,17 +497,9 @@ section{
   color:#5C4033;
 }
 
-.services .eyebrow{
-  color:#9D8189;
-}
-
-.services .section-title{
-  color:#5C4033;
-}
-
-.services .serif{
-  color:#9D8189;
-}
+.services .eyebrow{color:#9D8189}
+.services .section-title{color:#5C4033}
+.services .serif{color:#9D8189}
 
 .services-layout{
   display:grid;
@@ -648,9 +544,7 @@ section{
   letter-spacing:-.07em;
 }
 
-.contact h2 em{
-  color:#C9A99B;
-}
+.contact h2 em{color:#C9A99B}
 
 .contact-note{
   margin:22px auto 30px;
@@ -688,14 +582,8 @@ section{
   text-transform:uppercase;
 }
 
-.socials{
-  display:flex;
-  gap:17px;
-}
-
-.socials a:hover{
-  color:#fff;
-}
+.socials{display:flex;gap:17px}
+.socials a:hover{color:#fff}
 
 /* TABLET */
 
@@ -706,35 +594,18 @@ section{
     gap:28px;
   }
 
-  .intro-photo{
-    height:430px;
-  }
+  .intro-photo{height:430px}
+  .intro-content .chapter{margin-bottom:25px}
 
-  .intro-content .chapter{
-    margin-bottom:25px;
-  }
-
-  .about-grid,
   .services-layout{
     grid-template-columns:1fr;
     gap:35px;
   }
 
-  .strip-grid{
-    grid-template-columns:1fr 1fr;
-  }
+  .strip-grid{grid-template-columns:1fr 1fr}
+  .strip-image:nth-child(3){display:none}
 
-  .strip-image:nth-child(3){
-    display:none;
-  }
-
-  .about-photo{
-    height:470px;
-  }
-
-  .hero-bottom{
-    margin-top:45px;
-  }
+  .hero-bottom{margin-top:45px}
 }
 
 /* MOBILE */
@@ -755,9 +626,7 @@ section{
     font-size:clamp(37px,10vw,53px);
   }
 
-  html{
-    scroll-padding-top:110px;
-  }
+  html{scroll-padding-top:110px}
 
   .site-nav{
     align-items:flex-start;
@@ -766,22 +635,16 @@ section{
     padding:13px 20px;
   }
 
-  .logo{
-    font-size:22px;
-  }
+  .logo{font-size:22px}
 
   .menu{
     justify-content:flex-start;
     gap:10px 14px;
   }
 
-  .menu a{
-    font-size:8px;
-  }
+  .menu a{font-size:8px}
 
-  section{
-    padding:70px 21px;
-  }
+  section{padding:70px 21px}
 
   .hero{
     min-height:690px;
@@ -789,13 +652,8 @@ section{
     padding-bottom:55px;
   }
 
-  .hero h1{
-    font-size:clamp(76px,18vw,115px);
-  }
-
-  .hero h1 span:last-child{
-    padding-left:7vw;
-  }
+  .hero h1{font-size:clamp(76px,18vw,115px)}
+  .hero h1 span:last-child{padding-left:7vw}
 
   .hero-bottom{
     align-items:flex-start;
@@ -803,13 +661,9 @@ section{
     gap:20px;
   }
 
-  .section-top{
-    display:block;
-  }
+  .section-top{display:block}
 
-  .section-note{
-    margin-top:15px;
-  }
+  .section-note{margin-top:15px}
 
   .work-grid,
   .video-grid{
@@ -817,34 +671,18 @@ section{
     gap:28px;
   }
 
-  .work-image{
-    aspect-ratio:1.4;
-  }
+  .work-image{aspect-ratio:1.4}
 
   .strip-grid{
     grid-template-columns:1fr 1fr;
     gap:10px;
   }
 
-  .strip-image{
-    height:180px;
-  }
+  .strip-image{height:180px}
+  .strip-image:nth-child(2){margin-top:20px}
 
-  .strip-image:nth-child(2){
-    margin-top:20px;
-  }
-
-  .about-photo{
-    height:360px;
-  }
-
-  .service-list li{
-    font-size:14px;
-  }
-
-  .service-list small{
-    font-size:8px;
-  }
+  .service-list li{font-size:14px}
+  .service-list small{font-size:8px}
 
   .contact-footer{
     flex-direction:column;
@@ -859,13 +697,8 @@ section{
   }
 }
 
-/* REDUCED MOTION */
-
 @media(prefers-reduced-motion:reduce){
-  html{
-    scroll-behavior:auto;
-  }
-
+  html{scroll-behavior:auto}
   .reveal{
     opacity:1;
     transform:none;
@@ -883,7 +716,7 @@ section{
   <div class="menu">
     <a href="#work">Work</a>
     <a href="#videos">Videos</a>
-    <a href="#about">About</a>
+    <a href="#intro">About</a>
     <a href="#services">Services</a>
     <a href="#contact">Contact</a>
   </div>
@@ -949,7 +782,7 @@ section{
         experiences, combining thoughtful design with clean code.
       </p>
 
-      <a href="#about" class="intro-link">
+      <a href="#services" class="intro-link">
         MORE ABOUT ME ↗
       </a>
 
@@ -958,7 +791,7 @@ section{
   </div>
 </section>
 
-<!-- SELECTED PROJECTS -->
+<!-- STORE & LANDING PAGES -->
 
 <section class="work" id="work">
   <div class="inner">
@@ -968,7 +801,7 @@ section{
         <div class="eyebrow">02 / Selected projects</div>
 
         <h2 class="section-title">
-          A collection of <span class="serif">my work.</span>
+          Store &amp; <span class="serif">Landing Pages.</span>
         </h2>
       </div>
     </div>
@@ -976,17 +809,11 @@ section{
     <div class="work-grid">
 
       <article class="work-card reveal">
-        <div class="work-image">
-          <img
-            src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/cf35048b3a83f3b2a63d1bc424a2eecb.jpg?v=1792685464"
-            alt="Pet fashion store project"
-            loading="lazy"
-          >
-        </div>
+        <div class="work-image"></div>
 
         <div class="work-caption">
           <h3>Petwear Store</h3>
-          <span>01 / Shopify store</span>
+          <span>01 / Shopify Store</span>
         </div>
 
         <p class="work-sub">
@@ -995,17 +822,11 @@ section{
       </article>
 
       <article class="work-card reveal reveal-delay-1">
-        <div class="work-image">
-          <img
-            src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Autumn_Samoyed_in_a_Yellow_Raincoat.png?v=1792428795"
-            alt="Dog wearing a yellow raincoat"
-            loading="lazy"
-          >
-        </div>
+        <div class="work-image"></div>
 
         <div class="work-caption">
           <h3>Raincoat Collection</h3>
-          <span>02 / Collection design</span>
+          <span>02 / Collection Design</span>
         </div>
 
         <p class="work-sub">
@@ -1014,17 +835,11 @@ section{
       </article>
 
       <article class="work-card reveal">
-        <div class="work-image">
-          <img
-            src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Digital_Planner_Desk_Scene.png?v=1792956163"
-            alt="Digital planner landing page design"
-            loading="lazy"
-          >
-        </div>
+        <div class="work-image"></div>
 
         <div class="work-caption">
           <h3>Digital Planner</h3>
-          <span>03 / Landing page</span>
+          <span>03 / Landing Page</span>
         </div>
 
         <p class="work-sub">
@@ -1033,13 +848,7 @@ section{
       </article>
 
       <article class="work-card reveal reveal-delay-1">
-        <div class="work-image">
-          <img
-            src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/IMG_0076.jpg?v=1792956082"
-            alt="Halloween campaign landing page"
-            loading="lazy"
-          >
-        </div>
+        <div class="work-image"></div>
 
         <div class="work-caption">
           <h3>Halloween Campaign</h3>
@@ -1137,57 +946,13 @@ section{
   </div>
 </section>
 
-<!-- ABOUT DETAILS -->
-
-<section class="about" id="about">
-  <div class="inner about-grid">
-
-    <div class="about-photo reveal">
-      <img
-        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1000&q=85"
-        alt="Portrait"
-        loading="lazy"
-      >
-    </div>
-
-    <div class="about-copy reveal reveal-delay-1">
-
-      <div class="eyebrow">
-        04 / A little about me
-      </div>
-
-      <h2>
-        Hi, I’m Ani.<br>
-        <span class="serif">I build for the web.</span>
-      </h2>
-
-      <p>
-        Self-taught Shopify Developer and E-commerce Designer focused on
-        custom storefronts, thoughtful layouts and details that make
-        online stores feel special.
-      </p>
-
-      <div class="mini-tags">
-        <span>Shopify</span>
-        <span>Liquid</span>
-        <span>HTML &amp; CSS</span>
-        <span>JavaScript</span>
-        <span>Responsive design</span>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <!-- SERVICES -->
 
 <section class="services" id="services">
   <div class="inner services-layout">
 
     <div class="reveal">
-      <div class="eyebrow">
-        05 / What I do
-      </div>
+      <div class="eyebrow">04 / What I do</div>
 
       <h2 class="section-title">
         Design meets <span class="serif">function.</span>
@@ -1235,7 +1000,7 @@ section{
   <div class="inner">
 
     <div class="eyebrow" style="color:#C9A99B">
-      06 / Let’s connect
+      05 / Let’s connect
     </div>
 
     <h2 class="reveal">
@@ -1263,27 +1028,15 @@ section{
       <div class="socials">
         <a href="mailto:anitoroyan.work@gmail.com">Email</a>
 
-        <a
-          href="https://www.linkedin.com/"
-          target="_blank"
-          rel="noopener"
-        >
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener">
           LinkedIn
         </a>
 
-        <a
-          href="https://github.com/"
-          target="_blank"
-          rel="noopener"
-        >
+        <a href="https://github.com/" target="_blank" rel="noopener">
           GitHub
         </a>
 
-        <a
-          href="https://www.upwork.com/"
-          target="_blank"
-          rel="noopener"
-        >
+        <a href="https://www.upwork.com/" target="_blank" rel="noopener">
           Upwork
         </a>
       </div>
