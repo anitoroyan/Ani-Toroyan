@@ -402,9 +402,7 @@ section{
   background:rgba(48,45,41,.85);
 }
 
-.project-video-wrap.is-playing .project-poster{
-  display:none;
-}
+.project-video-wrap.is-playing .project-poster{display:none;}
 
 .work-caption{
   display:flex;
@@ -432,29 +430,145 @@ section{
   margin-top:5px;
 }
 
-/* IMAGE STRIP */
+/* FEATURED LANDING PAGE */
 
 .visual-strip{
   background:#EAE0D5;
-  padding-top:55px;
-  padding-bottom:55px;
+  padding:clamp(55px,8vw,110px) 0;
+  color:#5C4033;
 }
 
 .strip-grid{
   display:grid;
-  grid-template-columns:1.2fr .8fr 1fr;
-  gap:16px;
-  align-items:stretch;
+  grid-template-columns:.72fr 1.28fr;
+  gap:clamp(30px,6vw,90px);
+  align-items:center;
 }
 
-.strip-image{
-  height:clamp(190px,27vw,360px);
+.strip-copy{max-width:440px}
+
+.strip-kicker{
+  margin-bottom:22px;
+  color:#9D8189;
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+
+.strip-copy h2{
+  margin:0 0 20px;
+  color:#5C4033;
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(38px,5.2vw,72px);
+  font-weight:400;
+  line-height:1.04;
+  letter-spacing:-.045em;
+}
+
+.strip-copy p{
+  max-width:390px;
+  color:#81766E;
+  font-size:14px;
+  line-height:1.9;
+}
+
+.strip-meta{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-top:30px;
+  color:#81766E;
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.strip-meta:before{
+  content:'';
+  width:34px;
+  height:1px;
+  background:#9D8189;
+}
+
+/* LAPTOP VIDEO */
+
+.strip-video-wrap{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/10;
+  padding:2.2% 2.4% 3.5%;
+  border-radius:18px 18px 8px 8px;
+  background:linear-gradient(145deg,#34312E,#111);
+  border:2px solid #77716B;
+  box-shadow:
+    0 24px 60px rgba(48,45,41,.18),
+    inset 0 1px 2px rgba(255,255,255,.25);
+}
+
+.strip-video-wrap:before{
+  content:'';
+  position:absolute;
+  top:8px;
+  left:50%;
+  transform:translateX(-50%);
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#77716B;
+  z-index:3;
+}
+
+.strip-video-screen{
+  width:100%;
+  height:100%;
   overflow:hidden;
-  background:#E3D8CE;
+  background:#111;
+  border:1px solid #171513;
+  border-radius:3px;
 }
 
-.strip-image:nth-child(2){margin-top:35px}
-.strip-image:nth-child(3){margin-top:-20px}
+.strip-video-screen video{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  background:#111;
+}
+
+.laptop-base{
+  position:absolute;
+  left:-5%;
+  right:-5%;
+  bottom:-13px;
+  height:14px;
+  background:linear-gradient(180deg,#D8D4CF 0%,#88837D 45%,#C4BFB8 100%);
+  border-radius:2px 2px 50% 50%;
+  box-shadow:0 9px 15px rgba(48,45,41,.18);
+}
+
+.laptop-base:after{
+  content:'';
+  position:absolute;
+  top:0;
+  left:42%;
+  width:16%;
+  height:4px;
+  background:rgba(75,70,65,.35);
+  border-radius:0 0 8px 8px;
+}
+
+.strip-video-note{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding-top:24px;
+  color:#81766E;
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.strip-video-note span:last-child{color:#9D8189}
 
 /* SCREEN RECORDINGS */
 
@@ -610,7 +724,6 @@ section{
 /* TABLET */
 
 @media(max-width:850px){
-
   .intro-grid{
     grid-template-columns:1fr 1fr;
     gap:28px;
@@ -625,15 +738,12 @@ section{
   }
 
   .strip-grid{grid-template-columns:1fr 1fr}
-  .strip-image:nth-child(3){display:none}
-
   .hero-bottom{margin-top:45px}
 }
 
 /* MOBILE */
 
 @media(max-width:600px){
-
   .intro-grid{
     grid-template-columns:1fr;
     gap:32px;
@@ -684,7 +794,6 @@ section{
   }
 
   .section-top{display:block}
-
   .section-note{margin-top:15px}
 
   .work-grid,
@@ -696,12 +805,18 @@ section{
   .work-image{aspect-ratio:1.4}
 
   .strip-grid{
-    grid-template-columns:1fr 1fr;
-    gap:10px;
+    grid-template-columns:1fr;
+    gap:32px;
   }
 
-  .strip-image{height:180px}
-  .strip-image:nth-child(2){margin-top:20px}
+  .strip-copy h2{max-width:420px}
+
+  .strip-video-wrap{
+    aspect-ratio:16/10;
+    border-radius:12px 12px 5px 5px;
+  }
+
+  .strip-video-note{padding-top:23px}
 
   .service-list li{font-size:14px}
   .service-list small{font-size:8px}
@@ -832,22 +947,13 @@ section{
       <article class="work-card reveal">
         <div class="work-image">
           <div class="project-video-wrap">
-            <video
-              src="https://cdn.shopify.com/videos/c/o/v/63ce3e7cf5124783afd012c32e9e2c2b.mov"
-              controls
-              playsinline
-              preload="metadata">
-            </video>
+            <video src="https://cdn.shopify.com/videos/c/o/v/63ce3e7cf5124783afd012c32e9e2c2b.mov" controls playsinline preload="metadata"></video>
             <button class="project-poster" type="button" aria-label="Play Petwear Store video">
-              <img
-                src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Screenshot_2026-11-06_at_01.34.03.png?v=1793914596"
-                alt="Petwear Store preview"
-                loading="lazy">
+              <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Screenshot_2026-11-06_at_01.34.03.png?v=1793914596" alt="Petwear Store preview" loading="lazy">
               <span class="poster-play" aria-hidden="true">▶</span>
             </button>
           </div>
         </div>
-
         <div class="work-caption">
           <h3>Petwear Store</h3>
           <span>01 / Shopify Store</span>
@@ -860,22 +966,13 @@ section{
       <article class="work-card reveal reveal-delay-1">
         <div class="work-image">
           <div class="project-video-wrap">
-            <video
-              src="https://cdn.shopify.com/videos/c/o/v/4e4e4ea928794020a05b353cb9ababa9.mov"
-              controls
-              playsinline
-              preload="metadata">
-            </video>
+            <video src="https://cdn.shopify.com/videos/c/o/v/4e4e4ea928794020a05b353cb9ababa9.mov" controls playsinline preload="metadata"></video>
             <button class="project-poster" type="button" aria-label="Play Products video">
-              <img
-                src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Screenshot_2026-11-06_at_01.34.45.png?v=1793914597"
-                alt="Products preview"
-                loading="lazy">
+              <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Screenshot_2026-11-06_at_01.34.45.png?v=1793914597" alt="Products preview" loading="lazy">
               <span class="poster-play" aria-hidden="true">▶</span>
             </button>
           </div>
         </div>
-
         <div class="work-caption">
           <h3>Products</h3>
           <span>02 / Products</span>
@@ -888,22 +985,13 @@ section{
       <article class="work-card reveal">
         <div class="work-image">
           <div class="project-video-wrap">
-            <video
-              src="https://cdn.shopify.com/videos/c/o/v/1ea1f5a039724d689f83c77f0420684d.mov"
-              controls
-              playsinline
-              preload="metadata">
-            </video>
+            <video src="https://cdn.shopify.com/videos/c/o/v/1ea1f5a039724d689f83c77f0420684d.mov" controls playsinline preload="metadata"></video>
             <button class="project-poster" type="button" aria-label="Play Bundle video">
-              <img
-                src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Screenshot_2026-11-06_at_01.35.36.png?v=1793914595"
-                alt="Bundle preview"
-                loading="lazy">
+              <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Screenshot_2026-11-06_at_01.35.36.png?v=1793914595" alt="Bundle preview" loading="lazy">
               <span class="poster-play" aria-hidden="true">▶</span>
             </button>
           </div>
         </div>
-
         <div class="work-caption">
           <h3>Bundle</h3>
           <span>03 / Bundle Design</span>
@@ -916,22 +1004,13 @@ section{
       <article class="work-card reveal reveal-delay-1">
         <div class="work-image">
           <div class="project-video-wrap">
-            <video
-              src="https://cdn.shopify.com/videos/c/o/v/10ada76118e845b29ee07c02ecbca078.mov"
-              controls
-              playsinline
-              preload="metadata">
-            </video>
+            <video src="https://cdn.shopify.com/videos/c/o/v/10ada76118e845b29ee07c02ecbca078.mov" controls playsinline preload="metadata"></video>
             <button class="project-poster" type="button" aria-label="Play Main Menu video">
-              <img
-                src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Screenshot_2026-11-06_at_01.36.15.png?v=1793914595"
-                alt="Main Menu preview"
-                loading="lazy">
+              <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Screenshot_2026-11-06_at_01.36.15.png?v=1793914595" alt="Main Menu preview" loading="lazy">
               <span class="poster-play" aria-hidden="true">▶</span>
             </button>
           </div>
         </div>
-
         <div class="work-caption">
           <h3>Main Menu</h3>
           <span>04 / Navigation Design</span>
@@ -945,33 +1024,40 @@ section{
   </div>
 </section>
 
-<!-- IMAGE STRIP -->
+<!-- FEATURED LANDING PAGE -->
 
-<section class="visual-strip">
+<section class="visual-strip" id="raincoat-landing">
   <div class="inner strip-grid">
 
-    <div class="strip-image reveal">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Autumn_Samoyed_in_a_Yellow_Raincoat.png?v=1792428795"
-        alt="Raincoat project detail"
-        loading="lazy"
-      >
+    <div class="strip-copy reveal">
+      <div class="strip-kicker">02 / Featured project</div>
+      <h2>Raincoat<br><em>Landing Page.</em></h2>
+      <p>
+        A dedicated landing page created to showcase the raincoat collection,
+        highlight its key features and guide visitors towards shopping.
+      </p>
+      <div class="strip-meta">Shopify design · Landing page</div>
     </div>
 
-    <div class="strip-image reveal reveal-delay-1">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/cf35048b3a83f3b2a63d1bc424a2eecb.jpg?v=1792685464"
-        alt="Petwear project detail"
-        loading="lazy"
-      >
-    </div>
-
-    <div class="strip-image reveal reveal-delay-2">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Digital_Planner_Desk_Scene.png?v=1792956163"
-        alt="Digital planner project detail"
-        loading="lazy"
-      >
+    <div class="strip-media reveal reveal-delay-1">
+      <div class="strip-video-wrap">
+        <div class="strip-video-screen">
+          <video
+            controls
+            playsinline
+            preload="metadata"
+            aria-label="Raincoat Landing Page walkthrough"
+          >
+            <source src="https://cdn.shopify.com/videos/c/o/v/86634e8811064942b9572bfab6a40d2c.mov" type="video/quicktime">
+            Your browser does not support embedded video.
+          </video>
+        </div>
+        <div class="laptop-base"></div>
+      </div>
+      <div class="strip-video-note">
+        <span>Raincoat collection experience</span>
+        <span>Watch walkthrough ↗</span>
+      </div>
     </div>
 
   </div>
@@ -1147,7 +1233,6 @@ document.addEventListener('DOMContentLoaded',function(){
   ){
     items.forEach(el=>el.classList.add('visible'));
   } else {
-
     const observer=new IntersectionObserver((entries,obs)=>{
 
       entries.forEach(entry=>{
@@ -1170,29 +1255,23 @@ document.addEventListener('DOMContentLoaded',function(){
     items.forEach(el=>observer.observe(el));
   }
 
-  // Show each supplied screenshot until its video is played.
+  // Video poster behavior for the four project previews.
   document.querySelectorAll('.project-video-wrap').forEach(function(wrap){
+    const video = wrap.querySelector('video');
+    const poster = wrap.querySelector('.project-poster');
+    if (!video || !poster) return;
 
-    const video=wrap.querySelector('video');
-    const poster=wrap.querySelector('.project-poster');
-
-    if(!video || !poster) return;
-
-    poster.addEventListener('click',function(){
-
+    poster.addEventListener('click', function(){
       wrap.classList.add('is-playing');
-
       video.play().catch(function(){
         wrap.classList.remove('is-playing');
       });
-
     });
 
-    video.addEventListener('ended',function(){
+    video.addEventListener('ended', function(){
       wrap.classList.remove('is-playing');
-      video.currentTime=0;
+      video.currentTime = 0;
     });
-
   });
 
 });
