@@ -339,7 +339,13 @@ section{
   border:1px solid rgba(92,64,51,.12);
 }
 
-.work-image img{display:none !important}
+.work-image video{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#000;
+}
 
 .work-caption{
   display:flex;
@@ -426,64 +432,10 @@ section{
     box-shadow .55s ease;
 }
 
-.video-screen video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  display:block;
-  object-fit:contain;
-  background:#080808;
-  z-index:2;
-}
-
-.video-screen:before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:radial-gradient(ellipse at center,rgba(255,255,255,.07),transparent 65%);
-}
-
 .video-card:hover .video-screen{
   transform:scale(1.035);
   box-shadow:0 22px 48px rgba(28,23,19,.18);
   z-index:2;
-}
-
-.video-word{
-  position:relative;
-  z-index:1;
-  color:#fff;
-  font-size:clamp(26px,4vw,54px);
-  font-weight:500;
-  letter-spacing:.28em;
-  text-indent:.28em;
-  transition:letter-spacing .45s ease,opacity .45s ease;
-}
-
-.video-card:hover .video-word{
-  letter-spacing:.42em;
-  opacity:.9;
-}
-
-.video-play{
-  position:absolute;
-  right:20px;
-  bottom:18px;
-  width:42px;
-  height:42px;
-  border:1px solid rgba(255,255,255,.65);
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  color:#fff;
-  font-size:13px;
-  transition:transform .35s ease,background .35s ease;
-}
-
-.video-card:hover .video-play{
-  transform:scale(1.12);
-  background:rgba(255,255,255,.12);
 }
 
 .video-label{
@@ -819,8 +771,17 @@ section{
 
     <div class="work-grid">
 
+      <!-- VIDEO 1: PETWEAR STORE -->
+
       <article class="work-card reveal">
-        <div class="work-image"></div>
+        <div class="work-image">
+          <video
+            src="https://cdn.shopify.com/videos/c/o/v/63ce3e7cf5124783afd012c32e9e2c2b.mov"
+            controls
+            playsinline
+            preload="metadata"
+          ></video>
+        </div>
 
         <div class="work-caption">
           <h3>Petwear Store</h3>
@@ -832,18 +793,29 @@ section{
         </p>
       </article>
 
+      <!-- VIDEO 2: PRODUCTS -->
+
       <article class="work-card reveal reveal-delay-1">
-        <div class="work-image"></div>
+        <div class="work-image">
+          <video
+            src="https://cdn.shopify.com/videos/c/o/v/4e4e4ea928794020a05b353cb9ababa9.mov"
+            controls
+            playsinline
+            preload="metadata"
+          ></video>
+        </div>
 
         <div class="work-caption">
-          <h3>Raincoat Collection</h3>
-          <span>02 / Collection Design</span>
+          <h3>Products</h3>
+          <span>02 / Products</span>
         </div>
 
         <p class="work-sub">
-          Visual storytelling · Collection layout
+          Product presentation · Store experience
         </p>
       </article>
+
+      <!-- PROJECT 3 -->
 
       <article class="work-card reveal">
         <div class="work-image"></div>
@@ -857,6 +829,8 @@ section{
           Digital product · Layout design
         </p>
       </article>
+
+      <!-- PROJECT 4 -->
 
       <article class="work-card reveal reveal-delay-1">
         <div class="work-image"></div>
@@ -931,33 +905,25 @@ section{
 
       <article class="video-card reveal">
         <div class="video-screen">
-          <video
-            src="https://cdn.shopify.com/videos/c/o/v/63ce3e7cf5124783afd012c32e9e2c2b.mov"
-            controls
-            playsinline
-            preload="metadata"
-          ></video>
+          <span class="video-word">VIDEO</span>
+          <span class="video-play">▶</span>
         </div>
 
         <div class="video-label">
           <span>01 / Store walkthrough</span>
-          <span>Screen recording</span>
+          <span>Video coming soon</span>
         </div>
       </article>
 
       <article class="video-card reveal reveal-delay-1">
         <div class="video-screen">
-          <video
-            src="https://cdn.shopify.com/videos/c/o/v/b969d6d7ebb5401396a44c57210b5753.mov"
-            controls
-            playsinline
-            preload="metadata"
-          ></video>
+          <span class="video-word">VIDEO</span>
+          <span class="video-play">▶</span>
         </div>
 
         <div class="video-label">
           <span>02 / Custom sections</span>
-          <span>Screen recording</span>
+          <span>Video coming soon</span>
         </div>
       </article>
 
