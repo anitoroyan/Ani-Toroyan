@@ -134,15 +134,31 @@ section{position:relative;padding:clamp(76px,9vw,130px) 8vw;scroll-margin-top:78
   width:100%;height:100%;object-fit:cover;background:#111;
 }
 
-/* RAINCOAT IMAGE POSTER */
+/* RAINCOAT POSTER */
 .raincoat-poster{
-  position:absolute;inset:0;z-index:3;
-  display:block;width:100%;height:100%;
-  padding:0;border:0;background:#111;cursor:pointer;
+  position:absolute;
+  inset:0;
+  z-index:3;
+  display:block;
+  width:100%;
+  height:100%;
+  padding:0;
+  border:0;
+  background:#EAE0D5;
+  cursor:pointer;
+  overflow:hidden;
 }
 .raincoat-poster img{
-  display:block;width:100%;height:100%;
-  object-fit:cover;object-position:center;
+  position:absolute;
+  top:-9%;
+  left:0;
+  width:100%;
+  height:118%;
+  max-width:none;
+  object-fit:cover;
+  object-position:center center;
+  transform:scale(1.04);
+  background:#EAE0D5;
 }
 .raincoat-poster .poster-play{
   width:64px;height:64px;font-size:20px;
@@ -167,42 +183,6 @@ section{position:relative;padding:clamp(76px,9vw,130px) 8vw;scroll-margin-top:78
 }
 .strip-video-note{display:flex;justify-content:space-between;gap:15px;padding-top:24px;color:#81766E;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
 .strip-video-note span:last-child{color:#9D8189}
-
-/* LARGE THREE-IMAGE GALLERY UNDER FEATURED PROJECT */
-.raincoat-mini-gallery{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:22px;
-  width:100%;
-  max-width:1340px;
-  margin:55px auto 0;
-}
-.raincoat-mini-card{
-  position:relative;
-  width:100%;
-  aspect-ratio:1.45/1;
-  overflow:hidden;
-  border-radius:8px;
-  background:#D8C8B8;
-  cursor:pointer;
-  transition:box-shadow .5s ease;
-}
-.raincoat-mini-card img{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:transform .65s cubic-bezier(.2,.7,.2,1);
-}
-.raincoat-mini-card:hover img{transform:scale(1.2)}
-.raincoat-mini-card:hover{box-shadow:0 20px 40px rgba(48,45,41,.2)}
-.raincoat-mini-card:after{
-  content:'';
-  position:absolute;
-  inset:0;
-  border:1px solid rgba(92,64,51,.12);
-  pointer-events:none;
-}
 
 /* SCREEN RECORDINGS */
 .videos{background:#FCFAF5;color:#5C4033}
@@ -269,10 +249,8 @@ section{position:relative;padding:clamp(76px,9vw,130px) 8vw;scroll-margin-top:78
   .work-image{aspect-ratio:1.4}
   .strip-grid{grid-template-columns:1fr;gap:32px}
   .strip-copy h2{max-width:420px}
-  .strip-video-wrap{aspect-ratio:1.88/1;border-radius:12px 12px 5px 5px}
+  .strip-video-wrap{aspect-ratio:16/10;border-radius:12px 12px 5px 5px}
   .strip-video-note{padding-top:23px}
-  .raincoat-mini-gallery{grid-template-columns:1fr;gap:16px;margin-top:35px}
-  .raincoat-mini-card{aspect-ratio:1.5/1}
   .service-list li{font-size:14px}
   .service-list small{font-size:8px}
   .contact-footer{flex-direction:column;align-items:center;text-align:center;margin-top:65px}
@@ -456,18 +434,6 @@ section{position:relative;padding:clamp(76px,9vw,130px) 8vw;scroll-margin-top:78
       </div>
     </div>
 
-  </div>
-
-  <div class="inner raincoat-mini-gallery reveal">
-    <div class="raincoat-mini-card">
-      <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Screenshot_2026-11-06_at_02.41.55.png?v=1793918761" alt="Raincoat project image 1" loading="lazy">
-    </div>
-    <div class="raincoat-mini-card">
-      <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Screenshot_2026-11-06_at_02.42.24.png?v=1793918762" alt="Raincoat project image 2" loading="lazy">
-    </div>
-    <div class="raincoat-mini-card">
-      <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Screenshot_2026-11-06_at_02.44.52.png?v=1793918760" alt="Raincoat project image 3" loading="lazy">
-    </div>
   </div>
 </section>
 
