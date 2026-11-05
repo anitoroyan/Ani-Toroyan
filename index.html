@@ -168,33 +168,34 @@ section{position:relative;padding:clamp(76px,9vw,130px) 8vw;scroll-margin-top:78
 .strip-video-note{display:flex;justify-content:space-between;gap:15px;padding-top:24px;color:#81766E;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
 .strip-video-note span:last-child{color:#9D8189}
 
-/* THREE SMALL IMAGE PREVIEWS UNDER FEATURED PROJECT */
+/* LARGE THREE-IMAGE GALLERY UNDER FEATURED PROJECT */
 .raincoat-mini-gallery{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:14px;
-  margin-top:34px;
-  max-width:760px;
-  margin-left:auto;
+  gap:22px;
+  width:100%;
+  max-width:1340px;
+  margin:55px auto 0;
 }
 .raincoat-mini-card{
   position:relative;
-  aspect-ratio:1.55/1;
+  width:100%;
+  aspect-ratio:1.45/1;
   overflow:hidden;
-  border-radius:3px;
+  border-radius:8px;
   background:#D8C8B8;
   cursor:pointer;
-  transition:box-shadow .45s ease;
+  transition:box-shadow .5s ease;
 }
 .raincoat-mini-card img{
+  display:block;
   width:100%;
   height:100%;
-  display:block;
   object-fit:cover;
-  transition:transform .55s cubic-bezier(.2,.7,.2,1);
+  transition:transform .65s cubic-bezier(.2,.7,.2,1);
 }
-.raincoat-mini-card:hover img{transform:scale(1.18)}
-.raincoat-mini-card:hover{box-shadow:0 16px 34px rgba(48,45,41,.18)}
+.raincoat-mini-card:hover img{transform:scale(1.2)}
+.raincoat-mini-card:hover{box-shadow:0 20px 40px rgba(48,45,41,.2)}
 .raincoat-mini-card:after{
   content:'';
   position:absolute;
@@ -270,8 +271,8 @@ section{position:relative;padding:clamp(76px,9vw,130px) 8vw;scroll-margin-top:78
   .strip-copy h2{max-width:420px}
   .strip-video-wrap{aspect-ratio:1.88/1;border-radius:12px 12px 5px 5px}
   .strip-video-note{padding-top:23px}
-  .raincoat-mini-gallery{gap:8px;margin-top:24px}
-  .raincoat-mini-card{aspect-ratio:1/1}
+  .raincoat-mini-gallery{grid-template-columns:1fr;gap:16px;margin-top:35px}
+  .raincoat-mini-card{aspect-ratio:1.5/1}
   .service-list li{font-size:14px}
   .service-list small{font-size:8px}
   .contact-footer{flex-direction:column;align-items:center;text-align:center;margin-top:65px}
@@ -459,13 +460,13 @@ section{position:relative;padding:clamp(76px,9vw,130px) 8vw;scroll-margin-top:78
 
   <div class="inner raincoat-mini-gallery reveal">
     <div class="raincoat-mini-card">
-      <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Screenshot_2026-11-06_at_02.41.55.png?v=1793918761" alt="Golden retriever outdoors" loading="lazy">
+      <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Screenshot_2026-11-06_at_02.41.55.png?v=1793918761" alt="Raincoat project image 1" loading="lazy">
     </div>
     <div class="raincoat-mini-card">
-      <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Screenshot_2026-11-06_at_02.42.24.png?v=1793918762" alt="Mountain landscape" loading="lazy">
+      <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Screenshot_2026-11-06_at_02.42.24.png?v=1793918762" alt="Raincoat project image 2" loading="lazy">
     </div>
     <div class="raincoat-mini-card">
-      <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Screenshot_2026-11-06_at_02.44.52.png?v=1793918760" alt="Coffee and cozy morning" loading="lazy">
+      <img src="https://cdn.shopify.com/s/files/1/0825/4695/0390/files/Screenshot_2026-11-06_at_02.44.52.png?v=1793918760" alt="Raincoat project image 3" loading="lazy">
     </div>
   </div>
 </section>
