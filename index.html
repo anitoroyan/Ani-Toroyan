@@ -426,6 +426,17 @@ section{
     box-shadow .55s ease;
 }
 
+.video-screen video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:contain;
+  background:#080808;
+  z-index:2;
+}
+
 .video-screen:before{
   content:'';
   position:absolute;
@@ -920,25 +931,33 @@ section{
 
       <article class="video-card reveal">
         <div class="video-screen">
-          <span class="video-word">VIDEO</span>
-          <span class="video-play">▶</span>
+          <video
+            src="https://cdn.shopify.com/videos/c/o/v/63ce3e7cf5124783afd012c32e9e2c2b.mov"
+            controls
+            playsinline
+            preload="metadata"
+          ></video>
         </div>
 
         <div class="video-label">
           <span>01 / Store walkthrough</span>
-          <span>Video coming soon</span>
+          <span>Screen recording</span>
         </div>
       </article>
 
       <article class="video-card reveal reveal-delay-1">
         <div class="video-screen">
-          <span class="video-word">VIDEO</span>
-          <span class="video-play">▶</span>
+          <video
+            src="https://cdn.shopify.com/videos/c/o/v/b969d6d7ebb5401396a44c57210b5753.mov"
+            controls
+            playsinline
+            preload="metadata"
+          ></video>
         </div>
 
         <div class="video-label">
           <span>02 / Custom sections</span>
-          <span>Video coming soon</span>
+          <span>Screen recording</span>
         </div>
       </article>
 
