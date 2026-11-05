@@ -776,7 +776,7 @@ section{
             src="https://cdn.shopify.com/videos/c/o/v/63ce3e7cf5124783afd012c32e9e2c2b.mov"
             controls
             playsinline
-            preload="metadata">
+            preload="auto">
           </video>
         </div>
         <div class="work-caption">
@@ -794,7 +794,7 @@ section{
             src="https://cdn.shopify.com/videos/c/o/v/4e4e4ea928794020a05b353cb9ababa9.mov"
             controls
             playsinline
-            preload="metadata">
+            preload="auto">
           </video>
         </div>
         <div class="work-caption">
@@ -812,7 +812,7 @@ section{
             src="https://cdn.shopify.com/videos/c/o/v/1ea1f5a039724d689f83c77f0420684d.mov"
             controls
             playsinline
-            preload="metadata">
+            preload="auto">
           </video>
         </div>
         <div class="work-caption">
@@ -830,7 +830,7 @@ section{
             src="https://cdn.shopify.com/videos/c/o/v/10ada76118e845b29ee07c02ecbca078.mov"
             controls
             playsinline
-            preload="metadata">
+            preload="auto">
           </video>
         </div>
         <div class="work-caption">
@@ -1047,29 +1047,49 @@ document.addEventListener('DOMContentLoaded',function(){
     window.matchMedia('(prefers-reduced-motion: reduce)').matches
   ){
     items.forEach(el=>el.classList.add('visible'));
-    return;
-  }
+  } else {
 
-  const observer=new IntersectionObserver((entries,obs)=>{
+    const observer=new IntersectionObserver((entries,obs)=>{
 
-    entries.forEach(entry=>{
+      entries.forEach(entry=>{
 
-      if(entry.isIntersecting){
+        if(entry.isIntersecting){
 
-        entry.target.classList.add('visible');
+          entry.target.classList.add('visible');
 
-        obs.unobserve(entry.target);
+          obs.unobserve(entry.target);
 
-      }
+        }
 
+      });
+
+    },{
+      threshold:.13,
+      rootMargin:'0px 0px -35px 0px'
     });
 
-  },{
-    threshold:.13,
-    rootMargin:'0px 0px -35px 0px'
-  });
+    items.forEach(el=>observer.observe(el));
+  }
 
-  items.forEach(el=>observer.observe(el));
+  /* VIDEO FIRST-SECOND PREVIEW */
+
+  document.querySelectorAll('.work-image video').forEach(function(video){
+
+    video.preload='auto';
+
+    video.addEventListener('loadedmetadata',function(){
+
+      const previewTime = video.duration > 1 ? 1 : 0.1;
+
+      video.currentTime = previewTime;
+
+    },{once:true});
+
+    video.addEventListener('seeked',function(){
+      video.pause();
+    });
+
+  });
 
 });
 </script>
